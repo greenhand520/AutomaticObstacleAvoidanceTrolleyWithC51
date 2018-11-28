@@ -1,0 +1,17 @@
+-myux
+-i ./Debug.hex
+-Y
+-z
+-b HOME = 0x0000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-u
+-k D:\Program Files (x86)\SDCC\bin\..\lib\small
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+main.rel
+
+-e

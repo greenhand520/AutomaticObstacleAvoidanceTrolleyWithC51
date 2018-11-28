@@ -1,0 +1,1552 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.0 #6037 (Oct 31 2010) (MINGW32)
+                              4 ; This file was generated Wed Nov 28 21:42:51 2018
+                              5 ;--------------------------------------------------------
+                              6 	.module main
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _seg
+                             13 	.globl _main
+                             14 	.globl _timer2
+                             15 	.globl _serial
+                             16 	.globl _timer0
+                             17 	.globl _initTimer2
+                             18 	.globl _initSerial
+                             19 	.globl _reloadTimer0
+                             20 	.globl _initTimer0
+                             21 	.globl _initInterrupt
+                             22 	.globl _btControl
+                             23 	.globl _selfControl
+                             24 	.globl _awayBackObs
+                             25 	.globl _awayFrontObs
+                             26 	.globl _awayRightObs
+                             27 	.globl _awayLEFTObs
+                             28 	.globl _startSR04
+                             29 	.globl _calculate
+                             30 	.globl _trigger
+                             31 	.globl _steerTurn
+                             32 	.globl _setTurnAngle
+                             33 	.globl _ledStatus
+                             34 	.globl _sensorTrigger
+                             35 	.globl _delay
+                             36 	.globl _CY
+                             37 	.globl _AC
+                             38 	.globl _F0
+                             39 	.globl _RS1
+                             40 	.globl _RS0
+                             41 	.globl _OV
+                             42 	.globl _FL
+                             43 	.globl _P
+                             44 	.globl _TF2
+                             45 	.globl _EXF2
+                             46 	.globl _RCLK
+                             47 	.globl _TCLK
+                             48 	.globl _EXEN2
+                             49 	.globl _TR2
+                             50 	.globl _C_T2
+                             51 	.globl _CP_RL2
+                             52 	.globl _T2CON_7
+                             53 	.globl _T2CON_6
+                             54 	.globl _T2CON_5
+                             55 	.globl _T2CON_4
+                             56 	.globl _T2CON_3
+                             57 	.globl _T2CON_2
+                             58 	.globl _T2CON_1
+                             59 	.globl _T2CON_0
+                             60 	.globl _PT2
+                             61 	.globl _PS
+                             62 	.globl _PT1
+                             63 	.globl _PX1
+                             64 	.globl _PT0
+                             65 	.globl _PX0
+                             66 	.globl _RD
+                             67 	.globl _WR
+                             68 	.globl _T1
+                             69 	.globl _T0
+                             70 	.globl _INT1
+                             71 	.globl _INT0
+                             72 	.globl _TXD
+                             73 	.globl _RXD
+                             74 	.globl _P3_7
+                             75 	.globl _P3_6
+                             76 	.globl _P3_5
+                             77 	.globl _P3_4
+                             78 	.globl _P3_3
+                             79 	.globl _P3_2
+                             80 	.globl _P3_1
+                             81 	.globl _P3_0
+                             82 	.globl _EA
+                             83 	.globl _ET2
+                             84 	.globl _ES
+                             85 	.globl _ET1
+                             86 	.globl _EX1
+                             87 	.globl _ET0
+                             88 	.globl _EX0
+                             89 	.globl _P2_7
+                             90 	.globl _P2_6
+                             91 	.globl _P2_5
+                             92 	.globl _P2_4
+                             93 	.globl _P2_3
+                             94 	.globl _P2_2
+                             95 	.globl _P2_1
+                             96 	.globl _P2_0
+                             97 	.globl _SM0
+                             98 	.globl _SM1
+                             99 	.globl _SM2
+                            100 	.globl _REN
+                            101 	.globl _TB8
+                            102 	.globl _RB8
+                            103 	.globl _TI
+                            104 	.globl _RI
+                            105 	.globl _T2EX
+                            106 	.globl _T2
+                            107 	.globl _P1_7
+                            108 	.globl _P1_6
+                            109 	.globl _P1_5
+                            110 	.globl _P1_4
+                            111 	.globl _P1_3
+                            112 	.globl _P1_2
+                            113 	.globl _P1_1
+                            114 	.globl _P1_0
+                            115 	.globl _TF1
+                            116 	.globl _TR1
+                            117 	.globl _TF0
+                            118 	.globl _TR0
+                            119 	.globl _IE1
+                            120 	.globl _IT1
+                            121 	.globl _IE0
+                            122 	.globl _IT0
+                            123 	.globl _P0_7
+                            124 	.globl _P0_6
+                            125 	.globl _P0_5
+                            126 	.globl _P0_4
+                            127 	.globl _P0_3
+                            128 	.globl _P0_2
+                            129 	.globl _P0_1
+                            130 	.globl _P0_0
+                            131 	.globl _B
+                            132 	.globl _A
+                            133 	.globl _ACC
+                            134 	.globl _PSW
+                            135 	.globl _TH2
+                            136 	.globl _TL2
+                            137 	.globl _RCAP2H
+                            138 	.globl _RCAP2L
+                            139 	.globl _T2MOD
+                            140 	.globl _T2CON
+                            141 	.globl _IP
+                            142 	.globl _P3
+                            143 	.globl _IE
+                            144 	.globl _P2
+                            145 	.globl _SBUF
+                            146 	.globl _SCON
+                            147 	.globl _P1
+                            148 	.globl _TH1
+                            149 	.globl _TH0
+                            150 	.globl _TL1
+                            151 	.globl _TL0
+                            152 	.globl _TMOD
+                            153 	.globl _TCON
+                            154 	.globl _PCON
+                            155 	.globl _DPH
+                            156 	.globl _DPL
+                            157 	.globl _SP
+                            158 	.globl _P0
+                            159 	.globl _isOverstep
+                            160 	.globl _timer0For
+                            161 	.globl _angle
+                            162 	.globl _t2InterruptTimes
+                            163 	.globl _t0InterruptTimes
+                            164 	.globl _speed
+                            165 	.globl _putchar
+                            166 ;--------------------------------------------------------
+                            167 ; special function registers
+                            168 ;--------------------------------------------------------
+                            169 	.area RSEG    (ABS,DATA)
+   0000                     170 	.org 0x0000
+                    0080    171 _P0	=	0x0080
+                    0081    172 _SP	=	0x0081
+                    0082    173 _DPL	=	0x0082
+                    0083    174 _DPH	=	0x0083
+                    0087    175 _PCON	=	0x0087
+                    0088    176 _TCON	=	0x0088
+                    0089    177 _TMOD	=	0x0089
+                    008A    178 _TL0	=	0x008a
+                    008B    179 _TL1	=	0x008b
+                    008C    180 _TH0	=	0x008c
+                    008D    181 _TH1	=	0x008d
+                    0090    182 _P1	=	0x0090
+                    0098    183 _SCON	=	0x0098
+                    0099    184 _SBUF	=	0x0099
+                    00A0    185 _P2	=	0x00a0
+                    00A8    186 _IE	=	0x00a8
+                    00B0    187 _P3	=	0x00b0
+                    00B8    188 _IP	=	0x00b8
+                    00C8    189 _T2CON	=	0x00c8
+                    00C9    190 _T2MOD	=	0x00c9
+                    00CA    191 _RCAP2L	=	0x00ca
+                    00CB    192 _RCAP2H	=	0x00cb
+                    00CC    193 _TL2	=	0x00cc
+                    00CD    194 _TH2	=	0x00cd
+                    00D0    195 _PSW	=	0x00d0
+                    00E0    196 _ACC	=	0x00e0
+                    00E0    197 _A	=	0x00e0
+                    00F0    198 _B	=	0x00f0
+                            199 ;--------------------------------------------------------
+                            200 ; special function bits
+                            201 ;--------------------------------------------------------
+                            202 	.area RSEG    (ABS,DATA)
+   0000                     203 	.org 0x0000
+                    0080    204 _P0_0	=	0x0080
+                    0081    205 _P0_1	=	0x0081
+                    0082    206 _P0_2	=	0x0082
+                    0083    207 _P0_3	=	0x0083
+                    0084    208 _P0_4	=	0x0084
+                    0085    209 _P0_5	=	0x0085
+                    0086    210 _P0_6	=	0x0086
+                    0087    211 _P0_7	=	0x0087
+                    0088    212 _IT0	=	0x0088
+                    0089    213 _IE0	=	0x0089
+                    008A    214 _IT1	=	0x008a
+                    008B    215 _IE1	=	0x008b
+                    008C    216 _TR0	=	0x008c
+                    008D    217 _TF0	=	0x008d
+                    008E    218 _TR1	=	0x008e
+                    008F    219 _TF1	=	0x008f
+                    0090    220 _P1_0	=	0x0090
+                    0091    221 _P1_1	=	0x0091
+                    0092    222 _P1_2	=	0x0092
+                    0093    223 _P1_3	=	0x0093
+                    0094    224 _P1_4	=	0x0094
+                    0095    225 _P1_5	=	0x0095
+                    0096    226 _P1_6	=	0x0096
+                    0097    227 _P1_7	=	0x0097
+                    0090    228 _T2	=	0x0090
+                    0091    229 _T2EX	=	0x0091
+                    0098    230 _RI	=	0x0098
+                    0099    231 _TI	=	0x0099
+                    009A    232 _RB8	=	0x009a
+                    009B    233 _TB8	=	0x009b
+                    009C    234 _REN	=	0x009c
+                    009D    235 _SM2	=	0x009d
+                    009E    236 _SM1	=	0x009e
+                    009F    237 _SM0	=	0x009f
+                    00A0    238 _P2_0	=	0x00a0
+                    00A1    239 _P2_1	=	0x00a1
+                    00A2    240 _P2_2	=	0x00a2
+                    00A3    241 _P2_3	=	0x00a3
+                    00A4    242 _P2_4	=	0x00a4
+                    00A5    243 _P2_5	=	0x00a5
+                    00A6    244 _P2_6	=	0x00a6
+                    00A7    245 _P2_7	=	0x00a7
+                    00A8    246 _EX0	=	0x00a8
+                    00A9    247 _ET0	=	0x00a9
+                    00AA    248 _EX1	=	0x00aa
+                    00AB    249 _ET1	=	0x00ab
+                    00AC    250 _ES	=	0x00ac
+                    00AD    251 _ET2	=	0x00ad
+                    00AF    252 _EA	=	0x00af
+                    00B0    253 _P3_0	=	0x00b0
+                    00B1    254 _P3_1	=	0x00b1
+                    00B2    255 _P3_2	=	0x00b2
+                    00B3    256 _P3_3	=	0x00b3
+                    00B4    257 _P3_4	=	0x00b4
+                    00B5    258 _P3_5	=	0x00b5
+                    00B6    259 _P3_6	=	0x00b6
+                    00B7    260 _P3_7	=	0x00b7
+                    00B0    261 _RXD	=	0x00b0
+                    00B1    262 _TXD	=	0x00b1
+                    00B2    263 _INT0	=	0x00b2
+                    00B3    264 _INT1	=	0x00b3
+                    00B4    265 _T0	=	0x00b4
+                    00B5    266 _T1	=	0x00b5
+                    00B6    267 _WR	=	0x00b6
+                    00B7    268 _RD	=	0x00b7
+                    00B8    269 _PX0	=	0x00b8
+                    00B9    270 _PT0	=	0x00b9
+                    00BA    271 _PX1	=	0x00ba
+                    00BB    272 _PT1	=	0x00bb
+                    00BC    273 _PS	=	0x00bc
+                    00BD    274 _PT2	=	0x00bd
+                    00C8    275 _T2CON_0	=	0x00c8
+                    00C9    276 _T2CON_1	=	0x00c9
+                    00CA    277 _T2CON_2	=	0x00ca
+                    00CB    278 _T2CON_3	=	0x00cb
+                    00CC    279 _T2CON_4	=	0x00cc
+                    00CD    280 _T2CON_5	=	0x00cd
+                    00CE    281 _T2CON_6	=	0x00ce
+                    00CF    282 _T2CON_7	=	0x00cf
+                    00C8    283 _CP_RL2	=	0x00c8
+                    00C9    284 _C_T2	=	0x00c9
+                    00CA    285 _TR2	=	0x00ca
+                    00CB    286 _EXEN2	=	0x00cb
+                    00CC    287 _TCLK	=	0x00cc
+                    00CD    288 _RCLK	=	0x00cd
+                    00CE    289 _EXF2	=	0x00ce
+                    00CF    290 _TF2	=	0x00cf
+                    00D0    291 _P	=	0x00d0
+                    00D1    292 _FL	=	0x00d1
+                    00D2    293 _OV	=	0x00d2
+                    00D3    294 _RS0	=	0x00d3
+                    00D4    295 _RS1	=	0x00d4
+                    00D5    296 _F0	=	0x00d5
+                    00D6    297 _AC	=	0x00d6
+                    00D7    298 _CY	=	0x00d7
+                            299 ;--------------------------------------------------------
+                            300 ; overlayable register banks
+                            301 ;--------------------------------------------------------
+                            302 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     303 	.ds 8
+                            304 	.area REG_BANK_1	(REL,OVR,DATA)
+   0000                     305 	.ds 8
+                            306 	.area REG_BANK_2	(REL,OVR,DATA)
+   0000                     307 	.ds 8
+                            308 ;--------------------------------------------------------
+                            309 ; overlayable bit register bank
+                            310 ;--------------------------------------------------------
+                            311 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                     312 bits:
+   0000                     313 	.ds 1
+                    8000    314 	b0 = bits[0]
+                    8100    315 	b1 = bits[1]
+                    8200    316 	b2 = bits[2]
+                    8300    317 	b3 = bits[3]
+                    8400    318 	b4 = bits[4]
+                    8500    319 	b5 = bits[5]
+                    8600    320 	b6 = bits[6]
+                    8700    321 	b7 = bits[7]
+                            322 ;--------------------------------------------------------
+                            323 ; internal ram data
+                            324 ;--------------------------------------------------------
+                            325 	.area DSEG    (DATA)
+   0000                     326 _speed::
+   0000                     327 	.ds 1
+   0001                     328 _t0InterruptTimes::
+   0001                     329 	.ds 1
+   0002                     330 _t2InterruptTimes::
+   0002                     331 	.ds 1
+   0003                     332 _angle::
+   0003                     333 	.ds 1
+   0004                     334 _timer0For::
+   0004                     335 	.ds 1
+                            336 ;--------------------------------------------------------
+                            337 ; overlayable items in internal ram 
+                            338 ;--------------------------------------------------------
+                            339 	.area	OSEG    (OVR,DATA)
+                            340 	.area	OSEG    (OVR,DATA)
+                            341 	.area	OSEG    (OVR,DATA)
+                            342 ;--------------------------------------------------------
+                            343 ; Stack segment in internal ram 
+                            344 ;--------------------------------------------------------
+                            345 	.area	SSEG	(DATA)
+   0000                     346 __start__stack:
+   0000                     347 	.ds	1
+                            348 
+                            349 ;--------------------------------------------------------
+                            350 ; indirectly addressable internal ram data
+                            351 ;--------------------------------------------------------
+                            352 	.area ISEG    (DATA)
+                            353 ;--------------------------------------------------------
+                            354 ; absolute internal ram data
+                            355 ;--------------------------------------------------------
+                            356 	.area IABS    (ABS,DATA)
+                            357 	.area IABS    (ABS,DATA)
+                            358 ;--------------------------------------------------------
+                            359 ; bit data
+                            360 ;--------------------------------------------------------
+                            361 	.area BSEG    (BIT)
+   0000                     362 _isOverstep::
+   0000                     363 	.ds 1
+                            364 ;--------------------------------------------------------
+                            365 ; paged external ram data
+                            366 ;--------------------------------------------------------
+                            367 	.area PSEG    (PAG,XDATA)
+                            368 ;--------------------------------------------------------
+                            369 ; external ram data
+                            370 ;--------------------------------------------------------
+                            371 	.area XSEG    (XDATA)
+                            372 ;--------------------------------------------------------
+                            373 ; absolute external ram data
+                            374 ;--------------------------------------------------------
+                            375 	.area XABS    (ABS,XDATA)
+                            376 ;--------------------------------------------------------
+                            377 ; external initialized ram data
+                            378 ;--------------------------------------------------------
+                            379 	.area XISEG   (XDATA)
+                            380 	.area HOME    (CODE)
+                            381 	.area GSINIT0 (CODE)
+                            382 	.area GSINIT1 (CODE)
+                            383 	.area GSINIT2 (CODE)
+                            384 	.area GSINIT3 (CODE)
+                            385 	.area GSINIT4 (CODE)
+                            386 	.area GSINIT5 (CODE)
+                            387 	.area GSINIT  (CODE)
+                            388 	.area GSFINAL (CODE)
+                            389 	.area CSEG    (CODE)
+                            390 ;--------------------------------------------------------
+                            391 ; interrupt vector 
+                            392 ;--------------------------------------------------------
+                            393 	.area HOME    (CODE)
+   0000                     394 __interrupt_vect:
+   0000 02s00r00            395 	ljmp	__sdcc_gsinit_startup
+   0003 32                  396 	reti
+   0004                     397 	.ds	7
+   000B 02s03rDC            398 	ljmp	_timer0
+   000E                     399 	.ds	5
+   0013 02s01rCF            400 	ljmp	_selfControl
+   0016                     401 	.ds	5
+   001B 32                  402 	reti
+   001C                     403 	.ds	7
+   0023 02s04r26            404 	ljmp	_serial
+   0026                     405 	.ds	5
+   002B 02s04r7C            406 	ljmp	_timer2
+                            407 ;--------------------------------------------------------
+                            408 ; global & static initialisations
+                            409 ;--------------------------------------------------------
+                            410 	.area HOME    (CODE)
+                            411 	.area GSINIT  (CODE)
+                            412 	.area GSFINAL (CODE)
+                            413 	.area GSINIT  (CODE)
+                            414 	.globl __sdcc_gsinit_startup
+                            415 	.globl __sdcc_program_startup
+                            416 	.globl __start__stack
+                            417 	.globl __mcs51_genXINIT
+                            418 	.globl __mcs51_genXRAMCLEAR
+                            419 	.globl __mcs51_genRAMCLEAR
+                            420 ;	main.c:44: uchar speed = 5;	//小车速度
+   0000 75*00 05            421 	mov	_speed,#0x05
+                            422 ;	main.c:49: __bit isOverstep = 0;	//距离过远，超出测量范围
+   0003 C2*00               423 	clr	_isOverstep
+                            424 	.area GSFINAL (CODE)
+   0000 02s00r2E            425 	ljmp	__sdcc_program_startup
+                            426 ;--------------------------------------------------------
+                            427 ; Home
+                            428 ;--------------------------------------------------------
+                            429 	.area HOME    (CODE)
+                            430 	.area HOME    (CODE)
+   002E                     431 __sdcc_program_startup:
+   002E 12s04rB2            432 	lcall	_main
+                            433 ;	return from main will lock up
+   0031 80 FE               434 	sjmp .
+                            435 ;--------------------------------------------------------
+                            436 ; code
+                            437 ;--------------------------------------------------------
+                            438 	.area CSEG    (CODE)
+                            439 ;------------------------------------------------------------
+                            440 ;Allocation info for local variables in function 'delay'
+                            441 ;------------------------------------------------------------
+                            442 ;n                         Allocated to registers r2 r3 
+                            443 ;i                         Allocated to registers r2 r3 
+                            444 ;j                         Allocated to registers r4 r5 
+                            445 ;------------------------------------------------------------
+                            446 ;	main.c:52: void delay(uint n){
+                            447 ;	-----------------------------------------
+                            448 ;	 function delay
+                            449 ;	-----------------------------------------
+   0000                     450 _delay:
+                    0002    451 	ar2 = 0x02
+                    0003    452 	ar3 = 0x03
+                    0004    453 	ar4 = 0x04
+                    0005    454 	ar5 = 0x05
+                    0006    455 	ar6 = 0x06
+                    0007    456 	ar7 = 0x07
+                    0000    457 	ar0 = 0x00
+                    0001    458 	ar1 = 0x01
+   0000 AA 82               459 	mov	r2,dpl
+   0002 AB 83               460 	mov	r3,dph
+                            461 ;	main.c:54: for(i=n;i>0;i--){
+   0004                     462 00105$:
+   0004 EA                  463 	mov	a,r2
+   0005 4B                  464 	orl	a,r3
+   0006 60 04               465 	jz	00111$
+   0008 7C 01               466 	mov	r4,#0x01
+   000A 80 02               467 	sjmp	00112$
+   000C                     468 00111$:
+   000C 7C 00               469 	mov	r4,#0x00
+   000E                     470 00112$:
+   000E EC                  471 	mov	a,r4
+   000F 60 1F               472 	jz	00109$
+                            473 ;	main.c:55: for(j=112;j>0;j--);
+   0011 7C 70               474 	mov	r4,#0x70
+   0013 7D 00               475 	mov	r5,#0x00
+   0015                     476 00101$:
+   0015 EC                  477 	mov	a,r4
+   0016 4D                  478 	orl	a,r5
+   0017 60 04               479 	jz	00113$
+   0019 7E 01               480 	mov	r6,#0x01
+   001B 80 02               481 	sjmp	00114$
+   001D                     482 00113$:
+   001D 7E 00               483 	mov	r6,#0x00
+   001F                     484 00114$:
+   001F EE                  485 	mov	a,r6
+   0020 60 07               486 	jz	00107$
+   0022 1C                  487 	dec	r4
+   0023 BC FF EF            488 	cjne	r4,#0xff,00101$
+   0026 1D                  489 	dec	r5
+   0027 80 EC               490 	sjmp	00101$
+   0029                     491 00107$:
+                            492 ;	main.c:54: for(i=n;i>0;i--){
+   0029 1A                  493 	dec	r2
+   002A BA FF 01            494 	cjne	r2,#0xff,00127$
+   002D 1B                  495 	dec	r3
+   002E                     496 00127$:
+   002E 80 D4               497 	sjmp	00105$
+   0030                     498 00109$:
+   0030 22                  499 	ret
+                            500 ;------------------------------------------------------------
+                            501 ;Allocation info for local variables in function 'putchar'
+                            502 ;------------------------------------------------------------
+                            503 ;c                         Allocated to registers 
+                            504 ;------------------------------------------------------------
+                            505 ;	main.c:60: void putchar(char c) {
+                            506 ;	-----------------------------------------
+                            507 ;	 function putchar
+                            508 ;	-----------------------------------------
+   0031                     509 _putchar:
+   0031 85 82 99            510 	mov	_SBUF,dpl
+                            511 ;	main.c:62: while(!TI);
+   0034                     512 00101$:
+                            513 ;	main.c:63: TI = 0;
+   0034 10 99 02            514 	jbc	_TI,00108$
+   0037 80 FB               515 	sjmp	00101$
+   0039                     516 00108$:
+   0039 22                  517 	ret
+                            518 ;------------------------------------------------------------
+                            519 ;Allocation info for local variables in function 'sensorTrigger'
+                            520 ;------------------------------------------------------------
+                            521 ;------------------------------------------------------------
+                            522 ;	main.c:67: void sensorTrigger() {
+                            523 ;	-----------------------------------------
+                            524 ;	 function sensorTrigger
+                            525 ;	-----------------------------------------
+   003A                     526 _sensorTrigger:
+                            527 ;	main.c:68: if(!(BACK_SENSER && FRONT_SENSER && LEFT_SENSER&& RIGHT_SENSER)) {
+   003A 30 95 09            528 	jnb	_P1_5,00101$
+   003D 30 94 06            529 	jnb	_P1_4,00101$
+   0040 30 96 03            530 	jnb	_P1_6,00101$
+   0043 20 97 02            531 	jb	_P1_7,00106$
+   0046                     532 00101$:
+                            533 ;	main.c:69: SWITCH_SELF_CONTROL = 0;
+   0046 C2 90               534 	clr	_P1_0
+   0048                     535 00106$:
+   0048 22                  536 	ret
+                            537 ;------------------------------------------------------------
+                            538 ;Allocation info for local variables in function 'ledStatus'
+                            539 ;------------------------------------------------------------
+                            540 ;s                         Allocated to registers r2 
+                            541 ;------------------------------------------------------------
+                            542 ;	main.c:75: void ledStatus(uchar s) {
+                            543 ;	-----------------------------------------
+                            544 ;	 function ledStatus
+                            545 ;	-----------------------------------------
+   0049                     546 _ledStatus:
+   0049 AA 82               547 	mov	r2,dpl
+                            548 ;	main.c:76: switch(s) {
+   004B BA 00 02            549 	cjne	r2,#0x00,00110$
+   004E 80 0A               550 	sjmp	00101$
+   0050                     551 00110$:
+   0050 BA 01 02            552 	cjne	r2,#0x01,00111$
+   0053 80 0C               553 	sjmp	00102$
+   0055                     554 00111$:
+                            555 ;	main.c:77: case(0):
+   0055 BA 02 16            556 	cjne	r2,#0x02,00105$
+   0058 80 0E               557 	sjmp	00103$
+   005A                     558 00101$:
+                            559 ;	main.c:78: STOP_RED_LED = 0;	//停止指示灯亮
+   005A C2 91               560 	clr	_P1_1
+                            561 ;	main.c:79: BT_BLUE_LED = 1;
+   005C D2 92               562 	setb	_P1_2
+                            563 ;	main.c:80: SELF_GREEN_LED = 1;
+   005E D2 93               564 	setb	_P1_3
+                            565 ;	main.c:81: break;
+                            566 ;	main.c:82: case(1):
+   0060 22                  567 	ret
+   0061                     568 00102$:
+                            569 ;	main.c:83: STOP_RED_LED = 1;
+   0061 D2 91               570 	setb	_P1_1
+                            571 ;	main.c:84: BT_BLUE_LED = 1;	  
+   0063 D2 92               572 	setb	_P1_2
+                            573 ;	main.c:85: SELF_GREEN_LED = 0;    //自控指示灯亮
+   0065 C2 93               574 	clr	_P1_3
+                            575 ;	main.c:86: break;
+                            576 ;	main.c:87: case(2):
+   0067 22                  577 	ret
+   0068                     578 00103$:
+                            579 ;	main.c:88: STOP_RED_LED = 1;
+   0068 D2 91               580 	setb	_P1_1
+                            581 ;	main.c:89: SELF_GREEN_LED = 1;
+   006A D2 93               582 	setb	_P1_3
+                            583 ;	main.c:90: BT_BLUE_LED = 0;	//蓝牙控制指示灯亮
+   006C C2 92               584 	clr	_P1_2
+                            585 ;	main.c:92: }	
+   006E                     586 00105$:
+   006E 22                  587 	ret
+                            588 ;------------------------------------------------------------
+                            589 ;Allocation info for local variables in function 'setTurnAngle'
+                            590 ;------------------------------------------------------------
+                            591 ;a                         Allocated to registers r2 
+                            592 ;------------------------------------------------------------
+                            593 ;	main.c:96: void setTurnAngle(uchar a) {
+                            594 ;	-----------------------------------------
+                            595 ;	 function setTurnAngle
+                            596 ;	-----------------------------------------
+   006F                     597 _setTurnAngle:
+   006F AA 82               598 	mov	r2,dpl
+                            599 ;	main.c:98: switch(a) {
+   0071 74 04               600 	mov	a,#0x04
+   0073 B5 02 00            601 	cjne	a,ar2,00110$
+   0076                     602 00110$:
+   0076 40 2D               603 	jc	00106$
+   0078 EA                  604 	mov	a,r2
+   0079 2A                  605 	add	a,r2
+   007A 2A                  606 	add	a,r2
+   007B 90s00r7F            607 	mov	dptr,#00112$
+   007E 73                  608 	jmp	@a+dptr
+   007F                     609 00112$:
+   007F 02s00r8E            610 	ljmp	00101$
+   0082 02s00r93            611 	ljmp	00102$
+   0085 02s00r98            612 	ljmp	00103$
+   0088 02s00r9D            613 	ljmp	00104$
+   008B 02s00rA2            614 	ljmp	00105$
+                            615 ;	main.c:100: case(STEER_S):angle = 3; break;
+   008E                     616 00101$:
+   008E 75*03 03            617 	mov	_angle,#0x03
+                            618 ;	main.c:102: case(STEER_P45):angle = 4; break;
+   0091 80 12               619 	sjmp	00106$
+   0093                     620 00102$:
+   0093 75*03 04            621 	mov	_angle,#0x04
+                            622 ;	main.c:104: case(STEER_P90):angle = 5; break;
+   0096 80 0D               623 	sjmp	00106$
+   0098                     624 00103$:
+   0098 75*03 05            625 	mov	_angle,#0x05
+                            626 ;	main.c:106: case(STEER_N45):angle = 2; break;
+   009B 80 08               627 	sjmp	00106$
+   009D                     628 00104$:
+   009D 75*03 02            629 	mov	_angle,#0x02
+                            630 ;	main.c:108: case(STEER_N90):angle = 1; break;
+   00A0 80 03               631 	sjmp	00106$
+   00A2                     632 00105$:
+   00A2 75*03 01            633 	mov	_angle,#0x01
+                            634 ;	main.c:109: }
+   00A5                     635 00106$:
+                            636 ;	main.c:110: timer0For = 0;
+   00A5 75*04 00            637 	mov	_timer0For,#0x00
+                            638 ;	main.c:111: initTimer0();	
+   00A8 02s03r97            639 	ljmp	_initTimer0
+                            640 ;------------------------------------------------------------
+                            641 ;Allocation info for local variables in function 'steerTurn'
+                            642 ;------------------------------------------------------------
+                            643 ;------------------------------------------------------------
+                            644 ;	main.c:114: void steerTurn() {
+                            645 ;	-----------------------------------------
+                            646 ;	 function steerTurn
+                            647 ;	-----------------------------------------
+   00AB                     648 _steerTurn:
+                            649 ;	main.c:116: t0InterruptTimes++;
+   00AB 05*01               650 	inc	_t0InterruptTimes
+                            651 ;	main.c:117: if (t0InterruptTimes > PWM_CYCLE) {
+   00AD 74 05               652 	mov	a,#0x05
+   00AF B5*01 00            653 	cjne	a,_t0InterruptTimes,00110$
+   00B2                     654 00110$:
+   00B2 50 03               655 	jnc	00102$
+                            656 ;	main.c:118: t0InterruptTimes = 0;
+   00B4 75*01 00            657 	mov	_t0InterruptTimes,#0x00
+   00B7                     658 00102$:
+                            659 ;	main.c:121: if (t0InterruptTimes < angle) {
+   00B7 E5*01               660 	mov	a,_t0InterruptTimes
+   00B9 B5*03 00            661 	cjne	a,_angle,00112$
+   00BC                     662 00112$:
+   00BC 50 04               663 	jnc	00104$
+                            664 ;	main.c:122: STEER_PWM = 1;
+   00BE D2 B2               665 	setb	_P3_2
+   00C0 80 02               666 	sjmp	00105$
+   00C2                     667 00104$:
+                            668 ;	main.c:124: STEER_PWM = 0;
+   00C2 C2 B2               669 	clr	_P3_2
+   00C4                     670 00105$:
+                            671 ;	main.c:126: startSR04();
+   00C4 02s01r95            672 	ljmp	_startSR04
+                            673 ;------------------------------------------------------------
+                            674 ;Allocation info for local variables in function 'trigger'
+                            675 ;------------------------------------------------------------
+                            676 ;------------------------------------------------------------
+                            677 ;	main.c:130: void trigger()
+                            678 ;	-----------------------------------------
+                            679 ;	 function trigger
+                            680 ;	-----------------------------------------
+   00C7                     681 _trigger:
+                            682 ;	main.c:132: TRIG = 1;
+   00C7 D2 B5               683 	setb	_P3_5
+                            684 ;	main.c:134: __nop; __nop; __nop; __nop; __nop;
+   00C9 00                  685 	 nop 
+   00CA 00                  686 	 nop 
+   00CB 00                  687 	 nop 
+   00CC 00                  688 	 nop 
+   00CD 00                  689 	 nop 
+                            690 ;	main.c:135: __nop; __nop; __nop; __nop; __nop;
+   00CE 00                  691 	 nop 
+   00CF 00                  692 	 nop 
+   00D0 00                  693 	 nop 
+   00D1 00                  694 	 nop 
+   00D2 00                  695 	 nop 
+                            696 ;	main.c:136: __nop; __nop; __nop; __nop; __nop;
+   00D3 00                  697 	 nop 
+   00D4 00                  698 	 nop 
+   00D5 00                  699 	 nop 
+   00D6 00                  700 	 nop 
+   00D7 00                  701 	 nop 
+                            702 ;	main.c:137: __nop; __nop; __nop; __nop; __nop;
+   00D8 00                  703 	 nop 
+   00D9 00                  704 	 nop 
+   00DA 00                  705 	 nop 
+   00DB 00                  706 	 nop 
+   00DC 00                  707 	 nop 
+                            708 ;	main.c:138: TRIG = 0;
+   00DD C2 B5               709 	clr	_P3_5
+   00DF 22                  710 	ret
+                            711 ;------------------------------------------------------------
+                            712 ;Allocation info for local variables in function 'calculate'
+                            713 ;------------------------------------------------------------
+                            714 ;time                      Allocated to registers r2 
+                            715 ;distance                  Allocated to registers r2 
+                            716 ;------------------------------------------------------------
+                            717 ;	main.c:142: uchar calculate() {
+                            718 ;	-----------------------------------------
+                            719 ;	 function calculate
+                            720 ;	-----------------------------------------
+   00E0                     721 _calculate:
+                            722 ;	main.c:146: time = TH0 * 256 + TL0;
+   00E0 AA 8A               723 	mov	r2,_TL0
+                            724 ;	main.c:148: TH0 = 0;
+   00E2 75 8C 00            725 	mov	_TH0,#0x00
+                            726 ;	main.c:149: TL0 = 0;
+   00E5 75 8A 00            727 	mov	_TL0,#0x00
+                            728 ;	main.c:150: time *= 1.085;
+   00E8 8A 82               729 	mov	dpl,r2
+   00EA 12s00r00            730 	lcall	___uchar2fs
+   00ED AB 82               731 	mov	r3,dpl
+   00EF AC 83               732 	mov	r4,dph
+   00F1 AD F0               733 	mov	r5,b
+   00F3 FE                  734 	mov	r6,a
+   00F4 C0 03               735 	push	ar3
+   00F6 C0 04               736 	push	ar4
+   00F8 C0 05               737 	push	ar5
+   00FA C0 06               738 	push	ar6
+   00FC 90 E1 48            739 	mov	dptr,#0xE148
+   00FF 75 F0 8A            740 	mov	b,#0x8A
+   0102 74 3F               741 	mov	a,#0x3F
+   0104 12s00r00            742 	lcall	___fsmul
+   0107 AB 82               743 	mov	r3,dpl
+   0109 AC 83               744 	mov	r4,dph
+   010B AD F0               745 	mov	r5,b
+   010D FE                  746 	mov	r6,a
+   010E E5 81               747 	mov	a,sp
+   0110 24 FC               748 	add	a,#0xfc
+   0112 F5 81               749 	mov	sp,a
+   0114 8B 82               750 	mov	dpl,r3
+   0116 8C 83               751 	mov	dph,r4
+   0118 8D F0               752 	mov	b,r5
+   011A EE                  753 	mov	a,r6
+   011B 12s00r00            754 	lcall	___fs2uchar
+                            755 ;	main.c:153: distance = (time * 0.017);
+   011E 12s00r00            756 	lcall	___uchar2fs
+   0121 AA 82               757 	mov	r2,dpl
+   0123 AB 83               758 	mov	r3,dph
+   0125 AC F0               759 	mov	r4,b
+   0127 FD                  760 	mov	r5,a
+   0128 C0 02               761 	push	ar2
+   012A C0 03               762 	push	ar3
+   012C C0 04               763 	push	ar4
+   012E C0 05               764 	push	ar5
+   0130 90 43 96            765 	mov	dptr,#0x4396
+   0133 75 F0 8B            766 	mov	b,#0x8B
+   0136 74 3C               767 	mov	a,#0x3C
+   0138 12s00r00            768 	lcall	___fsmul
+   013B AA 82               769 	mov	r2,dpl
+   013D AB 83               770 	mov	r3,dph
+   013F AC F0               771 	mov	r4,b
+   0141 FD                  772 	mov	r5,a
+   0142 E5 81               773 	mov	a,sp
+   0144 24 FC               774 	add	a,#0xfc
+   0146 F5 81               775 	mov	sp,a
+   0148 8A 82               776 	mov	dpl,r2
+   014A 8B 83               777 	mov	dph,r3
+   014C 8C F0               778 	mov	b,r4
+   014E ED                  779 	mov	a,r5
+   014F 12s00r00            780 	lcall	___fs2uchar
+   0152 AA 82               781 	mov	r2,dpl
+                            782 ;	main.c:154: if(isOverstep) {
+                            783 ;	main.c:155: isOverstep = 0;
+   0154 10*00 02            784 	jbc	_isOverstep,00107$
+   0157 80 19               785 	sjmp	00102$
+   0159                     786 00107$:
+                            787 ;	main.c:156: SEG = 0xff;
+   0159 75 A0 FF            788 	mov	_P2,#0xFF
+                            789 ;	main.c:157: printf("overstep\n");
+   015C 74r10               790 	mov	a,#__str_0
+   015E C0 E0               791 	push	acc
+   0160 74s00               792 	mov	a,#(__str_0 >> 8)
+   0162 C0 E0               793 	push	acc
+   0164 74 80               794 	mov	a,#0x80
+   0166 C0 E0               795 	push	acc
+   0168 12s00r00            796 	lcall	_printf
+   016B 15 81               797 	dec	sp
+   016D 15 81               798 	dec	sp
+   016F 15 81               799 	dec	sp
+   0171 22                  800 	ret
+   0172                     801 00102$:
+                            802 ;	main.c:159: SEG = seg[distance];
+   0172 EA                  803 	mov	a,r2
+   0173 90s00r00            804 	mov	dptr,#_seg
+   0176 93                  805 	movc	a,@a+dptr
+   0177 F5 A0               806 	mov	_P2,a
+                            807 ;	main.c:160: printf("distance = %dcm\n", distance);
+   0179 7B 00               808 	mov	r3,#0x00
+   017B C0 02               809 	push	ar2
+   017D C0 03               810 	push	ar3
+   017F 74r1A               811 	mov	a,#__str_1
+   0181 C0 E0               812 	push	acc
+   0183 74s00               813 	mov	a,#(__str_1 >> 8)
+   0185 C0 E0               814 	push	acc
+   0187 74 80               815 	mov	a,#0x80
+   0189 C0 E0               816 	push	acc
+   018B 12s00r00            817 	lcall	_printf
+   018E E5 81               818 	mov	a,sp
+   0190 24 FB               819 	add	a,#0xfb
+   0192 F5 81               820 	mov	sp,a
+   0194 22                  821 	ret
+                            822 ;------------------------------------------------------------
+                            823 ;Allocation info for local variables in function 'startSR04'
+                            824 ;------------------------------------------------------------
+                            825 ;------------------------------------------------------------
+                            826 ;	main.c:165: void startSR04() {
+                            827 ;	-----------------------------------------
+                            828 ;	 function startSR04
+                            829 ;	-----------------------------------------
+   0195                     830 _startSR04:
+                            831 ;	main.c:167: timer0For = 1;
+   0195 75*04 01            832 	mov	_timer0For,#0x01
+                            833 ;	main.c:168: initTimer0();
+   0198 12s03r97            834 	lcall	_initTimer0
+                            835 ;	main.c:169: trigger();
+   019B 12s00rC7            836 	lcall	_trigger
+                            837 ;	main.c:170: while(!ECHO);
+   019E                     838 00101$:
+   019E 30 B4 FD            839 	jnb	_P3_4,00101$
+                            840 ;	main.c:171: TR0 = 1;
+   01A1 D2 8C               841 	setb	_TR0
+                            842 ;	main.c:172: while(ECHO);
+   01A3                     843 00104$:
+   01A3 20 B4 FD            844 	jb	_P3_4,00104$
+                            845 ;	main.c:173: TR0 = 0;
+   01A6 C2 8C               846 	clr	_TR0
+                            847 ;	main.c:174: calculate();
+   01A8 02s00rE0            848 	ljmp	_calculate
+                            849 ;------------------------------------------------------------
+                            850 ;Allocation info for local variables in function 'awayLEFTObs'
+                            851 ;------------------------------------------------------------
+                            852 ;------------------------------------------------------------
+                            853 ;	main.c:178: void awayLEFTObs() {
+                            854 ;	-----------------------------------------
+                            855 ;	 function awayLEFTObs
+                            856 ;	-----------------------------------------
+   01AB                     857 _awayLEFTObs:
+                            858 ;	main.c:181: CAR = FRONT_RIGHT;
+   01AB 75 80 DA            859 	mov	_P0,#0xDA
+                            860 ;	main.c:182: delay(700);
+   01AE 90 02 BC            861 	mov	dptr,#0x02BC
+   01B1 02s00r00            862 	ljmp	_delay
+                            863 ;------------------------------------------------------------
+                            864 ;Allocation info for local variables in function 'awayRightObs'
+                            865 ;------------------------------------------------------------
+                            866 ;------------------------------------------------------------
+                            867 ;	main.c:186: void awayRightObs() {
+                            868 ;	-----------------------------------------
+                            869 ;	 function awayRightObs
+                            870 ;	-----------------------------------------
+   01B4                     871 _awayRightObs:
+                            872 ;	main.c:189: CAR = FRONT_LEFT;
+   01B4 75 80 AD            873 	mov	_P0,#0xAD
+                            874 ;	main.c:190: delay(700);
+   01B7 90 02 BC            875 	mov	dptr,#0x02BC
+   01BA 02s00r00            876 	ljmp	_delay
+                            877 ;------------------------------------------------------------
+                            878 ;Allocation info for local variables in function 'awayFrontObs'
+                            879 ;------------------------------------------------------------
+                            880 ;------------------------------------------------------------
+                            881 ;	main.c:195: void awayFrontObs() {
+                            882 ;	-----------------------------------------
+                            883 ;	 function awayFrontObs
+                            884 ;	-----------------------------------------
+   01BD                     885 _awayFrontObs:
+                            886 ;	main.c:196: CAR = BACK;
+   01BD 75 80 55            887 	mov	_P0,#0x55
+                            888 ;	main.c:197: delay(200);
+   01C0 90 00 C8            889 	mov	dptr,#0x00C8
+   01C3 02s00r00            890 	ljmp	_delay
+                            891 ;------------------------------------------------------------
+                            892 ;Allocation info for local variables in function 'awayBackObs'
+                            893 ;------------------------------------------------------------
+                            894 ;------------------------------------------------------------
+                            895 ;	main.c:201: void awayBackObs() {
+                            896 ;	-----------------------------------------
+                            897 ;	 function awayBackObs
+                            898 ;	-----------------------------------------
+   01C6                     899 _awayBackObs:
+                            900 ;	main.c:202: CAR = FRONT;
+   01C6 75 80 AA            901 	mov	_P0,#0xAA
+                            902 ;	main.c:203: delay(400);
+   01C9 90 01 90            903 	mov	dptr,#0x0190
+   01CC 02s00r00            904 	ljmp	_delay
+                            905 ;------------------------------------------------------------
+                            906 ;Allocation info for local variables in function 'selfControl'
+                            907 ;------------------------------------------------------------
+                            908 ;------------------------------------------------------------
+                            909 ;	main.c:207: void selfControl() __interrupt 2 __using 0 {
+                            910 ;	-----------------------------------------
+                            911 ;	 function selfControl
+                            912 ;	-----------------------------------------
+   01CF                     913 _selfControl:
+   01CF C0*00               914 	push	bits
+   01D1 C0 E0               915 	push	acc
+   01D3 C0 F0               916 	push	b
+   01D5 C0 82               917 	push	dpl
+   01D7 C0 83               918 	push	dph
+   01D9 C0 02               919 	push	(0+2)
+   01DB C0 03               920 	push	(0+3)
+   01DD C0 04               921 	push	(0+4)
+   01DF C0 05               922 	push	(0+5)
+   01E1 C0 06               923 	push	(0+6)
+   01E3 C0 07               924 	push	(0+7)
+   01E5 C0 00               925 	push	(0+0)
+   01E7 C0 01               926 	push	(0+1)
+   01E9 C0 D0               927 	push	psw
+   01EB 75 D0 00            928 	mov	psw,#0x00
+                            929 ;	main.c:209: ledStatus(1);
+   01EE 75 82 01            930 	mov	dpl,#0x01
+   01F1 12s00r49            931 	lcall	_ledStatus
+                            932 ;	main.c:210: printf("self control\n");
+   01F4 74r2B               933 	mov	a,#__str_2
+   01F6 C0 E0               934 	push	acc
+   01F8 74s00               935 	mov	a,#(__str_2 >> 8)
+   01FA C0 E0               936 	push	acc
+   01FC 74 80               937 	mov	a,#0x80
+   01FE C0 E0               938 	push	acc
+   0200 12s00r00            939 	lcall	_printf
+   0203 15 81               940 	dec	sp
+   0205 15 81               941 	dec	sp
+   0207 15 81               942 	dec	sp
+                            943 ;	main.c:213: if (FRONT_SENSER == 0 && BACK_SENSER == 1) {
+   0209 20 94 48            944 	jb	_P1_4,00133$
+   020C 30 95 45            945 	jnb	_P1_5,00133$
+                            946 ;	main.c:215: if ((LEFT_SENSER== 0 && RIGHT_SENSER == 0) || (LEFT_SENSER&& RIGHT_SENSER) == 1) {
+   020F 20 96 03            947 	jb	_P1_6,00109$
+   0212 30 97 0F            948 	jnb	_P1_7,00105$
+   0215                     949 00109$:
+   0215 30 96 03            950 	jnb	_P1_6,00139$
+   0218 20 97 04            951 	jb	_P1_7,00140$
+   021B                     952 00139$:
+   021B 7A 00               953 	mov	r2,#0x00
+   021D 80 02               954 	sjmp	00141$
+   021F                     955 00140$:
+   021F 7A 01               956 	mov	r2,#0x01
+   0221                     957 00141$:
+   0221 BA 01 06            958 	cjne	r2,#0x01,00106$
+   0224                     959 00105$:
+                            960 ;	main.c:216: CAR = STOP;
+   0224 75 80 FF            961 	mov	_P0,#0xFF
+   0227 02s03r0B            962 	ljmp	00134$
+   022A                     963 00106$:
+                            964 ;	main.c:218: }else if (LEFT_SENSER== 0 && RIGHT_SENSER == 1) {
+   022A 20 96 15            965 	jb	_P1_6,00102$
+   022D 30 97 12            966 	jnb	_P1_7,00102$
+                            967 ;	main.c:219: CAR = STOP;
+   0230 75 80 FF            968 	mov	_P0,#0xFF
+                            969 ;	main.c:220: setTurnAngle(STEER_P45);
+   0233 75 82 01            970 	mov	dpl,#0x01
+   0236 12s00r6F            971 	lcall	_setTurnAngle
+                            972 ;	main.c:221: setTurnAngle(STEER_P90);
+   0239 75 82 02            973 	mov	dpl,#0x02
+   023C 12s00r6F            974 	lcall	_setTurnAngle
+   023F 02s03r0B            975 	ljmp	00134$
+   0242                     976 00102$:
+                            977 ;	main.c:224: CAR = STOP;
+   0242 75 80 FF            978 	mov	_P0,#0xFF
+                            979 ;	main.c:225: setTurnAngle(STEER_N45);
+   0245 75 82 03            980 	mov	dpl,#0x03
+   0248 12s00r6F            981 	lcall	_setTurnAngle
+                            982 ;	main.c:226: setTurnAngle(STEER_N90);
+   024B 75 82 04            983 	mov	dpl,#0x04
+   024E 12s00r6F            984 	lcall	_setTurnAngle
+   0251 02s03r0B            985 	ljmp	00134$
+   0254                     986 00133$:
+                            987 ;	main.c:229: }else if (BACK_SENSER == 0 && FRONT_SENSER == 1){
+   0254 20 95 53            988 	jb	_P1_5,00129$
+   0257 30 94 50            989 	jnb	_P1_4,00129$
+                            990 ;	main.c:231: if ((LEFT_SENSER && RIGHT_SENSER) == 1) {
+   025A 30 96 03            991 	jnb	_P1_6,00142$
+   025D 20 97 04            992 	jb	_P1_7,00143$
+   0260                     993 00142$:
+   0260 7A 00               994 	mov	r2,#0x00
+   0262 80 02               995 	sjmp	00144$
+   0264                     996 00143$:
+   0264 7A 01               997 	mov	r2,#0x01
+   0266                     998 00144$:
+   0266 BA 01 06            999 	cjne	r2,#0x01,00118$
+                           1000 ;	main.c:232: CAR = FRONT;
+   0269 75 80 AA           1001 	mov	_P0,#0xAA
+   026C 02s03r0B           1002 	ljmp	00134$
+   026F                    1003 00118$:
+                           1004 ;	main.c:234: }else if ((LEFT_SENSER || RIGHT_SENSER) == 0) {
+   026F 20 96 0F           1005 	jb	_P1_6,00115$
+   0272 20 97 0C           1006 	jb	_P1_7,00115$
+                           1007 ;	main.c:235: CAR = BACK;
+   0275 75 80 55           1008 	mov	_P0,#0x55
+                           1009 ;	main.c:236: delay(400);
+   0278 90 01 90           1010 	mov	dptr,#0x0190
+   027B 12s00r00           1011 	lcall	_delay
+   027E 02s03r0B           1012 	ljmp	00134$
+   0281                    1013 00115$:
+                           1014 ;	main.c:239: }else if (LEFT_SENSER== 0 && RIGHT_SENSER == 1) {
+   0281 20 96 15           1015 	jb	_P1_6,00111$
+   0284 30 97 12           1016 	jnb	_P1_7,00111$
+                           1017 ;	main.c:240: CAR = STOP;
+   0287 75 80 FF           1018 	mov	_P0,#0xFF
+                           1019 ;	main.c:241: setTurnAngle(STEER_P45);
+   028A 75 82 01           1020 	mov	dpl,#0x01
+   028D 12s00r6F           1021 	lcall	_setTurnAngle
+                           1022 ;	main.c:242: setTurnAngle(STEER_P90);
+   0290 75 82 02           1023 	mov	dpl,#0x02
+   0293 12s00r6F           1024 	lcall	_setTurnAngle
+   0296 02s03r0B           1025 	ljmp	00134$
+   0299                    1026 00111$:
+                           1027 ;	main.c:245: CAR = STOP;
+   0299 75 80 FF           1028 	mov	_P0,#0xFF
+                           1029 ;	main.c:246: setTurnAngle(STEER_N45);
+   029C 75 82 03           1030 	mov	dpl,#0x03
+   029F 12s00r6F           1031 	lcall	_setTurnAngle
+                           1032 ;	main.c:247: setTurnAngle(STEER_N90);
+   02A2 75 82 04           1033 	mov	dpl,#0x04
+   02A5 12s00r6F           1034 	lcall	_setTurnAngle
+   02A8 80 61              1035 	sjmp	00134$
+   02AA                    1036 00129$:
+                           1037 ;	main.c:250: }else if (LEFT_SENSER== 0 && (RIGHT_SENSER && BACK_SENSER && FRONT_SENSER) == 1 ){
+   02AA 20 96 2C           1038 	jb	_P1_6,00125$
+   02AD 30 97 03           1039 	jnb	_P1_7,00148$
+   02B0 20 95 04           1040 	jb	_P1_5,00149$
+   02B3                    1041 00148$:
+   02B3 7A 00              1042 	mov	r2,#0x00
+   02B5 80 02              1043 	sjmp	00150$
+   02B7                    1044 00149$:
+   02B7 7A 01              1045 	mov	r2,#0x01
+   02B9                    1046 00150$:
+   02B9 EA                 1047 	mov	a,r2
+   02BA 60 03              1048 	jz	00145$
+   02BC 20 94 04           1049 	jb	_P1_4,00146$
+   02BF                    1050 00145$:
+   02BF 7A 00              1051 	mov	r2,#0x00
+   02C1 80 02              1052 	sjmp	00147$
+   02C3                    1053 00146$:
+   02C3 7A 01              1054 	mov	r2,#0x01
+   02C5                    1055 00147$:
+   02C5 BA 01 11           1056 	cjne	r2,#0x01,00125$
+                           1057 ;	main.c:251: CAR = STOP;
+   02C8 75 80 FF           1058 	mov	_P0,#0xFF
+                           1059 ;	main.c:252: setTurnAngle(STEER_P45);
+   02CB 75 82 01           1060 	mov	dpl,#0x01
+   02CE 12s00r6F           1061 	lcall	_setTurnAngle
+                           1062 ;	main.c:253: setTurnAngle(STEER_P90);
+   02D1 75 82 02           1063 	mov	dpl,#0x02
+   02D4 12s00r6F           1064 	lcall	_setTurnAngle
+   02D7 80 32              1065 	sjmp	00134$
+   02D9                    1066 00125$:
+                           1067 ;	main.c:255: }else if (RIGHT_SENSER == 0 && (LEFT_SENSER && FRONT_SENSER && BACK_SENSER) == 1) {
+   02D9 20 97 2C           1068 	jb	_P1_7,00121$
+   02DC 30 96 03           1069 	jnb	_P1_6,00154$
+   02DF 20 94 04           1070 	jb	_P1_4,00155$
+   02E2                    1071 00154$:
+   02E2 7A 00              1072 	mov	r2,#0x00
+   02E4 80 02              1073 	sjmp	00156$
+   02E6                    1074 00155$:
+   02E6 7A 01              1075 	mov	r2,#0x01
+   02E8                    1076 00156$:
+   02E8 EA                 1077 	mov	a,r2
+   02E9 60 03              1078 	jz	00151$
+   02EB 20 95 04           1079 	jb	_P1_5,00152$
+   02EE                    1080 00151$:
+   02EE 7A 00              1081 	mov	r2,#0x00
+   02F0 80 02              1082 	sjmp	00153$
+   02F2                    1083 00152$:
+   02F2 7A 01              1084 	mov	r2,#0x01
+   02F4                    1085 00153$:
+   02F4 BA 01 11           1086 	cjne	r2,#0x01,00121$
+                           1087 ;	main.c:256: CAR = STOP;
+   02F7 75 80 FF           1088 	mov	_P0,#0xFF
+                           1089 ;	main.c:257: setTurnAngle(STEER_N45);
+   02FA 75 82 03           1090 	mov	dpl,#0x03
+   02FD 12s00r6F           1091 	lcall	_setTurnAngle
+                           1092 ;	main.c:258: setTurnAngle(STEER_N90);
+   0300 75 82 04           1093 	mov	dpl,#0x04
+   0303 12s00r6F           1094 	lcall	_setTurnAngle
+   0306 80 03              1095 	sjmp	00134$
+   0308                    1096 00121$:
+                           1097 ;	main.c:261: CAR = STOP;
+   0308 75 80 FF           1098 	mov	_P0,#0xFF
+   030B                    1099 00134$:
+                           1100 ;	main.c:263: SWITCH_SELF_CONTROL = 1;
+   030B D2 90              1101 	setb	_P1_0
+   030D D0 D0              1102 	pop	psw
+   030F D0 01              1103 	pop	(0+1)
+   0311 D0 00              1104 	pop	(0+0)
+   0313 D0 07              1105 	pop	(0+7)
+   0315 D0 06              1106 	pop	(0+6)
+   0317 D0 05              1107 	pop	(0+5)
+   0319 D0 04              1108 	pop	(0+4)
+   031B D0 03              1109 	pop	(0+3)
+   031D D0 02              1110 	pop	(0+2)
+   031F D0 83              1111 	pop	dph
+   0321 D0 82              1112 	pop	dpl
+   0323 D0 F0              1113 	pop	b
+   0325 D0 E0              1114 	pop	acc
+   0327 D0*00              1115 	pop	bits
+   0329 32                 1116 	reti
+                           1117 ;------------------------------------------------------------
+                           1118 ;Allocation info for local variables in function 'btControl'
+                           1119 ;------------------------------------------------------------
+                           1120 ;cmd                       Allocated to registers r2 
+                           1121 ;------------------------------------------------------------
+                           1122 ;	main.c:267: void btControl(uchar cmd) {
+                           1123 ;	-----------------------------------------
+                           1124 ;	 function btControl
+                           1125 ;	-----------------------------------------
+   032A                    1126 _btControl:
+   032A AA 82              1127 	mov	r2,dpl
+                           1128 ;	main.c:269: ledStatus(2);
+   032C 75 82 02           1129 	mov	dpl,#0x02
+   032F C0 02              1130 	push	ar2
+   0331 12s00r49           1131 	lcall	_ledStatus
+   0334 D0 02              1132 	pop	ar2
+                           1133 ;	main.c:270: switch(cmd) {
+   0336 BA 61 02           1134 	cjne	r2,#0x61,00125$
+   0339 80 37              1135 	sjmp	00106$
+   033B                    1136 00125$:
+   033B BA 62 02           1137 	cjne	r2,#0x62,00126$
+   033E 80 1E              1138 	sjmp	00102$
+   0340                    1139 00126$:
+   0340 BA 64 02           1140 	cjne	r2,#0x64,00127$
+   0343 80 37              1141 	sjmp	00109$
+   0345                    1142 00127$:
+   0345 BA 66 02           1143 	cjne	r2,#0x66,00128$
+   0348 80 0F              1144 	sjmp	00101$
+   034A                    1145 00128$:
+   034A BA 6C 02           1146 	cjne	r2,#0x6C,00129$
+   034D 80 14              1147 	sjmp	00103$
+   034F                    1148 00129$:
+   034F BA 72 02           1149 	cjne	r2,#0x72,00130$
+   0352 80 14              1150 	sjmp	00104$
+   0354                    1151 00130$:
+                           1152 ;	main.c:271: case('f'): CAR = FRONT; break;
+   0354 BA 73 2D           1153 	cjne	r2,#0x73,00112$
+   0357 80 14              1154 	sjmp	00105$
+   0359                    1155 00101$:
+   0359 75 80 AA           1156 	mov	_P0,#0xAA
+                           1157 ;	main.c:272: case('b'): CAR = BACK; break;
+   035C 80 29              1158 	sjmp	00113$
+   035E                    1159 00102$:
+   035E 75 80 55           1160 	mov	_P0,#0x55
+                           1161 ;	main.c:273: case('l'): CAR = FRONT_LEFT; break;
+   0361 80 24              1162 	sjmp	00113$
+   0363                    1163 00103$:
+   0363 75 80 AD           1164 	mov	_P0,#0xAD
+                           1165 ;	main.c:274: case('r'): CAR = FRONT_RIGHT; break;
+   0366 80 1F              1166 	sjmp	00113$
+   0368                    1167 00104$:
+   0368 75 80 DA           1168 	mov	_P0,#0xDA
+                           1169 ;	main.c:275: case('s'): CAR = STOP; break;
+   036B 80 1A              1170 	sjmp	00113$
+   036D                    1171 00105$:
+   036D 75 80 FF           1172 	mov	_P0,#0xFF
+                           1173 ;	main.c:276: case('a'): 
+   0370 80 15              1174 	sjmp	00113$
+   0372                    1175 00106$:
+                           1176 ;	main.c:277: if (speed < 5) {
+   0372 74 FB              1177 	mov	a,#0x100 - 0x05
+   0374 25*00              1178 	add	a,_speed
+   0376 40 0F              1179 	jc	00113$
+                           1180 ;	main.c:278: speed++;
+   0378 05*00              1181 	inc	_speed
+                           1182 ;	main.c:280: break;
+                           1183 ;	main.c:281: case('d'): 
+   037A 80 0B              1184 	sjmp	00113$
+   037C                    1185 00109$:
+                           1186 ;	main.c:282: if (speed > 0) {
+   037C E5*00              1187 	mov	a,_speed
+   037E 60 07              1188 	jz	00113$
+                           1189 ;	main.c:283: speed--;
+   0380 15*00              1190 	dec	_speed
+                           1191 ;	main.c:285: break;
+                           1192 ;	main.c:286: default:CAR = STOP; break;
+   0382 80 03              1193 	sjmp	00113$
+   0384                    1194 00112$:
+   0384 75 80 FF           1195 	mov	_P0,#0xFF
+                           1196 ;	main.c:287: }
+   0387                    1197 00113$:
+                           1198 ;	main.c:288: initTimer2();
+   0387 02s03rCE           1199 	ljmp	_initTimer2
+                           1200 ;------------------------------------------------------------
+                           1201 ;Allocation info for local variables in function 'initInterrupt'
+                           1202 ;------------------------------------------------------------
+                           1203 ;------------------------------------------------------------
+                           1204 ;	main.c:292: void initInterrupt() {
+                           1205 ;	-----------------------------------------
+                           1206 ;	 function initInterrupt
+                           1207 ;	-----------------------------------------
+   038A                    1208 _initInterrupt:
+                           1209 ;	main.c:294: EA = 1;			//允许总中断
+   038A D2 AF              1210 	setb	_EA
+                           1211 ;	main.c:295: ES = 1;			//允许串行口中断
+   038C D2 AC              1212 	setb	_ES
+                           1213 ;	main.c:296: ET0 = 1;		//允许定时器0中断
+   038E D2 A9              1214 	setb	_ET0
+                           1215 ;	main.c:297: ET2 = 1;		//允许定时器2中断
+   0390 D2 AD              1216 	setb	_ET2
+                           1217 ;	main.c:298: EX1 = 1;		//允许外部中断1中断
+   0392 D2 AA              1218 	setb	_EX1
+                           1219 ;	main.c:299: IT1 = 0;		//低电平触发
+   0394 C2 8A              1220 	clr	_IT1
+   0396 22                 1221 	ret
+                           1222 ;------------------------------------------------------------
+                           1223 ;Allocation info for local variables in function 'initTimer0'
+                           1224 ;------------------------------------------------------------
+                           1225 ;------------------------------------------------------------
+                           1226 ;	main.c:303: void initTimer0() {
+                           1227 ;	-----------------------------------------
+                           1228 ;	 function initTimer0
+                           1229 ;	-----------------------------------------
+   0397                    1230 _initTimer0:
+                           1231 ;	main.c:305: TMOD = 0x01;	//工作方式1
+   0397 75 89 01           1232 	mov	_TMOD,#0x01
+                           1233 ;	main.c:306: if (timer0For == 0) {
+   039A E5*04              1234 	mov	a,_timer0For
+   039C 70 03              1235 	jnz	00102$
+                           1236 ;	main.c:308: TR0 = 1;	//开启定时器0
+   039E D2 8C              1237 	setb	_TR0
+   03A0 22                 1238 	ret
+   03A1                    1239 00102$:
+                           1240 ;	main.c:310: TH0 = 0xFE;
+   03A1 75 8C FE           1241 	mov	_TH0,#0xFE
+                           1242 ;	main.c:311: TL0 = 0x33;
+   03A4 75 8A 33           1243 	mov	_TL0,#0x33
+   03A7 22                 1244 	ret
+                           1245 ;------------------------------------------------------------
+                           1246 ;Allocation info for local variables in function 'reloadTimer0'
+                           1247 ;------------------------------------------------------------
+                           1248 ;------------------------------------------------------------
+                           1249 ;	main.c:315: void reloadTimer0() {
+                           1250 ;	-----------------------------------------
+                           1251 ;	 function reloadTimer0
+                           1252 ;	-----------------------------------------
+   03A8                    1253 _reloadTimer0:
+                           1254 ;	main.c:317: if (timer0For == 0) {
+   03A8 E5*04              1255 	mov	a,_timer0For
+   03AA 70 07              1256 	jnz	00102$
+                           1257 ;	main.c:318: TH0 = 0xFE;
+   03AC 75 8C FE           1258 	mov	_TH0,#0xFE
+                           1259 ;	main.c:319: TL0 = 0x33;	
+   03AF 75 8A 33           1260 	mov	_TL0,#0x33
+   03B2 22                 1261 	ret
+   03B3                    1262 00102$:
+                           1263 ;	main.c:321: TH0 = 0xFE;
+   03B3 75 8C FE           1264 	mov	_TH0,#0xFE
+                           1265 ;	main.c:322: TL0 = 0x33;
+   03B6 75 8A 33           1266 	mov	_TL0,#0x33
+   03B9 22                 1267 	ret
+                           1268 ;------------------------------------------------------------
+                           1269 ;Allocation info for local variables in function 'initSerial'
+                           1270 ;------------------------------------------------------------
+                           1271 ;------------------------------------------------------------
+                           1272 ;	main.c:327: void initSerial() {
+                           1273 ;	-----------------------------------------
+                           1274 ;	 function initSerial
+                           1275 ;	-----------------------------------------
+   03BA                    1276 _initSerial:
+                           1277 ;	main.c:329: SCON = 0x50;	//串行口工作模式1
+   03BA 75 98 50           1278 	mov	_SCON,#0x50
+                           1279 ;	main.c:330: PCON = 0x00;
+   03BD 75 87 00           1280 	mov	_PCON,#0x00
+                           1281 ;	main.c:331: RI = 0;			//接受中断标志清零
+   03C0 C2 98              1282 	clr	_RI
+                           1283 ;	main.c:333: TMOD = 0x21;	//定时器T1方式2 T0工作方式1
+   03C2 75 89 21           1284 	mov	_TMOD,#0x21
+                           1285 ;	main.c:334: TL1 = 0xfd;
+   03C5 75 8B FD           1286 	mov	_TL1,#0xFD
+                           1287 ;	main.c:335: TH1 = 0xfd;
+   03C8 75 8D FD           1288 	mov	_TH1,#0xFD
+                           1289 ;	main.c:336: TR1 = 1;		//定时器开始计数
+   03CB D2 8E              1290 	setb	_TR1
+   03CD 22                 1291 	ret
+                           1292 ;------------------------------------------------------------
+                           1293 ;Allocation info for local variables in function 'initTimer2'
+                           1294 ;------------------------------------------------------------
+                           1295 ;------------------------------------------------------------
+                           1296 ;	main.c:340: void initTimer2() {
+                           1297 ;	-----------------------------------------
+                           1298 ;	 function initTimer2
+                           1299 ;	-----------------------------------------
+   03CE                    1300 _initTimer2:
+                           1301 ;	main.c:341: T2MOD = 0x00;	//定时器T2向上计数
+   03CE 75 C9 00           1302 	mov	_T2MOD,#0x00
+                           1303 ;	main.c:342: C_T2 = 0;		//选择T2为定时器方式
+   03D1 C2 C9              1304 	clr	_C_T2
+                           1305 ;	main.c:343: CP_RL2 = 0;		//T2自动装载
+   03D3 C2 C8              1306 	clr	_CP_RL2
+                           1307 ;	main.c:344: TH0 = 0x0fc;
+   03D5 75 8C FC           1308 	mov	_TH0,#0xFC
+                           1309 ;	main.c:345: TL0 = 0x66;
+   03D8 75 8A 66           1310 	mov	_TL0,#0x66
+   03DB 22                 1311 	ret
+                           1312 ;------------------------------------------------------------
+                           1313 ;Allocation info for local variables in function 'timer0'
+                           1314 ;------------------------------------------------------------
+                           1315 ;------------------------------------------------------------
+                           1316 ;	main.c:348: void timer0() __interrupt 1 __using 0 {
+                           1317 ;	-----------------------------------------
+                           1318 ;	 function timer0
+                           1319 ;	-----------------------------------------
+   03DC                    1320 _timer0:
+   03DC C0*00              1321 	push	bits
+   03DE C0 E0              1322 	push	acc
+   03E0 C0 F0              1323 	push	b
+   03E2 C0 82              1324 	push	dpl
+   03E4 C0 83              1325 	push	dph
+   03E6 C0 02              1326 	push	(0+2)
+   03E8 C0 03              1327 	push	(0+3)
+   03EA C0 04              1328 	push	(0+4)
+   03EC C0 05              1329 	push	(0+5)
+   03EE C0 06              1330 	push	(0+6)
+   03F0 C0 07              1331 	push	(0+7)
+   03F2 C0 00              1332 	push	(0+0)
+   03F4 C0 01              1333 	push	(0+1)
+   03F6 C0 D0              1334 	push	psw
+   03F8 75 D0 00           1335 	mov	psw,#0x00
+                           1336 ;	main.c:350: if (timer0For == 0) {
+   03FB E5*04              1337 	mov	a,_timer0For
+   03FD 70 08              1338 	jnz	00102$
+                           1339 ;	main.c:351: reloadTimer0();
+   03FF 12s03rA8           1340 	lcall	_reloadTimer0
+                           1341 ;	main.c:352: steerTurn();
+   0402 12s00rAB           1342 	lcall	_steerTurn
+   0405 80 02              1343 	sjmp	00104$
+   0407                    1344 00102$:
+                           1345 ;	main.c:354: isOverstep = 1;
+   0407 D2*00              1346 	setb	_isOverstep
+   0409                    1347 00104$:
+   0409 D0 D0              1348 	pop	psw
+   040B D0 01              1349 	pop	(0+1)
+   040D D0 00              1350 	pop	(0+0)
+   040F D0 07              1351 	pop	(0+7)
+   0411 D0 06              1352 	pop	(0+6)
+   0413 D0 05              1353 	pop	(0+5)
+   0415 D0 04              1354 	pop	(0+4)
+   0417 D0 03              1355 	pop	(0+3)
+   0419 D0 02              1356 	pop	(0+2)
+   041B D0 83              1357 	pop	dph
+   041D D0 82              1358 	pop	dpl
+   041F D0 F0              1359 	pop	b
+   0421 D0 E0              1360 	pop	acc
+   0423 D0*00              1361 	pop	bits
+   0425 32                 1362 	reti
+                           1363 ;------------------------------------------------------------
+                           1364 ;Allocation info for local variables in function 'serial'
+                           1365 ;------------------------------------------------------------
+                           1366 ;------------------------------------------------------------
+                           1367 ;	main.c:361: void serial() __interrupt 4 __using 1 {
+                           1368 ;	-----------------------------------------
+                           1369 ;	 function serial
+                           1370 ;	-----------------------------------------
+   0426                    1371 _serial:
+                    000A   1372 	ar2 = 0x0a
+                    000B   1373 	ar3 = 0x0b
+                    000C   1374 	ar4 = 0x0c
+                    000D   1375 	ar5 = 0x0d
+                    000E   1376 	ar6 = 0x0e
+                    000F   1377 	ar7 = 0x0f
+                    0008   1378 	ar0 = 0x08
+                    0009   1379 	ar1 = 0x09
+   0426 C0*00              1380 	push	bits
+   0428 C0 E0              1381 	push	acc
+   042A C0 F0              1382 	push	b
+   042C C0 82              1383 	push	dpl
+   042E C0 83              1384 	push	dph
+   0430 C0 02              1385 	push	(0+2)
+   0432 C0 03              1386 	push	(0+3)
+   0434 C0 04              1387 	push	(0+4)
+   0436 C0 05              1388 	push	(0+5)
+   0438 C0 06              1389 	push	(0+6)
+   043A C0 07              1390 	push	(0+7)
+   043C C0 00              1391 	push	(0+0)
+   043E C0 01              1392 	push	(0+1)
+   0440 C0 D0              1393 	push	psw
+   0442 75 D0 08           1394 	mov	psw,#0x08
+                           1395 ;	main.c:363: RI = 0;
+   0445 C2 98              1396 	clr	_RI
+                           1397 ;	main.c:364: putchar(SBUF);	//接受的数据再发送给控制端
+   0447 85 99 82           1398 	mov	dpl,_SBUF
+   044A 75 D0 00           1399 	mov	psw,#0x00
+   044D 12s00r31           1400 	lcall	_putchar
+   0450 75 D0 08           1401 	mov	psw,#0x08
+                           1402 ;	main.c:365: btControl(SBUF);
+   0453 85 99 82           1403 	mov	dpl,_SBUF
+   0456 75 D0 00           1404 	mov	psw,#0x00
+   0459 12s03r2A           1405 	lcall	_btControl
+   045C 75 D0 08           1406 	mov	psw,#0x08
+   045F D0 D0              1407 	pop	psw
+   0461 D0 01              1408 	pop	(0+1)
+   0463 D0 00              1409 	pop	(0+0)
+   0465 D0 07              1410 	pop	(0+7)
+   0467 D0 06              1411 	pop	(0+6)
+   0469 D0 05              1412 	pop	(0+5)
+   046B D0 04              1413 	pop	(0+4)
+   046D D0 03              1414 	pop	(0+3)
+   046F D0 02              1415 	pop	(0+2)
+   0471 D0 83              1416 	pop	dph
+   0473 D0 82              1417 	pop	dpl
+   0475 D0 F0              1418 	pop	b
+   0477 D0 E0              1419 	pop	acc
+   0479 D0*00              1420 	pop	bits
+   047B 32                 1421 	reti
+                           1422 ;------------------------------------------------------------
+                           1423 ;Allocation info for local variables in function 'timer2'
+                           1424 ;------------------------------------------------------------
+                           1425 ;a                         Allocated to registers r2 
+                           1426 ;------------------------------------------------------------
+                           1427 ;	main.c:369: void timer2() __interrupt 5 __using 2 {
+                           1428 ;	-----------------------------------------
+                           1429 ;	 function timer2
+                           1430 ;	-----------------------------------------
+   047C                    1431 _timer2:
+                    0012   1432 	ar2 = 0x12
+                    0013   1433 	ar3 = 0x13
+                    0014   1434 	ar4 = 0x14
+                    0015   1435 	ar5 = 0x15
+                    0016   1436 	ar6 = 0x16
+                    0017   1437 	ar7 = 0x17
+                    0010   1438 	ar0 = 0x10
+                    0011   1439 	ar1 = 0x11
+   047C C0 E0              1440 	push	acc
+   047E C0 F0              1441 	push	b
+   0480 C0 D0              1442 	push	psw
+   0482 75 D0 10           1443 	mov	psw,#0x10
+                           1444 ;	main.c:372: TF2 = 0;	//溢出清0
+   0485 C2 CF              1445 	clr	_TF2
+                           1446 ;	main.c:373: t2InterruptTimes++;
+   0487 05*02              1447 	inc	_t2InterruptTimes
+                           1448 ;	main.c:374: a = t2InterruptTimes % PWM_CYCLE;
+   0489 75 F0 05           1449 	mov	b,#0x05
+   048C E5*02              1450 	mov	a,_t2InterruptTimes
+   048E 84                 1451 	div	ab
+   048F AA F0              1452 	mov	r2,b
+                           1453 ;	main.c:375: if (t2InterruptTimes == CMD_TIME) {
+   0491 74 14              1454 	mov	a,#0x14
+   0493 B5*02 08           1455 	cjne	a,_t2InterruptTimes,00102$
+                           1456 ;	main.c:376: t2InterruptTimes = 0;
+   0496 75*02 00           1457 	mov	_t2InterruptTimes,#0x00
+                           1458 ;	main.c:377: CAR = STOP;
+   0499 75 80 FF           1459 	mov	_P0,#0xFF
+                           1460 ;	main.c:378: TR2 = 0;	//溢出20次，说明执行了蓝牙发送的指令20ms了，停止计数器2计数，停止执行指令，等待蓝牙发送新的指令
+   049C C2 CA              1461 	clr	_TR2
+   049E                    1462 00102$:
+                           1463 ;	main.c:380: if (a <= speed) {
+   049E E5*00              1464 	mov	a,_speed
+   04A0 B5 12 00           1465 	cjne	a,ar2,00112$
+   04A3                    1466 00112$:
+   04A3 40 04              1467 	jc	00104$
+                           1468 ;	main.c:381: M_PWM = 1;
+   04A5 D2 B6              1469 	setb	_P3_6
+   04A7 80 02              1470 	sjmp	00106$
+   04A9                    1471 00104$:
+                           1472 ;	main.c:383: M_PWM = 0;
+   04A9 C2 B6              1473 	clr	_P3_6
+   04AB                    1474 00106$:
+   04AB D0 D0              1475 	pop	psw
+   04AD D0 F0              1476 	pop	b
+   04AF D0 E0              1477 	pop	acc
+   04B1 32                 1478 	reti
+                           1479 ;	eliminated unneeded push/pop dpl
+                           1480 ;	eliminated unneeded push/pop dph
+                           1481 ;------------------------------------------------------------
+                           1482 ;Allocation info for local variables in function 'main'
+                           1483 ;------------------------------------------------------------
+                           1484 ;------------------------------------------------------------
+                           1485 ;	main.c:387: void main() {
+                           1486 ;	-----------------------------------------
+                           1487 ;	 function main
+                           1488 ;	-----------------------------------------
+   04B2                    1489 _main:
+                    0002   1490 	ar2 = 0x02
+                    0003   1491 	ar3 = 0x03
+                    0004   1492 	ar4 = 0x04
+                    0005   1493 	ar5 = 0x05
+                    0006   1494 	ar6 = 0x06
+                    0007   1495 	ar7 = 0x07
+                    0000   1496 	ar0 = 0x00
+                    0001   1497 	ar1 = 0x01
+                           1498 ;	main.c:389: initInterrupt();
+   04B2 12s03r8A           1499 	lcall	_initInterrupt
+                           1500 ;	main.c:390: initTimer0();
+   04B5 12s03r97           1501 	lcall	_initTimer0
+                           1502 ;	main.c:391: initSerial();
+   04B8 12s03rBA           1503 	lcall	_initSerial
+                           1504 ;	main.c:392: initTimer2();
+   04BB 12s03rCE           1505 	lcall	_initTimer2
+                           1506 ;	main.c:393: while(1) {
+   04BE                    1507 00104$:
+                           1508 ;	main.c:394: sensorTrigger();
+   04BE 12s00r3A           1509 	lcall	_sensorTrigger
+                           1510 ;	main.c:395: if (SWITCH_SELF_CONTROL) {
+   04C1 30 90 FA           1511 	jnb	_P1_0,00104$
+                           1512 ;	main.c:396: ledStatus(0);
+   04C4 75 82 00           1513 	mov	dpl,#0x00
+   04C7 12s00r49           1514 	lcall	_ledStatus
+   04CA 80 F2              1515 	sjmp	00104$
+                           1516 	.area CSEG    (CODE)
+                           1517 	.area CONST   (CODE)
+   0000                    1518 _seg:
+   0000 C0                 1519 	.db #0xC0	; 192
+   0001 F9                 1520 	.db #0xF9	; 249
+   0002 A4                 1521 	.db #0xA4	; 164
+   0003 B0                 1522 	.db #0xB0	; 176
+   0004 99                 1523 	.db #0x99	; 153
+   0005 92                 1524 	.db #0x92	; 146
+   0006 82                 1525 	.db #0x82	; 130
+   0007 F8                 1526 	.db #0xF8	; 248
+   0008 80                 1527 	.db #0x80	; 128
+   0009 90                 1528 	.db #0x90	; 144
+   000A 88                 1529 	.db #0x88	; 136
+   000B 83                 1530 	.db #0x83	; 131
+   000C C6                 1531 	.db #0xC6	; 198
+   000D A1                 1532 	.db #0xA1	; 161
+   000E 86                 1533 	.db #0x86	; 134
+   000F 8E                 1534 	.db #0x8E	; 142
+   0010                    1535 __str_0:
+   0010 6F 76 65 72 73 74  1536 	.ascii "overstep"
+        65 70
+   0018 0A                 1537 	.db 0x0A
+   0019 00                 1538 	.db 0x00
+   001A                    1539 __str_1:
+   001A 64 69 73 74 61 6E  1540 	.ascii "distance = %dcm"
+        63 65 20 3D 20 25
+        64 63 6D
+   0029 0A                 1541 	.db 0x0A
+   002A 00                 1542 	.db 0x00
+   002B                    1543 __str_2:
+   002B 73 65 6C 66 20 63  1544 	.ascii "self control"
+        6F 6E 74 72 6F 6C
+   0037 0A                 1545 	.db 0x0A
+   0038 00                 1546 	.db 0x00
+                           1547 	.area XINIT   (CODE)
+                           1548 	.area CABS    (ABS,CODE)

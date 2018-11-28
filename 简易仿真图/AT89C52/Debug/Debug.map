@@ -1,0 +1,1773 @@
+ASxxxx Linker V02.00 + NoICE + sdld,  page 1.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CABS                               0000   0000 =      0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0000  l_CABS                           
+       0C:  0000  l_GSINIT1                        
+       0C:  0000  l_GSINIT5                        
+       0C:  0000  l_IABS                           
+       0C:  0000  l_PSEG                           
+       0C:  0000  l_REG_BANK_3                     
+       0C:  0000  l_RSEG                           
+       0C:  0000  l_RSEG0                          
+       0C:  0000  l_RSEG1                          
+       0C:  0000  l_XABS                           
+       0C:  0000  l_XINIT                          
+       0C:  0000  l_XISEG                          
+       0C:  0000  l_XSEG                           
+       0C:  0000  l__CODE                          
+       0C:  0000  s_BSEG                           
+       0C:  0000  s_CABS                           
+       0C:  0000  s_DSEG                           
+       0C:  0000  s_HOME                           
+       0C:  0000  s_IABS                           
+       0C:  0000  s_ISEG                           
+       0C:  0000  s_PSEG                           
+       0C:  0000  s_REG_BANK_0                     
+       0C:  0000  s_RSEG                           
+       0C:  0000  s_RSEG0                          
+       0C:  0000  s_RSEG1                          
+       0C:  0000  s_XABS                           
+       0C:  0000  s_XISEG                          
+       0C:  0000  s_XSEG                           
+       0C:  0001  l_BIT_BANK                       
+       0C:  0002  l_BSEG_BYTES                     
+       0C:  0002  l_OSEG                           
+       0C:  0003  l_GSFINAL                        
+       0C:  0003  l_GSINIT0                        
+       0C:  0005  l_GSINIT                         
+       0C:  0006  l_ISEG                           
+       0C:  0008  l_REG_BANK_0                     
+       0C:  0008  l_REG_BANK_1                     
+       0C:  0008  l_REG_BANK_2                     
+       0C:  0008  s_REG_BANK_1                     
+       0C:  000A  l_GSINIT2                        
+       0C:  000B  l_BSEG                           
+       0C:  0010  s_REG_BANK_2                     
+       0C:  0018  s_REG_BANK_3                     
+       0C:  0020  s_BSEG_BYTES                     
+       0C:  0020  s__CODE                          
+       0C:  0022  l_GSINIT3                        
+       0C:  0022  s_BIT_BANK                       
+       0C:  002A  l_GSINIT4                        
+       0C:  0033  l_HOME                           
+       0C:  0033  s_GSINIT0                        
+ASxxxx Linker V02.00 + NoICE + sdld,  page 2.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CABS                               0000   0000 =      0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0036  s_GSINIT1                        
+       0C:  0036  s_GSINIT2                        
+       0C:  003C  s_OSEG                           
+       0C:  0040  s_GSINIT3                        
+       0C:  0044  l_CONST                          
+       0C:  0044  s_SSEG                           
+       0C:  0062  s_GSINIT4                        
+       0C:  007F  l_DSEG                           
+       0C:  008C  s_GSINIT                         
+       0C:  008C  s_GSINIT5                        
+       0C:  0091  s_GSFINAL                        
+       0C:  0094  s_CSEG                           
+       0C:  00BC  l_SSEG                           
+       0C:  0100  l_IRAM                           
+       0C:  0CBF  l_CSEG                           
+       0C:  0D53  s_CONST                          
+       0C:  0D97  s_XINIT                          
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 3.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XABS                               0000   0000 =      0. bytes (ABS,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 4.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+IABS                               0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 5.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+RSEG1                              0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 6.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+RSEG0                              0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 7.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+RSEG                               0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 8.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0000  .__.ABS.                         
+            0080  G$P0$0$0                         
+            0080  G$P0_0$0$0                       
+            0080  _P0                              
+            0080  _P0_0                            
+            0081  G$P0_1$0$0                       
+            0081  G$SP$0$0                         
+            0081  _P0_1                            
+            0081  _SP                              
+            0082  G$DPL$0$0                        
+            0082  G$P0_2$0$0                       
+            0082  _DPL                             
+            0082  _P0_2                            
+            0083  G$DPH$0$0                        
+            0083  G$P0_3$0$0                       
+            0083  _DPH                             
+            0083  _P0_3                            
+            0084  G$P0_4$0$0                       
+            0084  _P0_4                            
+            0085  G$P0_5$0$0                       
+            0085  _P0_5                            
+            0086  G$P0_6$0$0                       
+            0086  _P0_6                            
+            0087  G$P0_7$0$0                       
+            0087  G$PCON$0$0                       
+            0087  _P0_7                            
+            0087  _PCON                            
+            0088  G$IT0$0$0                        
+            0088  G$TCON$0$0                       
+            0088  _IT0                             
+            0088  _TCON                            
+            0089  G$IE0$0$0                        
+            0089  G$TMOD$0$0                       
+            0089  _IE0                             
+            0089  _TMOD                            
+            008A  G$IT1$0$0                        
+            008A  G$TL0$0$0                        
+            008A  _IT1                             
+            008A  _TL0                             
+            008B  G$IE1$0$0                        
+            008B  G$TL1$0$0                        
+            008B  _IE1                             
+            008B  _TL1                             
+            008C  G$TH0$0$0                        
+            008C  G$TR0$0$0                        
+            008C  _TH0                             
+            008C  _TR0                             
+            008D  G$TF0$0$0                        
+            008D  G$TH1$0$0                        
+            008D  _TF0                             
+ASxxxx Linker V02.00 + NoICE + sdld,  page 9.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            008D  _TH1                             
+            008E  G$TR1$0$0                        
+            008E  _TR1                             
+            008F  G$TF1$0$0                        
+            008F  _TF1                             
+            0090  G$P1$0$0                         
+            0090  G$P1_0$0$0                       
+            0090  G$T2$0$0                         
+            0090  _P1                              
+            0090  _P1_0                            
+            0090  _T2                              
+            0091  G$P1_1$0$0                       
+            0091  G$T2EX$0$0                       
+            0091  _P1_1                            
+            0091  _T2EX                            
+            0092  G$P1_2$0$0                       
+            0092  _P1_2                            
+            0093  G$P1_3$0$0                       
+            0093  _P1_3                            
+            0094  G$P1_4$0$0                       
+            0094  _P1_4                            
+            0095  G$P1_5$0$0                       
+            0095  _P1_5                            
+            0096  G$P1_6$0$0                       
+            0096  _P1_6                            
+            0097  G$P1_7$0$0                       
+            0097  _P1_7                            
+            0098  G$RI$0$0                         
+            0098  G$SCON$0$0                       
+            0098  _RI                              
+            0098  _SCON                            
+            0099  G$SBUF$0$0                       
+            0099  G$TI$0$0                         
+            0099  _SBUF                            
+            0099  _TI                              
+            009A  G$RB8$0$0                        
+            009A  _RB8                             
+            009B  G$TB8$0$0                        
+            009B  _TB8                             
+            009C  G$REN$0$0                        
+            009C  _REN                             
+            009D  G$SM2$0$0                        
+            009D  _SM2                             
+            009E  G$SM1$0$0                        
+            009E  _SM1                             
+            009F  G$SM0$0$0                        
+            009F  _SM0                             
+            00A0  G$P2$0$0                         
+            00A0  G$P2_0$0$0                       
+            00A0  _P2                              
+            00A0  _P2_0                            
+ASxxxx Linker V02.00 + NoICE + sdld,  page 10.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            00A0  __XPAGE                          
+            00A1  G$P2_1$0$0                       
+            00A1  _P2_1                            
+            00A2  G$P2_2$0$0                       
+            00A2  _P2_2                            
+            00A3  G$P2_3$0$0                       
+            00A3  _P2_3                            
+            00A4  G$P2_4$0$0                       
+            00A4  _P2_4                            
+            00A5  G$P2_5$0$0                       
+            00A5  _P2_5                            
+            00A6  G$P2_6$0$0                       
+            00A6  _P2_6                            
+            00A7  G$P2_7$0$0                       
+            00A7  _P2_7                            
+            00A8  G$EX0$0$0                        
+            00A8  G$IE$0$0                         
+            00A8  _EX0                             
+            00A8  _IE                              
+            00A9  G$ET0$0$0                        
+            00A9  _ET0                             
+            00AA  G$EX1$0$0                        
+            00AA  _EX1                             
+            00AB  G$ET1$0$0                        
+            00AB  _ET1                             
+            00AC  G$ES$0$0                         
+            00AC  _ES                              
+            00AD  G$ET2$0$0                        
+            00AD  _ET2                             
+            00AF  G$EA$0$0                         
+            00AF  _EA                              
+            00B0  G$P3$0$0                         
+            00B0  G$P3_0$0$0                       
+            00B0  G$RXD$0$0                        
+            00B0  _P3                              
+            00B0  _P3_0                            
+            00B0  _RXD                             
+            00B1  G$P3_1$0$0                       
+            00B1  G$TXD$0$0                        
+            00B1  _P3_1                            
+            00B1  _TXD                             
+            00B2  G$INT0$0$0                       
+            00B2  G$P3_2$0$0                       
+            00B2  _INT0                            
+            00B2  _P3_2                            
+            00B3  G$INT1$0$0                       
+            00B3  G$P3_3$0$0                       
+            00B3  _INT1                            
+            00B3  _P3_3                            
+            00B4  G$P3_4$0$0                       
+            00B4  G$T0$0$0                         
+ASxxxx Linker V02.00 + NoICE + sdld,  page 11.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            00B4  _P3_4                            
+            00B4  _T0                              
+            00B5  G$P3_5$0$0                       
+            00B5  G$T1$0$0                         
+            00B5  _P3_5                            
+            00B5  _T1                              
+            00B6  G$P3_6$0$0                       
+            00B6  G$WR$0$0                         
+            00B6  _P3_6                            
+            00B6  _WR                              
+            00B7  G$P3_7$0$0                       
+            00B7  G$RD$0$0                         
+            00B7  _P3_7                            
+            00B7  _RD                              
+            00B8  G$IP$0$0                         
+            00B8  G$PX0$0$0                        
+            00B8  _IP                              
+            00B8  _PX0                             
+            00B9  G$PT0$0$0                        
+            00B9  _PT0                             
+            00BA  G$PX1$0$0                        
+            00BA  _PX1                             
+            00BB  G$PT1$0$0                        
+            00BB  _PT1                             
+            00BC  G$PS$0$0                         
+            00BC  _PS                              
+            00BD  G$PT2$0$0                        
+            00BD  _PT2                             
+            00C8  G$CP_RL2$0$0                     
+            00C8  G$T2CON$0$0                      
+            00C8  G$T2CON_0$0$0                    
+            00C8  _CP_RL2                          
+            00C8  _T2CON                           
+            00C8  _T2CON_0                         
+            00C9  G$C_T2$0$0                       
+            00C9  G$T2CON_1$0$0                    
+            00C9  G$T2MOD$0$0                      
+            00C9  _C_T2                            
+            00C9  _T2CON_1                         
+            00C9  _T2MOD                           
+            00CA  G$RCAP2L$0$0                     
+            00CA  G$T2CON_2$0$0                    
+            00CA  G$TR2$0$0                        
+            00CA  _RCAP2L                          
+            00CA  _T2CON_2                         
+            00CA  _TR2                             
+            00CB  G$EXEN2$0$0                      
+            00CB  G$RCAP2H$0$0                     
+            00CB  G$T2CON_3$0$0                    
+            00CB  _EXEN2                           
+            00CB  _RCAP2H                          
+ASxxxx Linker V02.00 + NoICE + sdld,  page 12.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+.	.ABS.                            0000   0000 =      0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            00CB  _T2CON_3                         
+            00CC  G$T2CON_4$0$0                    
+            00CC  G$TCLK$0$0                       
+            00CC  G$TL2$0$0                        
+            00CC  _T2CON_4                         
+            00CC  _TCLK                            
+            00CC  _TL2                             
+            00CD  G$RCLK$0$0                       
+            00CD  G$T2CON_5$0$0                    
+            00CD  G$TH2$0$0                        
+            00CD  _RCLK                            
+            00CD  _T2CON_5                         
+            00CD  _TH2                             
+            00CE  G$EXF2$0$0                       
+            00CE  G$T2CON_6$0$0                    
+            00CE  _EXF2                            
+            00CE  _T2CON_6                         
+            00CF  G$T2CON_7$0$0                    
+            00CF  G$TF2$0$0                        
+            00CF  _T2CON_7                         
+            00CF  _TF2                             
+            00D0  G$P$0$0                          
+            00D0  G$PSW$0$0                        
+            00D0  _P                               
+            00D0  _PSW                             
+            00D1  G$FL$0$0                         
+            00D1  _FL                              
+            00D2  G$OV$0$0                         
+            00D2  _OV                              
+            00D3  G$RS0$0$0                        
+            00D3  _RS0                             
+            00D4  G$RS1$0$0                        
+            00D4  _RS1                             
+            00D5  G$F0$0$0                         
+            00D5  _F0                              
+            00D6  G$AC$0$0                         
+            00D6  _AC                              
+            00D7  G$CY$0$0                         
+            00D7  _CY                              
+            00E0  G$A$0$0                          
+            00E0  G$ACC$0$0                        
+            00E0  _A                               
+            00E0  _ACC                             
+            00F0  G$B$0$0                          
+            00F0  _B                               
+            00F5  _B_5                             
+            00F6  _B_6                             
+            00F7  _B_7                             
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 13.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BSEG_BYTES                         0020   0002 =      2. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 14.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+_CODE                              0020   0000 =      0. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 15.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_0                         0000   0008 =      8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 16.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_1                         0008   0008 =      8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 17.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_2                         0010   0008 =      8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 18.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+REG_BANK_3                         0018   0000 =      0. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 19.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BSEG                               0000   000B =     11. bytes (REL,CON,BIT)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0B:  0000  G$isOverstep$0$0                 
+       0B:  0000  _isOverstep                      
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 20.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+BIT_BANK                           0022   0001 =      1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 21.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+DSEG                               0000   007F =    127. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0018  G$speed$0$0                      
+            0018  _speed                           
+            0019  G$t0InterruptTimes$0$0           
+            0019  _t0InterruptTimes                
+            001A  G$t2InterruptTimes$0$0           
+            001A  _t2InterruptTimes                
+            001B  G$angle$0$0                      
+            001B  _angle                           
+            001C  G$timer0For$0$0                  
+            001C  _timer0For                       
+            001D  _vprintf_PARM_2                  
+            001E  _bp                              
+            002F  __print_format_PARM_2            
+            0032  __print_format_PARM_3            
+            0035  __print_format_PARM_4            
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 22.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+OSEG                               003C   0002 =      2. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            003C  _calculate_digit_radix_1_1       
+            003D  _calculate_digit_i_1_1           
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 23.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+ISEG                               0000   0006 =      6. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 24.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+SSEG                               0044   00BC =    188. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+            0044  __start__stack                   
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 25.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+PSEG                               0000   0000 =      0. bytes (REL,CON,PAG,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 26.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XSEG                               0000   0000 =      0. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 27.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XISEG                              0000   0000 =      0. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 28.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+HOME                               0000   0033 =     51. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0000  A$main$522                       
+       0C:  0003  A$main$523                       
+       0C:  000B  A$main$525                       
+       0C:  0013  A$main$527                       
+       0C:  001B  A$main$529                       
+       0C:  0023  A$main$531                       
+       0C:  002B  A$main$533                       
+       0C:  002E  A$main$563                       
+       0C:  002E  __sdcc_program_startup           
+       0C:  0031  A$main$565                       
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 29.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT0                            0033   0003 =      3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0033  __sdcc_gsinit_startup            
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 30.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT1                            0036   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 31.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT2                            0036   000A =     10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 32.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT3                            0040   0022 =     34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0040  __mcs51_genXINIT                 
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 33.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT4                            0062   002A =     42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0062  __mcs51_genRAMCLEAR              
+       0C:  0068  __mcs51_genXRAMCLEAR             
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 34.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT5                            008C   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 35.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSINIT                             008C   0005 =      5. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  008C  A$main$550                       
+       0C:  008C  C$main.c$44$1$1                  
+       0C:  008F  A$main$554                       
+       0C:  008F  C$main.c$49$1$1                  
+ASxxxx Linker V02.00 + NoICE + sdld,  page 36.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+GSFINAL                            0091   0003 =      3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0091  A$main$556                       
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 37.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0094  A$main$592                       
+       0C:  0094  C$main.c$52$0$0                  
+       0C:  0094  G$delay$0$0                      
+       0C:  0094  _delay                           
+       0C:  0096  A$main$593                       
+       0C:  0098  A$main$597                       
+       0C:  0099  A$main$598                       
+       0C:  009A  A$main$599                       
+       0C:  009C  A$main$600                       
+       0C:  009E  A$main$601                       
+       0C:  00A0  A$main$603                       
+       0C:  00A2  A$main$605                       
+       0C:  00A3  A$main$606                       
+       0C:  00A5  A$main$609                       
+       0C:  00A5  C$main.c$55$2$2                  
+       0C:  00A7  A$main$610                       
+       0C:  00A9  A$main$612                       
+       0C:  00AA  A$main$613                       
+       0C:  00AB  A$main$614                       
+       0C:  00AD  A$main$615                       
+       0C:  00AF  A$main$616                       
+       0C:  00B1  A$main$618                       
+       0C:  00B3  A$main$620                       
+       0C:  00B4  A$main$621                       
+       0C:  00B6  A$main$622                       
+       0C:  00B7  A$main$623                       
+       0C:  00BA  A$main$624                       
+       0C:  00BB  A$main$625                       
+       0C:  00BD  A$main$629                       
+       0C:  00BD  C$main.c$54$1$1                  
+       0C:  00BE  A$main$630                       
+       0C:  00C1  A$main$631                       
+       0C:  00C2  A$main$633                       
+       0C:  00C4  A$main$637                       
+       0C:  00C4  C$main.c$57$1$1                  
+       0C:  00C4  XG$delay$0$0                     
+       0C:  00C5  A$main$650                       
+       0C:  00C5  C$main.c$60$1$1                  
+       0C:  00C5  G$putchar$0$0                    
+       0C:  00C5  _putchar                         
+       0C:  00C8  A$main$656                       
+       0C:  00C8  C$main.c$62$1$1                  
+       0C:  00C8  C$main.c$63$1$1                  
+       0C:  00CB  A$main$657                       
+       0C:  00CD  A$main$661                       
+       0C:  00CD  C$main.c$64$1$1                  
+       0C:  00CD  XG$putchar$0$0                   
+       0C:  00CE  A$main$675                       
+       0C:  00CE  C$main.c$67$1$1                  
+       0C:  00CE  C$main.c$68$1$1                  
+ASxxxx Linker V02.00 + NoICE + sdld,  page 38.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  00CE  G$sensorTrigger$0$0              
+       0C:  00CE  _sensorTrigger                   
+       0C:  00D1  A$main$676                       
+       0C:  00D4  A$main$677                       
+       0C:  00D7  A$main$678                       
+       0C:  00DA  A$main$682                       
+       0C:  00DA  C$main.c$69$2$2                  
+       0C:  00DC  A$main$686                       
+       0C:  00DC  C$main.c$71$2$1                  
+       0C:  00DC  XG$sensorTrigger$0$0             
+       0C:  00DD  A$main$699                       
+       0C:  00DD  C$main.c$75$2$1                  
+       0C:  00DD  G$ledStatus$0$0                  
+       0C:  00DD  _ledStatus                       
+       0C:  00DF  A$main$702                       
+       0C:  00DF  C$main.c$76$1$1                  
+       0C:  00E2  A$main$703                       
+       0C:  00E4  A$main$705                       
+       0C:  00E7  A$main$706                       
+       0C:  00E9  A$main$710                       
+       0C:  00E9  C$main.c$77$2$2                  
+       0C:  00EC  A$main$711                       
+       0C:  00EE  A$main$715                       
+       0C:  00EE  C$main.c$78$2$2                  
+       0C:  00F0  A$main$718                       
+       0C:  00F0  C$main.c$79$2$2                  
+       0C:  00F2  A$main$721                       
+       0C:  00F2  C$main.c$80$2$2                  
+       0C:  00F4  A$main$726                       
+       0C:  00F4  C$main.c$81$2$2                  
+       0C:  00F4  C$main.c$82$2$2                  
+       0C:  00F5  A$main$730                       
+       0C:  00F5  C$main.c$83$2$2                  
+       0C:  00F7  A$main$733                       
+       0C:  00F7  C$main.c$84$2$2                  
+       0C:  00F9  A$main$736                       
+       0C:  00F9  C$main.c$85$2$2                  
+       0C:  00FB  A$main$741                       
+       0C:  00FB  C$main.c$86$2$2                  
+       0C:  00FB  C$main.c$87$2$2                  
+       0C:  00FC  A$main$745                       
+       0C:  00FC  C$main.c$88$2$2                  
+       0C:  00FE  A$main$748                       
+       0C:  00FE  C$main.c$89$2$2                  
+       0C:  0100  A$main$751                       
+       0C:  0100  C$main.c$90$2$2                  
+       0C:  0102  A$main$757                       
+       0C:  0102  C$main.c$92$1$1                  
+       0C:  0102  C$main.c$93$1$1                  
+       0C:  0102  XG$ledStatus$0$0                 
+       0C:  0103  A$main$770                       
+ASxxxx Linker V02.00 + NoICE + sdld,  page 39.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0103  C$main.c$96$1$1                  
+       0C:  0103  G$setTurnAngle$0$0               
+       0C:  0103  _setTurnAngle                    
+       0C:  0105  A$main$773                       
+       0C:  0105  C$main.c$98$1$1                  
+       0C:  0107  A$main$774                       
+       0C:  010A  A$main$776                       
+       0C:  010C  A$main$777                       
+       0C:  010D  A$main$778                       
+       0C:  010E  A$main$779                       
+       0C:  010F  A$main$780                       
+       0C:  0112  A$main$781                       
+       0C:  0113  A$main$783                       
+       0C:  0116  A$main$784                       
+       0C:  0119  A$main$785                       
+       0C:  011C  A$main$786                       
+       0C:  011F  A$main$787                       
+       0C:  0122  A$main$791                       
+       0C:  0122  C$main.c$100$2$2                 
+       0C:  0125  A$main$794                       
+       0C:  0125  C$main.c$102$2$2                 
+       0C:  0127  A$main$796                       
+       0C:  012A  A$main$799                       
+       0C:  012A  C$main.c$104$2$2                 
+       0C:  012C  A$main$801                       
+       0C:  012F  A$main$804                       
+       0C:  012F  C$main.c$106$2$2                 
+       0C:  0131  A$main$806                       
+       0C:  0134  A$main$809                       
+       0C:  0134  C$main.c$108$2$2                 
+       0C:  0136  A$main$811                       
+       0C:  0139  A$main$817                       
+       0C:  0139  C$main.c$109$1$1                 
+       0C:  0139  C$main.c$110$1$1                 
+       0C:  013C  A$main$822                       
+       0C:  013C  C$main.c$111$1$1                 
+       0C:  013C  C$main.c$112$1$1                 
+       0C:  013C  XG$setTurnAngle$0$0              
+       0C:  013F  A$main$836                       
+       0C:  013F  C$main.c$114$1$1                 
+       0C:  013F  C$main.c$116$1$1                 
+       0C:  013F  G$steerTurn$0$0                  
+       0C:  013F  _steerTurn                       
+       0C:  0141  A$main$839                       
+       0C:  0141  C$main.c$117$1$1                 
+       0C:  0143  A$main$840                       
+       0C:  0146  A$main$842                       
+       0C:  0148  A$main$845                       
+       0C:  0148  C$main.c$118$2$2                 
+       0C:  014B  A$main$849                       
+       0C:  014B  C$main.c$121$1$1                 
+ASxxxx Linker V02.00 + NoICE + sdld,  page 40.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  014D  A$main$850                       
+       0C:  0150  A$main$852                       
+       0C:  0152  A$main$855                       
+       0C:  0152  C$main.c$122$2$3                 
+       0C:  0154  A$main$856                       
+       0C:  0156  A$main$860                       
+       0C:  0156  C$main.c$124$2$4                 
+       0C:  0158  A$main$866                       
+       0C:  0158  C$main.c$126$1$1                 
+       0C:  0158  C$main.c$127$1$1                 
+       0C:  0158  XG$steerTurn$0$0                 
+       0C:  015B  A$main$880                       
+       0C:  015B  C$main.c$130$1$1                 
+       0C:  015B  C$main.c$132$1$1                 
+       0C:  015B  G$trigger$0$0                    
+       0C:  015B  _trigger                         
+       0C:  015D  A$main$883                       
+       0C:  015D  C$main.c$134$1$1                 
+       0C:  015E  A$main$884                       
+       0C:  015F  A$main$885                       
+       0C:  0160  A$main$886                       
+       0C:  0161  A$main$887                       
+       0C:  0162  A$main$890                       
+       0C:  0162  C$main.c$135$1$1                 
+       0C:  0163  A$main$891                       
+       0C:  0164  A$main$892                       
+       0C:  0165  A$main$893                       
+       0C:  0166  A$main$894                       
+       0C:  0167  A$main$897                       
+       0C:  0167  C$main.c$136$1$1                 
+       0C:  0168  A$main$898                       
+       0C:  0169  A$main$899                       
+       0C:  016A  A$main$900                       
+       0C:  016B  A$main$901                       
+       0C:  016C  A$main$904                       
+       0C:  016C  C$main.c$137$1$1                 
+       0C:  016D  A$main$905                       
+       0C:  016E  A$main$906                       
+       0C:  016F  A$main$907                       
+       0C:  0170  A$main$908                       
+       0C:  0171  A$main$911                       
+       0C:  0171  C$main.c$138$1$1                 
+       0C:  0173  A$main$914                       
+       0C:  0173  C$main.c$139$1$1                 
+       0C:  0173  XG$trigger$0$0                   
+       0C:  0174  A$main$930                       
+       0C:  0174  C$main.c$142$1$1                 
+       0C:  0174  C$main.c$146$1$1                 
+       0C:  0174  G$calculate$0$0                  
+       0C:  0174  _calculate                       
+       0C:  0176  A$main$933                       
+ASxxxx Linker V02.00 + NoICE + sdld,  page 41.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0176  C$main.c$148$1$1                 
+       0C:  0179  A$main$936                       
+       0C:  0179  C$main.c$149$1$1                 
+       0C:  017C  A$main$939                       
+       0C:  017C  C$main.c$150$1$1                 
+       0C:  017E  A$main$940                       
+       0C:  0181  A$main$941                       
+       0C:  0183  A$main$942                       
+       0C:  0185  A$main$943                       
+       0C:  0187  A$main$944                       
+       0C:  0188  A$main$945                       
+       0C:  018A  A$main$946                       
+       0C:  018C  A$main$947                       
+       0C:  018E  A$main$948                       
+       0C:  0190  A$main$949                       
+       0C:  0193  A$main$950                       
+       0C:  0196  A$main$951                       
+       0C:  0198  A$main$952                       
+       0C:  019B  A$main$953                       
+       0C:  019D  A$main$954                       
+       0C:  019F  A$main$955                       
+       0C:  01A1  A$main$956                       
+       0C:  01A2  A$main$957                       
+       0C:  01A4  A$main$958                       
+       0C:  01A6  A$main$959                       
+       0C:  01A8  A$main$960                       
+       0C:  01AA  A$main$961                       
+       0C:  01AC  A$main$962                       
+       0C:  01AE  A$main$963                       
+       0C:  01AF  A$main$964                       
+       0C:  01B2  A$main$967                       
+       0C:  01B2  C$main.c$153$1$1                 
+       0C:  01B5  A$main$968                       
+       0C:  01B7  A$main$969                       
+       0C:  01B9  A$main$970                       
+       0C:  01BB  A$main$971                       
+       0C:  01BC  A$main$972                       
+       0C:  01BE  A$main$973                       
+       0C:  01C0  A$main$974                       
+       0C:  01C2  A$main$975                       
+       0C:  01C4  A$main$976                       
+       0C:  01C7  A$main$977                       
+       0C:  01CA  A$main$978                       
+       0C:  01CC  A$main$979                       
+       0C:  01CF  A$main$980                       
+       0C:  01D1  A$main$981                       
+       0C:  01D3  A$main$982                       
+       0C:  01D5  A$main$983                       
+       0C:  01D6  A$main$984                       
+       0C:  01D8  A$main$985                       
+       0C:  01DA  A$main$986                       
+ASxxxx Linker V02.00 + NoICE + sdld,  page 42.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  01DC  A$main$987                       
+       0C:  01DE  A$main$988                       
+       0C:  01E0  A$main$989                       
+       0C:  01E2  A$main$990                       
+       0C:  01E3  A$main$991                       
+       0C:  01E6  A$main$992                       
+       0C:  01E8  A$main$997                       
+       0C:  01E8  C$main.c$154$1$1                 
+       0C:  01E8  C$main.c$155$2$2                 
+       0C:  01EB  A$main$998                       
+       0C:  01ED  A$main$1002                      
+       0C:  01ED  C$main.c$156$2$2                 
+       0C:  01F0  A$main$1005                      
+       0C:  01F0  C$main.c$157$2$2                 
+       0C:  01F2  A$main$1006                      
+       0C:  01F4  A$main$1007                      
+       0C:  01F6  A$main$1008                      
+       0C:  01F8  A$main$1009                      
+       0C:  01FA  A$main$1010                      
+       0C:  01FC  A$main$1011                      
+       0C:  01FF  A$main$1012                      
+       0C:  0201  A$main$1013                      
+       0C:  0203  A$main$1014                      
+       0C:  0205  A$main$1015                      
+       0C:  0206  A$main$1019                      
+       0C:  0206  C$main.c$159$2$3                 
+       0C:  0207  A$main$1020                      
+       0C:  020A  A$main$1021                      
+       0C:  020B  A$main$1022                      
+       0C:  020D  A$main$1025                      
+       0C:  020D  C$main.c$160$2$3                 
+       0C:  020F  A$main$1026                      
+       0C:  0211  A$main$1027                      
+       0C:  0213  A$main$1028                      
+       0C:  0215  A$main$1029                      
+       0C:  0217  A$main$1030                      
+       0C:  0219  A$main$1031                      
+       0C:  021B  A$main$1032                      
+       0C:  021D  A$main$1033                      
+       0C:  021F  A$main$1034                      
+       0C:  0222  A$main$1035                      
+       0C:  0224  A$main$1036                      
+       0C:  0226  A$main$1037                      
+       0C:  0228  A$main$1040                      
+       0C:  0228  C$main.c$162$1$1                 
+       0C:  0228  XG$calculate$0$0                 
+       0C:  0229  A$main$1054                      
+       0C:  0229  C$main.c$165$1$1                 
+       0C:  0229  C$main.c$167$1$1                 
+       0C:  0229  G$startSR04$0$0                  
+       0C:  0229  _startSR04                       
+ASxxxx Linker V02.00 + NoICE + sdld,  page 43.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  022C  A$main$1057                      
+       0C:  022C  C$main.c$168$1$1                 
+       0C:  022F  A$main$1060                      
+       0C:  022F  C$main.c$169$1$1                 
+       0C:  0232  A$main$1064                      
+       0C:  0232  C$main.c$170$1$1                 
+       0C:  0235  A$main$1067                      
+       0C:  0235  C$main.c$171$1$1                 
+       0C:  0237  A$main$1071                      
+       0C:  0237  C$main.c$172$1$1                 
+       0C:  023A  A$main$1074                      
+       0C:  023A  C$main.c$173$1$1                 
+       0C:  023C  A$main$1079                      
+       0C:  023C  C$main.c$174$1$1                 
+       0C:  023C  C$main.c$175$1$1                 
+       0C:  023C  XG$startSR04$0$0                 
+       0C:  023F  A$main$1093                      
+       0C:  023F  C$main.c$178$1$1                 
+       0C:  023F  C$main.c$181$1$1                 
+       0C:  023F  G$awayLEFTObs$0$0                
+       0C:  023F  _awayLEFTObs                     
+       0C:  0242  A$main$1096                      
+       0C:  0242  C$main.c$182$1$1                 
+       0C:  0245  A$main$1099                      
+       0C:  0245  C$main.c$183$1$1                 
+       0C:  0245  XG$awayLEFTObs$0$0               
+       0C:  0248  A$main$1113                      
+       0C:  0248  C$main.c$186$1$1                 
+       0C:  0248  C$main.c$189$1$1                 
+       0C:  0248  G$awayRightObs$0$0               
+       0C:  0248  _awayRightObs                    
+       0C:  024B  A$main$1116                      
+       0C:  024B  C$main.c$190$1$1                 
+       0C:  024E  A$main$1119                      
+       0C:  024E  C$main.c$192$1$1                 
+       0C:  024E  XG$awayRightObs$0$0              
+       0C:  0251  A$main$1133                      
+       0C:  0251  C$main.c$195$1$1                 
+       0C:  0251  C$main.c$196$1$1                 
+       0C:  0251  G$awayFrontObs$0$0               
+       0C:  0251  _awayFrontObs                    
+       0C:  0254  A$main$1136                      
+       0C:  0254  C$main.c$197$1$1                 
+       0C:  0257  A$main$1139                      
+       0C:  0257  C$main.c$198$1$1                 
+       0C:  0257  XG$awayFrontObs$0$0              
+       0C:  025A  A$main$1153                      
+       0C:  025A  C$main.c$201$1$1                 
+       0C:  025A  C$main.c$202$1$1                 
+       0C:  025A  G$awayBackObs$0$0                
+       0C:  025A  _awayBackObs                     
+ASxxxx Linker V02.00 + NoICE + sdld,  page 44.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  025D  A$main$1156                      
+       0C:  025D  C$main.c$203$1$1                 
+       0C:  0260  A$main$1159                      
+       0C:  0260  C$main.c$204$1$1                 
+       0C:  0260  XG$awayBackObs$0$0               
+       0C:  0263  A$main$1171                      
+       0C:  0263  C$main.c$207$1$1                 
+       0C:  0263  G$selfControl$0$0                
+       0C:  0263  _selfControl                     
+       0C:  0265  A$main$1172                      
+       0C:  0267  A$main$1173                      
+       0C:  0269  A$main$1174                      
+       0C:  026B  A$main$1175                      
+       0C:  026D  A$main$1176                      
+       0C:  026F  A$main$1177                      
+       0C:  0271  A$main$1178                      
+       0C:  0273  A$main$1179                      
+       0C:  0275  A$main$1180                      
+       0C:  0277  A$main$1181                      
+       0C:  0279  A$main$1182                      
+       0C:  027B  A$main$1183                      
+       0C:  027D  A$main$1184                      
+       0C:  027F  A$main$1185                      
+       0C:  0282  A$main$1188                      
+       0C:  0282  C$main.c$209$1$1                 
+       0C:  0285  A$main$1189                      
+       0C:  0288  A$main$1192                      
+       0C:  0288  C$main.c$210$1$1                 
+       0C:  028A  A$main$1193                      
+       0C:  028C  A$main$1194                      
+       0C:  028E  A$main$1195                      
+       0C:  0290  A$main$1196                      
+       0C:  0292  A$main$1197                      
+       0C:  0294  A$main$1198                      
+       0C:  0297  A$main$1199                      
+       0C:  0299  A$main$1200                      
+       0C:  029B  A$main$1201                      
+       0C:  029D  A$main$1204                      
+       0C:  029D  C$main.c$213$1$1                 
+       0C:  02A0  A$main$1205                      
+       0C:  02A3  A$main$1208                      
+       0C:  02A3  C$main.c$215$2$2                 
+       0C:  02A6  A$main$1209                      
+       0C:  02A9  A$main$1211                      
+       0C:  02AC  A$main$1212                      
+       0C:  02AF  A$main$1214                      
+       0C:  02B1  A$main$1215                      
+       0C:  02B3  A$main$1217                      
+       0C:  02B5  A$main$1219                      
+       0C:  02B8  A$main$1223                      
+       0C:  02B8  C$main.c$216$3$3                 
+ASxxxx Linker V02.00 + NoICE + sdld,  page 45.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  02BB  A$main$1224                      
+       0C:  02BE  A$main$1228                      
+       0C:  02BE  C$main.c$218$2$2                 
+       0C:  02C1  A$main$1229                      
+       0C:  02C4  A$main$1232                      
+       0C:  02C4  C$main.c$219$3$4                 
+       0C:  02C7  A$main$1235                      
+       0C:  02C7  C$main.c$220$3$4                 
+       0C:  02CA  A$main$1236                      
+       0C:  02CD  A$main$1239                      
+       0C:  02CD  C$main.c$221$3$4                 
+       0C:  02D0  A$main$1240                      
+       0C:  02D3  A$main$1241                      
+       0C:  02D6  A$main$1245                      
+       0C:  02D6  C$main.c$224$3$5                 
+       0C:  02D9  A$main$1248                      
+       0C:  02D9  C$main.c$225$3$5                 
+       0C:  02DC  A$main$1249                      
+       0C:  02DF  A$main$1252                      
+       0C:  02DF  C$main.c$226$3$5                 
+       0C:  02E2  A$main$1253                      
+       0C:  02E5  A$main$1254                      
+       0C:  02E8  A$main$1258                      
+       0C:  02E8  C$main.c$229$1$1                 
+       0C:  02EB  A$main$1259                      
+       0C:  02EE  A$main$1262                      
+       0C:  02EE  C$main.c$231$2$6                 
+       0C:  02F1  A$main$1263                      
+       0C:  02F4  A$main$1265                      
+       0C:  02F6  A$main$1266                      
+       0C:  02F8  A$main$1268                      
+       0C:  02FA  A$main$1270                      
+       0C:  02FD  A$main$1273                      
+       0C:  02FD  C$main.c$232$3$7                 
+       0C:  0300  A$main$1274                      
+       0C:  0303  A$main$1278                      
+       0C:  0303  C$main.c$234$2$6                 
+       0C:  0306  A$main$1279                      
+       0C:  0309  A$main$1282                      
+       0C:  0309  C$main.c$235$3$8                 
+       0C:  030C  A$main$1285                      
+       0C:  030C  C$main.c$236$3$8                 
+       0C:  030F  A$main$1286                      
+       0C:  0312  A$main$1287                      
+       0C:  0315  A$main$1291                      
+       0C:  0315  C$main.c$239$2$6                 
+       0C:  0318  A$main$1292                      
+       0C:  031B  A$main$1295                      
+       0C:  031B  C$main.c$240$3$9                 
+       0C:  031E  A$main$1298                      
+       0C:  031E  C$main.c$241$3$9                 
+ASxxxx Linker V02.00 + NoICE + sdld,  page 46.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0321  A$main$1299                      
+       0C:  0324  A$main$1302                      
+       0C:  0324  C$main.c$242$3$9                 
+       0C:  0327  A$main$1303                      
+       0C:  032A  A$main$1304                      
+       0C:  032D  A$main$1308                      
+       0C:  032D  C$main.c$245$3$10                
+       0C:  0330  A$main$1311                      
+       0C:  0330  C$main.c$246$3$10                
+       0C:  0333  A$main$1312                      
+       0C:  0336  A$main$1315                      
+       0C:  0336  C$main.c$247$3$10                
+       0C:  0339  A$main$1316                      
+       0C:  033C  A$main$1317                      
+       0C:  033E  A$main$1321                      
+       0C:  033E  C$main.c$250$1$1                 
+       0C:  0341  A$main$1322                      
+       0C:  0344  A$main$1323                      
+       0C:  0347  A$main$1325                      
+       0C:  0349  A$main$1326                      
+       0C:  034B  A$main$1328                      
+       0C:  034D  A$main$1330                      
+       0C:  034E  A$main$1331                      
+       0C:  0350  A$main$1332                      
+       0C:  0353  A$main$1334                      
+       0C:  0355  A$main$1335                      
+       0C:  0357  A$main$1337                      
+       0C:  0359  A$main$1339                      
+       0C:  035C  A$main$1342                      
+       0C:  035C  C$main.c$251$2$11                
+       0C:  035F  A$main$1345                      
+       0C:  035F  C$main.c$252$2$11                
+       0C:  0362  A$main$1346                      
+       0C:  0365  A$main$1349                      
+       0C:  0365  C$main.c$253$2$11                
+       0C:  0368  A$main$1350                      
+       0C:  036B  A$main$1351                      
+       0C:  036D  A$main$1355                      
+       0C:  036D  C$main.c$255$1$1                 
+       0C:  0370  A$main$1356                      
+       0C:  0373  A$main$1357                      
+       0C:  0376  A$main$1359                      
+       0C:  0378  A$main$1360                      
+       0C:  037A  A$main$1362                      
+       0C:  037C  A$main$1364                      
+       0C:  037D  A$main$1365                      
+       0C:  037F  A$main$1366                      
+       0C:  0382  A$main$1368                      
+       0C:  0384  A$main$1369                      
+       0C:  0386  A$main$1371                      
+       0C:  0388  A$main$1373                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 47.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  038B  A$main$1376                      
+       0C:  038B  C$main.c$256$2$12                
+       0C:  038E  A$main$1379                      
+       0C:  038E  C$main.c$257$2$12                
+       0C:  0391  A$main$1380                      
+       0C:  0394  A$main$1383                      
+       0C:  0394  C$main.c$258$2$12                
+       0C:  0397  A$main$1384                      
+       0C:  039A  A$main$1385                      
+       0C:  039C  A$main$1389                      
+       0C:  039C  C$main.c$261$2$13                
+       0C:  039F  A$main$1393                      
+       0C:  039F  C$main.c$263$1$1                 
+       0C:  03A1  A$main$1394                      
+       0C:  03A3  A$main$1395                      
+       0C:  03A5  A$main$1396                      
+       0C:  03A7  A$main$1397                      
+       0C:  03A9  A$main$1398                      
+       0C:  03AB  A$main$1399                      
+       0C:  03AD  A$main$1400                      
+       0C:  03AF  A$main$1401                      
+       0C:  03B1  A$main$1402                      
+       0C:  03B3  A$main$1403                      
+       0C:  03B5  A$main$1404                      
+       0C:  03B7  A$main$1405                      
+       0C:  03B9  A$main$1406                      
+       0C:  03BB  A$main$1407                      
+       0C:  03BD  A$main$1410                      
+       0C:  03BD  C$main.c$264$1$1                 
+       0C:  03BD  XG$selfControl$0$0               
+       0C:  03BE  A$main$1423                      
+       0C:  03BE  C$main.c$267$1$1                 
+       0C:  03BE  G$btControl$0$0                  
+       0C:  03BE  _btControl                       
+       0C:  03C0  A$main$1426                      
+       0C:  03C0  C$main.c$269$1$1                 
+       0C:  03C3  A$main$1427                      
+       0C:  03C5  A$main$1428                      
+       0C:  03C8  A$main$1429                      
+       0C:  03CA  A$main$1432                      
+       0C:  03CA  C$main.c$270$1$1                 
+       0C:  03CD  A$main$1433                      
+       0C:  03CF  A$main$1435                      
+       0C:  03D2  A$main$1436                      
+       0C:  03D4  A$main$1438                      
+       0C:  03D7  A$main$1439                      
+       0C:  03D9  A$main$1441                      
+       0C:  03DC  A$main$1442                      
+       0C:  03DE  A$main$1444                      
+       0C:  03E1  A$main$1445                      
+       0C:  03E3  A$main$1447                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 48.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  03E6  A$main$1448                      
+       0C:  03E8  A$main$1452                      
+       0C:  03E8  C$main.c$271$2$2                 
+       0C:  03EB  A$main$1453                      
+       0C:  03ED  A$main$1455                      
+       0C:  03F0  A$main$1458                      
+       0C:  03F0  C$main.c$272$2$2                 
+       0C:  03F2  A$main$1460                      
+       0C:  03F5  A$main$1463                      
+       0C:  03F5  C$main.c$273$2$2                 
+       0C:  03F7  A$main$1465                      
+       0C:  03FA  A$main$1468                      
+       0C:  03FA  C$main.c$274$2$2                 
+       0C:  03FC  A$main$1470                      
+       0C:  03FF  A$main$1473                      
+       0C:  03FF  C$main.c$275$2$2                 
+       0C:  0401  A$main$1475                      
+       0C:  0404  A$main$1478                      
+       0C:  0404  C$main.c$276$2$2                 
+       0C:  0406  A$main$1482                      
+       0C:  0406  C$main.c$277$2$2                 
+       0C:  0408  A$main$1483                      
+       0C:  040A  A$main$1484                      
+       0C:  040C  A$main$1487                      
+       0C:  040C  C$main.c$278$3$3                 
+       0C:  040E  A$main$1492                      
+       0C:  040E  C$main.c$280$2$2                 
+       0C:  040E  C$main.c$281$2$2                 
+       0C:  0410  A$main$1496                      
+       0C:  0410  C$main.c$282$2$2                 
+       0C:  0412  A$main$1497                      
+       0C:  0414  A$main$1500                      
+       0C:  0414  C$main.c$283$3$4                 
+       0C:  0416  A$main$1505                      
+       0C:  0416  C$main.c$285$2$2                 
+       0C:  0416  C$main.c$286$2$2                 
+       0C:  0418  A$main$1507                      
+       0C:  041B  A$main$1515                      
+       0C:  041B  C$main.c$287$1$1                 
+       0C:  041B  C$main.c$288$1$1                 
+       0C:  041B  C$main.c$289$1$1                 
+       0C:  041B  XG$btControl$0$0                 
+       0C:  041E  A$main$1529                      
+       0C:  041E  C$main.c$292$1$1                 
+       0C:  041E  C$main.c$294$1$1                 
+       0C:  041E  G$initInterrupt$0$0              
+       0C:  041E  _initInterrupt                   
+       0C:  0420  A$main$1532                      
+       0C:  0420  C$main.c$295$1$1                 
+       0C:  0422  A$main$1535                      
+       0C:  0422  C$main.c$296$1$1                 
+ASxxxx Linker V02.00 + NoICE + sdld,  page 49.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0424  A$main$1538                      
+       0C:  0424  C$main.c$297$1$1                 
+       0C:  0426  A$main$1541                      
+       0C:  0426  C$main.c$298$1$1                 
+       0C:  0428  A$main$1544                      
+       0C:  0428  C$main.c$299$1$1                 
+       0C:  042A  A$main$1547                      
+       0C:  042A  C$main.c$300$1$1                 
+       0C:  042A  XG$initInterrupt$0$0             
+       0C:  042B  A$main$1561                      
+       0C:  042B  C$main.c$303$1$1                 
+       0C:  042B  C$main.c$305$1$1                 
+       0C:  042B  G$initTimer0$0$0                 
+       0C:  042B  _initTimer0                      
+       0C:  042E  A$main$1564                      
+       0C:  042E  C$main.c$306$1$1                 
+       0C:  0430  A$main$1565                      
+       0C:  0432  A$main$1568                      
+       0C:  0432  C$main.c$308$2$2                 
+       0C:  0434  A$main$1569                      
+       0C:  0435  A$main$1573                      
+       0C:  0435  C$main.c$310$2$3                 
+       0C:  0438  A$main$1576                      
+       0C:  0438  C$main.c$311$2$3                 
+       0C:  043B  A$main$1579                      
+       0C:  043B  C$main.c$313$1$1                 
+       0C:  043B  XG$initTimer0$0$0                
+       0C:  043C  A$main$1593                      
+       0C:  043C  C$main.c$315$1$1                 
+       0C:  043C  C$main.c$317$1$1                 
+       0C:  043C  G$reloadTimer0$0$0               
+       0C:  043C  _reloadTimer0                    
+       0C:  043E  A$main$1594                      
+       0C:  0440  A$main$1597                      
+       0C:  0440  C$main.c$318$2$2                 
+       0C:  0443  A$main$1600                      
+       0C:  0443  C$main.c$319$2$2                 
+       0C:  0446  A$main$1601                      
+       0C:  0447  A$main$1605                      
+       0C:  0447  C$main.c$321$2$3                 
+       0C:  044A  A$main$1608                      
+       0C:  044A  C$main.c$322$2$3                 
+       0C:  044D  A$main$1611                      
+       0C:  044D  C$main.c$324$1$1                 
+       0C:  044D  XG$reloadTimer0$0$0              
+       0C:  044E  A$main$1625                      
+       0C:  044E  C$main.c$327$1$1                 
+       0C:  044E  C$main.c$329$1$1                 
+       0C:  044E  G$initSerial$0$0                 
+       0C:  044E  _initSerial                      
+       0C:  0451  A$main$1628                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 50.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0451  C$main.c$330$1$1                 
+       0C:  0454  A$main$1631                      
+       0C:  0454  C$main.c$331$1$1                 
+       0C:  0456  A$main$1634                      
+       0C:  0456  C$main.c$333$1$1                 
+       0C:  0459  A$main$1637                      
+       0C:  0459  C$main.c$334$1$1                 
+       0C:  045C  A$main$1640                      
+       0C:  045C  C$main.c$335$1$1                 
+       0C:  045F  A$main$1643                      
+       0C:  045F  C$main.c$336$1$1                 
+       0C:  0461  A$main$1646                      
+       0C:  0461  C$main.c$337$1$1                 
+       0C:  0461  XG$initSerial$0$0                
+       0C:  0462  A$main$1660                      
+       0C:  0462  C$main.c$340$1$1                 
+       0C:  0462  C$main.c$341$1$1                 
+       0C:  0462  G$initTimer2$0$0                 
+       0C:  0462  _initTimer2                      
+       0C:  0465  A$main$1663                      
+       0C:  0465  C$main.c$342$1$1                 
+       0C:  0467  A$main$1666                      
+       0C:  0467  C$main.c$343$1$1                 
+       0C:  0469  A$main$1669                      
+       0C:  0469  C$main.c$344$1$1                 
+       0C:  046C  A$main$1672                      
+       0C:  046C  C$main.c$345$1$1                 
+       0C:  046F  A$main$1675                      
+       0C:  046F  C$main.c$346$1$1                 
+       0C:  046F  XG$initTimer2$0$0                
+       0C:  0470  A$main$1687                      
+       0C:  0470  C$main.c$348$1$1                 
+       0C:  0470  G$timer0$0$0                     
+       0C:  0470  _timer0                          
+       0C:  0472  A$main$1688                      
+       0C:  0474  A$main$1689                      
+       0C:  0476  A$main$1690                      
+       0C:  0478  A$main$1691                      
+       0C:  047A  A$main$1692                      
+       0C:  047C  A$main$1693                      
+       0C:  047E  A$main$1694                      
+       0C:  0480  A$main$1695                      
+       0C:  0482  A$main$1696                      
+       0C:  0484  A$main$1697                      
+       0C:  0486  A$main$1698                      
+       0C:  0488  A$main$1699                      
+       0C:  048A  A$main$1700                      
+       0C:  048C  A$main$1701                      
+       0C:  048F  A$main$1704                      
+       0C:  048F  C$main.c$350$1$1                 
+       0C:  0491  A$main$1705                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 51.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0493  A$main$1708                      
+       0C:  0493  C$main.c$351$2$2                 
+       0C:  0496  A$main$1711                      
+       0C:  0496  C$main.c$352$2$2                 
+       0C:  0499  A$main$1712                      
+       0C:  049B  A$main$1716                      
+       0C:  049B  C$main.c$354$2$3                 
+       0C:  049D  A$main$1718                      
+       0C:  049F  A$main$1719                      
+       0C:  04A1  A$main$1720                      
+       0C:  04A3  A$main$1721                      
+       0C:  04A5  A$main$1722                      
+       0C:  04A7  A$main$1723                      
+       0C:  04A9  A$main$1724                      
+       0C:  04AB  A$main$1725                      
+       0C:  04AD  A$main$1726                      
+       0C:  04AF  A$main$1727                      
+       0C:  04B1  A$main$1728                      
+       0C:  04B3  A$main$1729                      
+       0C:  04B5  A$main$1730                      
+       0C:  04B7  A$main$1731                      
+       0C:  04B9  A$main$1734                      
+       0C:  04B9  C$main.c$357$1$1                 
+       0C:  04B9  XG$timer0$0$0                    
+       0C:  04BA  A$main$1754                      
+       0C:  04BA  C$main.c$361$1$1                 
+       0C:  04BA  G$serial$0$0                     
+       0C:  04BA  _serial                          
+       0C:  04BC  A$main$1755                      
+       0C:  04BE  A$main$1756                      
+       0C:  04C0  A$main$1757                      
+       0C:  04C2  A$main$1758                      
+       0C:  04C4  A$main$1759                      
+       0C:  04C6  A$main$1760                      
+       0C:  04C8  A$main$1761                      
+       0C:  04CA  A$main$1762                      
+       0C:  04CC  A$main$1763                      
+       0C:  04CE  A$main$1764                      
+       0C:  04D0  A$main$1765                      
+       0C:  04D2  A$main$1766                      
+       0C:  04D4  A$main$1767                      
+       0C:  04D6  A$main$1768                      
+       0C:  04D9  A$main$1771                      
+       0C:  04D9  C$main.c$363$1$1                 
+       0C:  04DB  A$main$1774                      
+       0C:  04DB  C$main.c$365$1$1                 
+       0C:  04DE  A$main$1775                      
+       0C:  04E1  A$main$1776                      
+       0C:  04E4  A$main$1777                      
+       0C:  04E7  A$main$1778                      
+       0C:  04E9  A$main$1779                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 52.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  04EB  A$main$1780                      
+       0C:  04ED  A$main$1781                      
+       0C:  04EF  A$main$1782                      
+       0C:  04F1  A$main$1783                      
+       0C:  04F3  A$main$1784                      
+       0C:  04F5  A$main$1785                      
+       0C:  04F7  A$main$1786                      
+       0C:  04F9  A$main$1787                      
+       0C:  04FB  A$main$1788                      
+       0C:  04FD  A$main$1789                      
+       0C:  04FF  A$main$1790                      
+       0C:  0501  A$main$1791                      
+       0C:  0503  A$main$1794                      
+       0C:  0503  C$main.c$366$1$1                 
+       0C:  0503  XG$serial$0$0                    
+       0C:  0504  A$main$1815                      
+       0C:  0504  C$main.c$369$1$1                 
+       0C:  0504  G$timer2$0$0                     
+       0C:  0504  _timer2                          
+       0C:  0506  A$main$1816                      
+       0C:  0508  A$main$1817                      
+       0C:  050A  A$main$1818                      
+       0C:  050D  A$main$1821                      
+       0C:  050D  C$main.c$372$1$1                 
+       0C:  050F  A$main$1824                      
+       0C:  050F  C$main.c$373$1$1                 
+       0C:  0511  A$main$1827                      
+       0C:  0511  C$main.c$374$1$1                 
+       0C:  0514  A$main$1828                      
+       0C:  0516  A$main$1829                      
+       0C:  0517  A$main$1830                      
+       0C:  0519  A$main$1833                      
+       0C:  0519  C$main.c$375$1$1                 
+       0C:  051B  A$main$1834                      
+       0C:  051E  A$main$1837                      
+       0C:  051E  C$main.c$376$2$2                 
+       0C:  0521  A$main$1840                      
+       0C:  0521  C$main.c$377$2$2                 
+       0C:  0524  A$main$1843                      
+       0C:  0524  C$main.c$378$2$2                 
+       0C:  0526  A$main$1847                      
+       0C:  0526  C$main.c$380$1$1                 
+       0C:  0528  A$main$1848                      
+       0C:  052B  A$main$1850                      
+       0C:  052D  A$main$1853                      
+       0C:  052D  C$main.c$381$2$3                 
+       0C:  052F  A$main$1854                      
+       0C:  0531  A$main$1858                      
+       0C:  0531  C$main.c$383$2$4                 
+       0C:  0533  A$main$1860                      
+       0C:  0535  A$main$1861                      
+ASxxxx Linker V02.00 + NoICE + sdld,  page 53.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CSEG                               0094   0CBF =   3263. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0537  A$main$1862                      
+       0C:  0539  A$main$1865                      
+       0C:  0539  C$main.c$385$1$1                 
+       0C:  0539  XG$timer2$0$0                    
+       0C:  053A  A$main$1889                      
+       0C:  053A  C$main.c$387$1$1                 
+       0C:  053A  C$main.c$389$1$1                 
+       0C:  053A  G$main$0$0                       
+       0C:  053A  _main                            
+       0C:  053D  A$main$1892                      
+       0C:  053D  C$main.c$390$1$1                 
+       0C:  0540  A$main$1895                      
+       0C:  0540  C$main.c$391$1$1                 
+       0C:  0543  A$main$1898                      
+       0C:  0543  C$main.c$392$1$1                 
+       0C:  0546  A$main$1904                      
+       0C:  0546  C$main.c$393$1$1                 
+       0C:  0546  C$main.c$394$2$2                 
+       0C:  0549  A$main$1907                      
+       0C:  0549  C$main.c$395$2$2                 
+       0C:  054C  A$main$1910                      
+       0C:  054C  C$main.c$396$3$3                 
+       0C:  054F  A$main$1911                      
+       0C:  0552  A$main$1914                      
+       0C:  0552  C$main.c$399$1$1                 
+       0C:  0552  XG$main$0$0                      
+       0C:  0554  ___fsmul                         
+       0C:  05F7  fsgetargs                        
+       0C:  0625  fs_normalize_a                   
+       0C:  064E  fs_round_and_return              
+       0C:  0666  fs_zerocheck_return              
+       0C:  066F  fs_return_zero                   
+       0C:  0677  fs_direct_return                 
+       0C:  0685  fs_return_inf                    
+       0C:  0692  fs_return_nan                    
+       0C:  06A8  _vprintf                         
+       0C:  06C2  _printf                          
+       0C:  0785  __print_format                   
+       0C:  0C79  _strlen                          
+       0C:  0C91  __gptrget                        
+       0C:  0CAD  ___uchar2fs                      
+       0C:  0CB8  ___fs2uchar                      
+       0C:  0CC0  ___ulong2fs                      
+       0C:  0CC9  ulong2fs_doit                    
+       0C:  0CD3  __sdcc_external_startup          
+       0C:  0CD7  ___fs2ulong                      
+       0C:  0CD9  fs2ulong_begin                   
+       0C:  0CFE  fs_rshift_a                      
+       0C:  0D41  fsgetarg                         
+ASxxxx Linker V02.00 + NoICE + sdld,  page 54.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+CONST                              0D53   0044 =     68. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+       0C:  0D53  G$seg$0$0                        
+       0C:  0D53  _seg                             
+       0C:  0D63  Fmain$_str_0$0$0                 
+       0C:  0D6D  Fmain$_str_1$0$0                 
+       0C:  0D7E  Fmain$_str_2$0$0                 
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 55.
+Hexadecimal
+
+Area                               Addr   Size   Decimal Bytes (Attributes)
+--------------------------------   ----   ----   ------- ----- ------------
+XINIT                              0D97   0000 =      0. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  ---------------------------------   ------------------------
+ASxxxx Linker V02.00 + NoICE + sdld,  page 56.
+
+Files Linked                              [ module(s) ]
+
+main.rel                                  [ 
+
+
+Libraries Linked                          [ object file ]
+
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _fsmul.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _fsget2args.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ crtclear.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ /0               ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ crtxinit.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ crtxclear.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ /18              ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ vprintf.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ /0               ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ crtpagesfr.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _strlen.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ crtstart.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _gptrget.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _uchar2fs.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _fs2uchar.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _ulong2fs.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _startup.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _fs2ulong.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _bp.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _fsrshift.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\s  [ _fsget1arg.rel ]
+
+ASxxxx Linker V02.00 + NoICE + sdld,  page 57.
+
+User Base Address Definitions
+
+HOME = 0x0000
+ISEG = 0x0000
+BSEG = 0x0000
+
+
