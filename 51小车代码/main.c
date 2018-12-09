@@ -1,16 +1,17 @@
-﻿#include <mcs51/at89x52.h>
+#include <mcs51/at89x52.h>
 #include <stdio.h>
 typedef unsigned int uint;
 typedef unsigned char uchar;
 
 //小车移动
-#define FRONT 0xaa
-#define BACK  0x55
-#define FRONT_LEFT  0xad
-#define FRONT_RIGHT  0xda
-#define BACK_LEFT 0x5d
-#define BACK_RIGHT 0xd5
-#define STOP 0xff
+#define FRONT 0x55
+#define BACK  0xaa
+#define FRONT_LEFT  0x5a
+#define FRONT_RIGHT  0xa5
+// #define BACK_LEFT 0xa5
+// #define BACK_RIGHT 0x5a
+#define STOP 0x00
+
 /*小车引脚定义*/
 #define CAR P0    //P0口输出对车子电机的控制
 #define SWITCH_SELF_CONTROL P1_0    //外部中断1触发标志，此中断触发，小车自控
@@ -20,6 +21,7 @@ typedef unsigned char uchar;
 #define SELF_GREEN_LED P1_3     //自己控制的时亮
 #define FRONT_SENSER P1_4    //前方避障传感器
 #define BACK_SENSER P1_5	 //后方避障传感器
+
 #define LEFT_SENSER P1_6	 //左方避障传感器
 #define RIGHT_SENSER P1_7    //右方避障传感器
 #define SEG P2    //共阳七段数码管，显示超声波测得的距离
@@ -27,26 +29,53 @@ typedef unsigned char uchar;
 #define ECHO P3_4    //超声波模块回响信号口，ECHO
 #define TRIG P3_5    //超声波模块触发信号口，TRIG
 #define M_PWM P3_6    //电机速度控制pwm信号
+#define STBY P3_7    //置1控制电机，0无法控制电机
 /*常量定义*/
 #define __nop __asm nop __endasm    //延迟一个机器周期
-#define PWM_CYCLE 5    //pwm信号的周期
-#define CMD_TIME 20    //执行蓝牙指令的时间，ms
-#define STEER_S 0    //舵机归位
-#define STEER_P45 1    //舵机顺时针转动45°
-#define STEER_P90 2    //舵机顺时针转动90°
-#define STEER_N45 3    //舵机逆时针转动45°
-#define STEER_N90 4    //舵机逆时针转动90°
+#define M_PWM_CYCLE 10    //pwm信号的周期
+#define CMD_TIME 400    //执行蓝牙指令的时间，400 * 0.1 = 40ms
+
+#define NO_OPERATE 0x00    //无操作
+#define BT_OPERATE 0x01   //主函数执行蓝牙控制
+#define STEER_OPERATE 0x02    //舵机转动角度
+#define SR04_OPERATE 0x03    //超声波测距
+#define SELF_OPERATE 0x04    //自己控制原理障碍物
+
+#define STEER_S 0x05    //舵机归位
+#define STEER_P45 0x06    //舵机顺时针转动45°
+#define STEER_P90 0x07    //舵机顺时针转动90°
+#define STEER_N45 0x08    //舵机逆时针转动45°
+#define STEER_N90 0x09    //舵机逆时针转动90°
+
+void delay(uint n);
+// void _putchar(char c);
+void sensorTrigger();
+void ledStatus(uchar s);
+void setTurnAngle(uchar a);
+void steerTurn();
+void startSR04();
+char calculate();
+void selfControl();
+void btControl(uchar cmd);
+void initInterrupt();
+void initTimer0();
+void initSerial();
+void initTimer2();
+void reloadTimer0();
+
+uchar operate = 0;
 //数码管数字0~F
 uchar __code seg[] = {0xc0, 0xf9, 0xa4, 0xb0, 
 					  0x99, 0x92, 0x82, 0xf8, 
 	                  0x80, 0x90, 0x88, 0x83, 
 					  0xc6, 0xa1, 0x86, 0x8e};  
-uchar speed = 5;	//小车速度
+uchar speed = 8;	//小车速度
 uchar t0InterruptTimes;    //t0计时器当前溢出次数
-uchar t2InterruptTimes;    //t0计时器当前溢出次数
+uint t2InterruptTimes;    //t0计时器当前溢出次数
 uchar angle;	//舵机转动角度
-uchar timer0For;	//定时器0为舵机(0)还是超声波(1)工作计时
+// __bit timer0For;	//定时器0为舵机(0)还是超声波(1)工作计时
 __bit isOverstep = 0;	//距离过远，超出测量范围
+uchar cmd;//串口命令控制speed
 
 //延迟函数，11.0592MHz n= 1,大约延迟1ms
 void delay(uint n){
@@ -56,16 +85,16 @@ void delay(uint n){
 	}
 }
 
-//向串口输出,自动调用
-void putchar(char c) {
-  SBUF = c;
-  while(!TI);
-  TI = 0;
-}
+// 向串口输出,自动调用
+// void  _putchar(char c) {
+//   SBUF = c;
+//   while(!TI);
+//   TI = 0;
+// }
 
-//传感器触发
+// 传感器触发
 void sensorTrigger() {
-	if(!(BACK_SENSER && FRONT_SENSER && LEFT_SENSER&& RIGHT_SENSER)) {
+	if(!(BACK_SENSER & FRONT_SENSER & LEFT_SENSER & RIGHT_SENSER)) {
 		SWITCH_SELF_CONTROL = 0;
 	}
 }
@@ -107,166 +136,93 @@ void setTurnAngle(uchar a) {
 		//逆90°
 		case(STEER_N90):angle = 1; break;
 	}
-	timer0For = 0;
+	operate = STEER_OPERATE;
 	initTimer0();	
 }
 
+//舵机转动
 void steerTurn() {
 
+	char a;
 	t0InterruptTimes++;
-	if (t0InterruptTimes > PWM_CYCLE) {
+	a = t0InterruptTimes % 5;
+	if (t0InterruptTimes == 200) {
 		t0InterruptTimes = 0;
+		//舵机转动到指定角度后，超声波模块开始工作,重新为定时器0赋初值
+		// operate = SR04_OPERATE;
+		// reloadTimer0();
 	}
 	// printf("%d", t0InterruptTimes);
-	if (t0InterruptTimes < angle) {
+	if (a < angle) {
 		 STEER_PWM = 1;
 	}else {
 		STEER_PWM = 0;
 	}
-	startSR04();
-}
-
-//触发超声波模块工作
-void trigger()
-{
-  TRIG = 1;
-  // 高点平持续10us以上
-  __nop; __nop; __nop; __nop; __nop;
-  __nop; __nop; __nop; __nop; __nop;
-  __nop; __nop; __nop; __nop; __nop;
-  __nop; __nop; __nop; __nop; __nop;
-  TRIG = 0;
-}
-
-//超声波测距
-uchar calculate() {
-
-	uchar time, distance;
-	// 读取定时器的值
-	time = TH0 * 256 + TL0;
-	// 重置定时器初值
-	TH0 = 0;
-	TL0 = 0;
-	time *= 1.085;
-	// 音速 = 340m/s = 0.34m/ms = 0.00034m/us = 0.034cm/us
-	// 距离 = 高电平时间 * 音速 / 2
-	distance = (time * 0.017);
-	if(isOverstep) {
-		isOverstep = 0;
-		SEG = 0xff;
-		printf("overstep\n");
-	}else {
-		SEG = seg[distance];
-		printf("distance = %dcm\n", distance);
-	}
-}
-
-//启动超声波模块
-void startSR04() {
-
-	timer0For = 1;
-	initTimer0();
-	trigger();
-	while(!ECHO);
-	TR0 = 1;
-	while(ECHO);
-	TR0 = 0;
-	calculate();
-}
-
-//远离左方的障碍物
-void awayLEFTObs() {
-	// CAR = BACK;
-	// delay(400);
-	CAR = FRONT_RIGHT;
-	delay(700);
-}
-
-//远离右方的障碍物
-void awayRightObs() {
-	// CAR = BACK;
-	// delay(400);
-	CAR = FRONT_LEFT;
-	delay(700);
-
-}
-
-//远离前面的障碍物
-void awayFrontObs() {
-	CAR = BACK;
-	delay(200);
-}
-
-//远离后面的障碍物
-void awayBackObs() {
-	CAR = FRONT;
-	delay(400);
-}
-
-//自己控制
-void selfControl() __interrupt 2 __using 0 {
 	
-	ledStatus(1);
-	printf("self control\n");
+}
+
+//自己控制远离障碍物
+void selfControl() {
+	// printf("self control\n");
 	
 	//前方有障碍物，后方没有障碍物
-	if (FRONT_SENSER == 0 && BACK_SENSER == 1) {
+	if (FRONT_SENSER == 0 & BACK_SENSER == 1) {
 		//左右有障碍物或者左右没有障碍物
-		if ((LEFT_SENSER== 0 && RIGHT_SENSER == 0) || (LEFT_SENSER&& RIGHT_SENSER) == 1) {
+		if ((LEFT_SENSER== 0 & RIGHT_SENSER == 0) || (LEFT_SENSER & RIGHT_SENSER) == 1) {
 			CAR = STOP;
+			setTurnAngle(STEER_S);
 		//左方有障碍物，右方没有障碍物
-		}else if (LEFT_SENSER== 0 && RIGHT_SENSER == 1) {
+		}else if (LEFT_SENSER== 0 & RIGHT_SENSER == 1) {
 			CAR = STOP;
 			setTurnAngle(STEER_P45);
-			setTurnAngle(STEER_P90);
+			// setTurnAngle(STEER_P90);
 		//右方有障碍物，左方没有障碍物
 		}else {
 			CAR = STOP;
-			setTurnAngle(STEER_N45);
-			setTurnAngle(STEER_N90);
+			// setTurnAngle(STEER_N45);
+			// setTurnAngle(STEER_N90);
 		}
 	//后方有障碍物，前方没有障碍物
-	}else if (BACK_SENSER == 0 && FRONT_SENSER == 1){
+	}else if (BACK_SENSER == 0 & FRONT_SENSER == 1) {
 		//左右没有障碍物
-		if ((LEFT_SENSER && RIGHT_SENSER) == 1) {
+		if ((LEFT_SENSER & RIGHT_SENSER) == 1) {
 			CAR = FRONT;
 		//左右都有障碍物
-		}else if ((LEFT_SENSER || RIGHT_SENSER) == 0) {
+		}else if ((LEFT_SENSER | RIGHT_SENSER) == 0) {
 			CAR = BACK;
 			delay(400);
 			//todo:极端情况怎样走出去
 		//左方有障碍物，右方没有障碍物
-		}else if (LEFT_SENSER== 0 && RIGHT_SENSER == 1) {
+		}else if (LEFT_SENSER== 0 & RIGHT_SENSER == 1) {
 			CAR = STOP;
-			setTurnAngle(STEER_P45);
-			setTurnAngle(STEER_P90);
+			// setTurnAngle(STEER_P45);
+			// setTurnAngle(STEER_P90);
 		//右方有障碍物，左方没有障碍物
 		}else {
 			CAR = STOP;
-			setTurnAngle(STEER_N45);
-			setTurnAngle(STEER_N90);
+			// setTurnAngle(STEER_N45);
+			// setTurnAngle(STEER_N90);
 		}
 	//只有左方障碍物
-	}else if (LEFT_SENSER== 0 && (RIGHT_SENSER && BACK_SENSER && FRONT_SENSER) == 1 ){
+	}else if (LEFT_SENSER== 0 & (RIGHT_SENSER & BACK_SENSER & FRONT_SENSER) == 1 ){
 		CAR = STOP;
-		setTurnAngle(STEER_P45);
-		setTurnAngle(STEER_P90);
+		// setTurnAngle(STEER_P45);
+		// setTurnAngle(STEER_P90);
 	//只有右方有障碍物
-	}else if (RIGHT_SENSER == 0 && (LEFT_SENSER && FRONT_SENSER && BACK_SENSER) == 1) {
+	}else if (RIGHT_SENSER == 0 & (LEFT_SENSER & FRONT_SENSER & BACK_SENSER) == 1) {
 		CAR = STOP;
-		setTurnAngle(STEER_N45);
-		setTurnAngle(STEER_N90);
+		// setTurnAngle(STEER_N45);
+		// setTurnAngle(STEER_N90);
 	//都有障碍物
 	}else {
 		CAR = STOP;
 	}
-	SWITCH_SELF_CONTROL = 1;
+	// SWITCH_SELF_CONTROL = 1;
 }
 
 //蓝牙控制小车
 void btControl(uchar cmd) {
 	
-	ledStatus(2);
 	switch(cmd) {
 		case('f'): CAR = FRONT; break;
 		case('b'): CAR = BACK; break;
@@ -274,18 +230,17 @@ void btControl(uchar cmd) {
 		case('r'): CAR = FRONT_RIGHT; break;
 		case('s'): CAR = STOP; break;
 		case('a'): 
-			if (speed < 5) {
+			if (speed < M_PWM_CYCLE) {
 				speed++;
 			}; 
 		break;
 		case('d'): 
-			if (speed > 0) {
+			if (speed != 0) {
 				speed--;
 			}
 		break;
 		default:CAR = STOP; break;
 	}
-	initTimer2();
 }
 
 //初始化中断
@@ -302,24 +257,25 @@ void initInterrupt() {
 //初始化定时器0
 void initTimer0() {
 
-	TMOD = 0x01;	//工作方式1
-	if (timer0For == 0) {
-		
-		TR0 = 1;	//开启定时器0
-	}else {
-		TH0 = 0xFE;
+	TMOD = 0x21;	//工作方式1
+	if (operate == STEER_OPERATE) {	//为舵机转动
+		TH0 = 0xFE;		//中断时间0.5ms
 		TL0 = 0x33;
+		TR0 = 1;	//开启定时器0
+	}else if (operate == SR04_OPERATE) {		//为超声波
+		TH0 = 0;
+  		TL0 = 0;
 	}
 }
 
 void reloadTimer0() {
 
-	if (timer0For == 0) {
+	if (operate == STEER_OPERATE) {
 		TH0 = 0xFE;
 		TL0 = 0x33;	
-	}else {
-		TH0 = 0xFE;
-		TL0 = 0x33;
+	}else if (operate == SR04_OPERATE) {
+		TH0 = 0;
+		TL0 = 0;
 	}
 }
 
@@ -336,64 +292,87 @@ void initSerial() {
 	TR1 = 1;		//定时器开始计数
 }
 
-//初始化定时器2,溢出需要1ms
+
+//初始化定时器2
 void initTimer2() {
-	T2MOD = 0x00;	//定时器T2向上计数
-	C_T2 = 0;		//选择T2为定时器方式
-	CP_RL2 = 0;		//T2自动装载
-	TH0 = 0x0fc;
-    TL0 = 0x66;
+
+	T2CON = 0x00;
+	T2MOD = 0x00;	
+	TH2 = RCAP2H = 0xff;		//中断0.1ms
+    TL2 = RCAP2L = 0xa4;
+	TR2 = 1;	//开启定时器2
 }
 
 void timer0() __interrupt 1 __using 0 {
 
-	if (timer0For == 0) {
+	if (operate == STEER_OPERATE) {
 		reloadTimer0();
 		steerTurn();
-	} else {
+	} else if (operate == SR04_OPERATE) {
 		isOverstep = 1;
 	}
-
 }
 
+//外部中断1
+void int1() __interrupt 2 __using 1 {
+	
+	EX1 = 0;
+	operate = SELF_OPERATE;
+}
 
 //串行口中断
-void serial() __interrupt 4 __using 1 {
-	
-	RI = 0;
-	putchar(SBUF);	//接受的数据再发送给控制端
-	btControl(SBUF);
+void serial() __interrupt 4 __using 2 {
+	RI = 0;		
+	if (operate == NO_OPERATE) {
+		operate = BT_OPERATE;
+	}
 }
 
 //定时器2中断
-void timer2() __interrupt 5 __using 2 {
+void timer2() __interrupt 5 __using 3 {
 
+	// CAR = seg[1];
 	uchar a;
-	TF2 = 0;	//溢出清0
 	t2InterruptTimes++;
-	a = t2InterruptTimes % PWM_CYCLE;
+	a = t2InterruptTimes % M_PWM_CYCLE;
 	if (t2InterruptTimes == CMD_TIME) {
 		t2InterruptTimes = 0;
 		CAR = STOP;
-		TR2 = 0;	//溢出20次，说明执行了蓝牙发送的指令20ms了，停止计数器2计数，停止执行指令，等待蓝牙发送新的指令
+		TR2 = 0;	//溢出400次，说明执行了蓝牙发送的指令40ms了，停止计数器2计数，停止执行指令，等待蓝牙发送新的指令
 	}
 	if (a <= speed) {
 		M_PWM = 1;
 	}else {
 		M_PWM = 0;
-	}	
+	}
+	// TF2 = 0;	//溢出清0
 }
 
 void main() {
-
 	initInterrupt();
-	initTimer0();
 	initSerial();
 	initTimer2();
+	STBY = 1;
 	while(1) {
-		sensorTrigger();
-		if (SWITCH_SELF_CONTROL) {
-			ledStatus(0);
+		// sensorTrigger();
+		// if (!SWITCH_SELF_CONTROL) {
+		// 	ledStatus(0);
+		// }
+		switch(operate) {
+			case(BT_OPERATE):
+				ledStatus(2);
+				btControl(SBUF);
+			break;
+			// case(SELF_OPERATE):
+			// 	SWITCH_SELF_CONTROL = 1;
+			// 	selfControl();
+			// 	EX1 = 1;
+			// break;
+			// case(STEER_OPERATE):
+				
+			// break;
+			default:break;
 		}
+		operate = NO_OPERATE;
 	}
 }
