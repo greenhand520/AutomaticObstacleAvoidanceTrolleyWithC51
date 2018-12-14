@@ -14,6 +14,7 @@
 	.globl _serial
 	.globl _int1
 	.globl _timer0
+	.globl _putcharToSer
 	.globl _CY
 	.globl _AC
 	.globl _F0
@@ -137,8 +138,8 @@
 	.globl _DPL
 	.globl _SP
 	.globl _P0
-	.globl _isOverstep
-	.globl _cmd
+	.globl _isFirst
+	.globl _isOverStep
 	.globl _angle
 	.globl _t2InterruptTimes
 	.globl _t0InterruptTimes
@@ -149,13 +150,16 @@
 	.globl _ledStatus
 	.globl _setTurnAngle
 	.globl _steerTurn
+	.globl _startSR04
+	.globl _calculate
 	.globl _selfControl
 	.globl _btControl
 	.globl _initInterrupt
 	.globl _initTimer0
-	.globl _reloadTimer0
 	.globl _initSerial
 	.globl _initTimer2
+	.globl _setup
+	.globl _loop
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -323,16 +327,15 @@ _operate::
 _speed::
 	.ds 1
 _t0InterruptTimes::
-	.ds 1
+	.ds 2
 _t2InterruptTimes::
 	.ds 2
 _angle::
 	.ds 1
-_cmd::
-	.ds 1
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
+	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
@@ -356,7 +359,9 @@ __start__stack:
 ; bit data
 ;--------------------------------------------------------
 	.area BSEG    (BIT)
-_isOverstep::
+_isOverStep::
+	.ds 1
+_isFirst::
 	.ds 1
 ;--------------------------------------------------------
 ; paged external ram data
@@ -414,13 +419,16 @@ __interrupt_vect:
 	.globl __mcs51_genXINIT
 	.globl __mcs51_genXRAMCLEAR
 	.globl __mcs51_genRAMCLEAR
-;	main.c:66: uchar operate = 0;
+;	main.c:68: uchar operate = 0;
 	mov	_operate,#0x00
-;	main.c:72: uchar speed = 8;	//小车速度
+;	main.c:74: uchar speed = 8;	//小车速度
 	mov	_speed,#0x08
-;	main.c:77: __bit isOverstep = 0;	//距离过远，超出测量范围
+;	main.c:78: __bit isOverStep = 0;	//距离过远，超出测量范围
 ;	assignBit
-	clr	_isOverstep
+	clr	_isOverStep
+;	main.c:79: __bit isFirst = 1;
+;	assignBit
+	setb	_isFirst
 	.area GSFINAL (CODE)
 	ljmp	__sdcc_program_startup
 ;--------------------------------------------------------
@@ -442,7 +450,7 @@ __sdcc_program_startup:
 ;i                         Allocated to registers r6 r7 
 ;j                         Allocated to registers r4 r5 
 ;------------------------------------------------------------
-;	main.c:81: void delay(uint n){
+;	main.c:82: void delay(uint n){
 ;	-----------------------------------------
 ;	 function delay
 ;	-----------------------------------------
@@ -457,12 +465,12 @@ _delay:
 	ar0 = 0x00
 	mov	r6,dpl
 	mov	r7,dph
-;	main.c:83: for(i=n;i>0;i--){
+;	main.c:84: for(i=n;i>0;i--){
 00106$:
 	mov	a,r6
 	orl	a,r7
 	jz	00108$
-;	main.c:84: for(j=112;j>0;j--);
+;	main.c:85: for(j=112;j>0;j--);
 	mov	r4,#0x70
 	mov	r5,#0x00
 00104$:
@@ -477,200 +485,385 @@ _delay:
 	mov	a,r2
 	orl	a,r3
 	jnz	00104$
-;	main.c:83: for(i=n;i>0;i--){
+;	main.c:84: for(i=n;i>0;i--){
 	dec	r6
 	cjne	r6,#0xff,00133$
 	dec	r7
 00133$:
 	sjmp	00106$
 00108$:
-;	main.c:86: }
+;	main.c:87: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'putcharToSer'
+;------------------------------------------------------------
+;c                         Allocated to registers 
+;------------------------------------------------------------
+;	main.c:90: void  putcharToSer(char c) {
+;	-----------------------------------------
+;	 function putcharToSer
+;	-----------------------------------------
+_putcharToSer:
+	mov	_SBUF,dpl
+;	main.c:92: while(!TI);
+00101$:
+;	main.c:93: TI = 0;
+;	assignBit
+	jbc	_TI,00114$
+	sjmp	00101$
+00114$:
+;	main.c:94: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'sensorTrigger'
 ;------------------------------------------------------------
-;	main.c:96: void sensorTrigger() {
+;	main.c:97: void sensorTrigger() {
 ;	-----------------------------------------
 ;	 function sensorTrigger
 ;	-----------------------------------------
 _sensorTrigger:
-;	main.c:97: if(!(BACK_SENSER & FRONT_SENSER & LEFT_SENSER & RIGHT_SENSER)) {
+;	main.c:98: if(!(BACK_SENSER & FRONT_SENSER & LEFT_SENSER & RIGHT_SENSER)) {
 	mov	c,_P1_5
 	anl	c,_P1_4
 	anl	c,_P1_6
 	anl	c,_P1_7
-	jc	00103$
-;	main.c:98: SWITCH_SELF_CONTROL = 0;
+	jc	00102$
+;	main.c:99: SWITCH_SELF_CONTROL = 0;
 ;	assignBit
 	clr	_P1_0
-00103$:
-;	main.c:100: }
+	ret
+00102$:
+;	main.c:101: SWITCH_SELF_CONTROL = 1;
+;	assignBit
+	setb	_P1_0
+;	main.c:103: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'ledStatus'
 ;------------------------------------------------------------
 ;s                         Allocated to registers r7 
 ;------------------------------------------------------------
-;	main.c:104: void ledStatus(uchar s) {
+;	main.c:107: void ledStatus(uchar s) {
 ;	-----------------------------------------
 ;	 function ledStatus
 ;	-----------------------------------------
 _ledStatus:
 	mov	r7,dpl
-;	main.c:105: switch(s) {
+;	main.c:108: switch(s) {
 	cjne	r7,#0x00,00119$
 	sjmp	00101$
 00119$:
 	cjne	r7,#0x01,00120$
 	sjmp	00102$
 00120$:
-;	main.c:106: case(0):
+;	main.c:109: case(0):
 	cjne	r7,#0x02,00105$
 	sjmp	00103$
 00101$:
-;	main.c:107: STOP_RED_LED = 0;	//停止指示灯亮
+;	main.c:110: STOP_RED_LED = 0;	//停止指示灯亮
 ;	assignBit
 	clr	_P1_1
-;	main.c:108: BT_BLUE_LED = 1;
+;	main.c:111: BT_BLUE_LED = 1;
 ;	assignBit
 	setb	_P1_2
-;	main.c:109: SELF_GREEN_LED = 1;
+;	main.c:112: SELF_GREEN_LED = 1;
 ;	assignBit
 	setb	_P1_3
-;	main.c:110: break;
-;	main.c:111: case(1):
+;	main.c:113: break;
+;	main.c:114: case(1):
 	ret
 00102$:
-;	main.c:112: STOP_RED_LED = 1;
+;	main.c:115: STOP_RED_LED = 1;
 ;	assignBit
 	setb	_P1_1
-;	main.c:113: BT_BLUE_LED = 1;	  
+;	main.c:116: BT_BLUE_LED = 1;	  
 ;	assignBit
 	setb	_P1_2
-;	main.c:114: SELF_GREEN_LED = 0;    //自控指示灯亮
+;	main.c:117: SELF_GREEN_LED = 0;    //自控指示灯亮
 ;	assignBit
 	clr	_P1_3
-;	main.c:115: break;
-;	main.c:116: case(2):
+;	main.c:118: break;
+;	main.c:119: case(2):
 	ret
 00103$:
-;	main.c:117: STOP_RED_LED = 1;
+;	main.c:120: STOP_RED_LED = 1;
 ;	assignBit
 	setb	_P1_1
-;	main.c:118: SELF_GREEN_LED = 1;
+;	main.c:121: SELF_GREEN_LED = 1;
 ;	assignBit
 	setb	_P1_3
-;	main.c:119: BT_BLUE_LED = 0;	//蓝牙控制指示灯亮
+;	main.c:122: BT_BLUE_LED = 0;	//蓝牙控制指示灯亮
 ;	assignBit
 	clr	_P1_2
-;	main.c:121: }	
+;	main.c:124: }	
 00105$:
-;	main.c:122: }
+;	main.c:125: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'setTurnAngle'
 ;------------------------------------------------------------
 ;a                         Allocated to registers r7 
 ;------------------------------------------------------------
-;	main.c:125: void setTurnAngle(uchar a) {
+;	main.c:128: void setTurnAngle(uchar a) {
 ;	-----------------------------------------
 ;	 function setTurnAngle
 ;	-----------------------------------------
 _setTurnAngle:
 	mov	r7,dpl
-;	main.c:127: switch(a) {
+;	main.c:130: switch(a) {
 	cjne	r7,#0x05,00129$
-	sjmp	00101$
+	sjmp	00103$
 00129$:
 	cjne	r7,#0x06,00130$
-	sjmp	00102$
+	sjmp	00104$
 00130$:
 	cjne	r7,#0x07,00131$
-	sjmp	00103$
+	sjmp	00105$
 00131$:
 	cjne	r7,#0x08,00132$
-	sjmp	00104$
+	sjmp	00102$
 00132$:
-;	main.c:129: case(STEER_S):angle = 3; break;
 	cjne	r7,#0x09,00106$
-	sjmp	00105$
-00101$:
-	mov	_angle,#0x03
-;	main.c:131: case(STEER_P45):angle = 4; break;
+;	main.c:132: case(STEER_N90):angle = 1; break;
+	mov	_angle,#0x01
+;	main.c:134: case(STEER_N45):angle = 2; break;
 	sjmp	00106$
 00102$:
-	mov	_angle,#0x04
-;	main.c:133: case(STEER_P90):angle = 5; break;
+	mov	_angle,#0x02
+;	main.c:136: case(STEER_S):angle = 3; break;
 	sjmp	00106$
 00103$:
-	mov	_angle,#0x05
-;	main.c:135: case(STEER_N45):angle = 2; break;
+	mov	_angle,#0x03
+;	main.c:138: case(STEER_P45):angle = 4; break;
 	sjmp	00106$
 00104$:
-	mov	_angle,#0x02
-;	main.c:137: case(STEER_N90):angle = 1; break;
+	mov	_angle,#0x04
+;	main.c:140: case(STEER_P90):angle = 5; break;
 	sjmp	00106$
 00105$:
-	mov	_angle,#0x01
-;	main.c:138: }
-00106$:
-;	main.c:139: operate = STEER_OPERATE;
-	mov	_operate,#0x02
-;	main.c:140: initTimer0();	
+	mov	_angle,#0x05
 ;	main.c:141: }
+00106$:
+;	main.c:142: operate = STEER_OPERATE;
+	mov	_operate,#0x02
+;	main.c:143: initTimer0();	
+;	main.c:144: }
 	ljmp	_initTimer0
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'steerTurn'
 ;------------------------------------------------------------
 ;a                         Allocated to registers r6 
 ;------------------------------------------------------------
-;	main.c:144: void steerTurn() {
+;	main.c:147: void steerTurn() {
 ;	-----------------------------------------
 ;	 function steerTurn
 ;	-----------------------------------------
 _steerTurn:
-;	main.c:147: t0InterruptTimes++;
+;	main.c:150: t0InterruptTimes++;
 	inc	_t0InterruptTimes
-;	main.c:148: a = t0InterruptTimes % 5;
-	mov	r6,_t0InterruptTimes
-	mov	r7,#0x00
-	mov	__modsint_PARM_2,#0x05
-;	1-genFromRTrack replaced	mov	(__modsint_PARM_2 + 1),#0x00
-	mov	(__modsint_PARM_2 + 1),r7
-	mov	dpl,r6
-	mov	dph,r7
-	lcall	__modsint
+	clr	a
+	cjne	a,_t0InterruptTimes,00116$
+	inc	(_t0InterruptTimes + 1)
+00116$:
+;	main.c:151: a = t0InterruptTimes % 5;
+	mov	__moduint_PARM_2,#0x05
+	mov	(__moduint_PARM_2 + 1),#0x00
+	mov	dpl,_t0InterruptTimes
+	mov	dph,(_t0InterruptTimes + 1)
+	lcall	__moduint
 	mov	r6,dpl
-;	main.c:149: if (t0InterruptTimes == 200) {
+	mov	r7,dph
+;	main.c:152: if (t0InterruptTimes == 200) {	//舵机转动到指定角度后，超声波模块开始工作,重新为定时器0赋初值
 	mov	a,#0xc8
-	cjne	a,_t0InterruptTimes,00102$
-;	main.c:150: t0InterruptTimes = 0;
-	mov	_t0InterruptTimes,#0x00
+	cjne	a,_t0InterruptTimes,00117$
+	clr	a
+	cjne	a,(_t0InterruptTimes + 1),00117$
+	sjmp	00118$
+00117$:
+	sjmp	00102$
+00118$:
+;	main.c:153: t0InterruptTimes = 0;
+	clr	a
+	mov	_t0InterruptTimes,a
+	mov	(_t0InterruptTimes + 1),a
+;	main.c:154: STEER_PWM = 0;
+;	assignBit
+	clr	_P3_2
+;	main.c:155: operate = SR04_OPERATE;
+	mov	_operate,#0x03
+;	main.c:156: TR0 = 0;	
+;	assignBit
+	clr	_TR0
 00102$:
-;	main.c:156: if (a < angle) {
+;	main.c:159: if (a < angle) {
 	clr	c
 	mov	a,r6
 	subb	a,_angle
 	jnc	00104$
-;	main.c:157: STEER_PWM = 1;
+;	main.c:160: STEER_PWM = 1;
 ;	assignBit
 	setb	_P3_2
 	ret
 00104$:
-;	main.c:159: STEER_PWM = 0;
+;	main.c:162: STEER_PWM = 0;
 ;	assignBit
 	clr	_P3_2
-;	main.c:162: }
+;	main.c:164: }
 	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'startSR04'
+;------------------------------------------------------------
+;	main.c:167: void startSR04() {
+;	-----------------------------------------
+;	 function startSR04
+;	-----------------------------------------
+_startSR04:
+;	main.c:169: initTimer0();
+	lcall	_initTimer0
+;	main.c:170: TRIG = 1;
+;	assignBit
+	setb	_P3_5
+;	main.c:172: __nop; __nop; __nop; __nop; __nop;
+	nop	
+	nop	
+	nop	
+	nop	
+	nop	
+;	main.c:173: __nop; __nop; __nop; __nop; __nop;
+	nop	
+	nop	
+	nop	
+	nop	
+	nop	
+;	main.c:174: __nop; __nop; __nop; __nop; __nop;
+	nop	
+	nop	
+	nop	
+	nop	
+	nop	
+;	main.c:175: __nop; __nop; __nop; __nop; __nop;
+	nop	
+	nop	
+	nop	
+	nop	
+	nop	
+;	main.c:176: TRIG = 0;
+;	assignBit
+	clr	_P3_5
+;	main.c:177: while(!ECHO);
+00101$:
+	jnb	_P3_4,00101$
+;	main.c:178: TR0 = 1;
+;	assignBit
+	setb	_TR0
+;	main.c:179: while(ECHO);
+00104$:
+	jb	_P3_4,00104$
+;	main.c:180: TR0 = 0;
+;	assignBit
+	clr	_TR0
+;	main.c:181: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'calculate'
+;------------------------------------------------------------
+;time                      Allocated to registers r7 
+;distance                  Allocated to registers 
+;------------------------------------------------------------
+;	main.c:184: char calculate() {
+;	-----------------------------------------
+;	 function calculate
+;	-----------------------------------------
+_calculate:
+;	main.c:188: time = TH0 * 256 + TL0;
+	mov	r7,_TH0
+	mov	r7,#0x00
+	mov	a,_TL0
+	add	a,r7
+	mov	dpl,a
+;	main.c:190: TH0 = 0;
+;	1-genFromRTrack replaced	mov	_TH0,#0x00
+	mov	_TH0,r7
+;	main.c:191: TL0 = 0;
+;	1-genFromRTrack replaced	mov	_TL0,#0x00
+	mov	_TL0,r7
+;	main.c:192: time *= 1.085;
+	lcall	___uchar2fs
+	mov	r4,dpl
+	mov	r5,dph
+	mov	r6,b
+	mov	r7,a
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	mov	dptr,#0xe148
+	mov	b,#0x8a
+	mov	a,#0x3f
+	lcall	___fsmul
+	mov	r4,dpl
+	mov	r5,dph
+	mov	r6,b
+	mov	r7,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	mov	a,r7
+	lcall	___fs2uchar
+	mov	r7,dpl
+;	main.c:194: if(isOverStep) {
+;	main.c:195: isOverStep = 0;
+;	assignBit
+	jbc	_isOverStep,00111$
+	sjmp	00102$
+00111$:
+;	main.c:196: SEG = 0xff;
+	mov	_P2,#0xff
+;	main.c:198: return -1;
+	mov	dpl,#0xff
+	ret
+00102$:
+;	main.c:202: char distance = time * 0.017;
+	mov	dpl,r7
+	lcall	___uchar2fs
+	mov	r4,dpl
+	mov	r5,dph
+	mov	r6,b
+	mov	r7,a
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	mov	dptr,#0x4396
+	mov	b,#0x8b
+	mov	a,#0x3c
+	lcall	___fsmul
+	mov	r4,dpl
+	mov	r5,dph
+	mov	r6,b
+	mov	r7,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	mov	a,r7
+;	main.c:203: return (distance);
+;	main.c:207: }
+	ljmp	___fs2uchar
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'selfControl'
 ;------------------------------------------------------------
-;	main.c:165: void selfControl() {
+;	main.c:210: void selfControl() {
 ;	-----------------------------------------
 ;	 function selfControl
 ;	-----------------------------------------
 _selfControl:
-;	main.c:169: if (FRONT_SENSER == 0 & BACK_SENSER == 1) {
+;	main.c:213: if (FRONT_SENSER == 0 & BACK_SENSER == 1) {
 	mov	c,_P1_4
 	cpl	c
 	clr	a
@@ -678,7 +871,7 @@ _selfControl:
 	rrc	a
 	anl	c,_P1_5
 	jnc	00127$
-;	main.c:171: if ((LEFT_SENSER== 0 & RIGHT_SENSER == 0) || (LEFT_SENSER & RIGHT_SENSER) == 1) {
+;	main.c:215: if ((LEFT_SENSER== 0 & RIGHT_SENSER == 0) || (LEFT_SENSER & RIGHT_SENSER) == 1) {
 	mov	c,_P1_6
 	cpl	c
 	clr	a
@@ -704,13 +897,13 @@ _selfControl:
 	anl	ar7,a
 	cjne	r7,#0x01,00105$
 00104$:
-;	main.c:172: CAR = STOP;
+;	main.c:216: CAR = STOP;
 	mov	_P0,#0x00
-;	main.c:173: setTurnAngle(STEER_S);
+;	main.c:217: setTurnAngle(STEER_S);
 	mov	dpl,#0x05
 	ljmp	_setTurnAngle
 00105$:
-;	main.c:175: }else if (LEFT_SENSER== 0 & RIGHT_SENSER == 1) {
+;	main.c:219: }else if (LEFT_SENSER== 0 & RIGHT_SENSER == 1) {
 	mov	c,_P1_6
 	cpl	c
 	clr	a
@@ -718,17 +911,17 @@ _selfControl:
 	rrc	a
 	anl	c,_P1_7
 	jnc	00102$
-;	main.c:176: CAR = STOP;
+;	main.c:220: CAR = STOP;
 	mov	_P0,#0x00
-;	main.c:177: setTurnAngle(STEER_P45);
+;	main.c:221: setTurnAngle(STEER_P45);
 	mov	dpl,#0x06
 	ljmp	_setTurnAngle
 00102$:
-;	main.c:181: CAR = STOP;
+;	main.c:225: CAR = STOP;
 	mov	_P0,#0x00
 	ret
 00127$:
-;	main.c:186: }else if (BACK_SENSER == 0 & FRONT_SENSER == 1) {
+;	main.c:230: }else if (BACK_SENSER == 0 & FRONT_SENSER == 1) {
 	mov	c,_P1_5
 	cpl	c
 	clr	a
@@ -736,7 +929,7 @@ _selfControl:
 	rrc	a
 	anl	c,_P1_4
 	jnc	00124$
-;	main.c:188: if ((LEFT_SENSER & RIGHT_SENSER) == 1) {
+;	main.c:232: if ((LEFT_SENSER & RIGHT_SENSER) == 1) {
 	mov	c,_P1_6
 	clr	a
 	rlc	a
@@ -746,11 +939,11 @@ _selfControl:
 	rlc	a
 	anl	ar7,a
 	cjne	r7,#0x01,00115$
-;	main.c:189: CAR = FRONT;
+;	main.c:233: CAR = FRONT;
 	mov	_P0,#0x55
 	ret
 00115$:
-;	main.c:191: }else if ((LEFT_SENSER | RIGHT_SENSER) == 0) {
+;	main.c:235: }else if ((LEFT_SENSER | RIGHT_SENSER) == 0) {
 	mov	c,_P1_6
 	clr	a
 	rlc	a
@@ -760,13 +953,13 @@ _selfControl:
 	rlc	a
 	orl	a,r7
 	jnz	00112$
-;	main.c:192: CAR = BACK;
+;	main.c:236: CAR = BACK;
 	mov	_P0,#0xaa
-;	main.c:193: delay(400);
+;	main.c:237: delay(400);
 	mov	dptr,#0x0190
 	ljmp	_delay
 00112$:
-;	main.c:196: }else if (LEFT_SENSER== 0 & RIGHT_SENSER == 1) {
+;	main.c:240: }else if (LEFT_SENSER== 0 & RIGHT_SENSER == 1) {
 	mov	c,_P1_6
 	cpl	c
 	clr	a
@@ -774,15 +967,15 @@ _selfControl:
 	rrc	a
 	anl	c,_P1_7
 	jnc	00109$
-;	main.c:197: CAR = STOP;
+;	main.c:241: CAR = STOP;
 	mov	_P0,#0x00
 	ret
 00109$:
-;	main.c:202: CAR = STOP;
+;	main.c:246: CAR = STOP;
 	mov	_P0,#0x00
 	ret
 00124$:
-;	main.c:207: }else if (LEFT_SENSER== 0 & (RIGHT_SENSER & BACK_SENSER & FRONT_SENSER) == 1 ){
+;	main.c:251: }else if (LEFT_SENSER== 0 & (RIGHT_SENSER & BACK_SENSER & FRONT_SENSER) == 1 ){
 	mov	c,_P1_6
 	cpl	c
 	clr	a
@@ -808,11 +1001,13 @@ _selfControl:
 00179$:
 	anl	a,r7
 	jz	00121$
-;	main.c:208: CAR = STOP;
+;	main.c:252: CAR = STOP;
 	mov	_P0,#0x00
-	ret
+;	main.c:253: setTurnAngle(STEER_P45);
+	mov	dpl,#0x06
+	ljmp	_setTurnAngle
 00121$:
-;	main.c:212: }else if (RIGHT_SENSER == 0 & (LEFT_SENSER & FRONT_SENSER & BACK_SENSER) == 1) {
+;	main.c:256: }else if (RIGHT_SENSER == 0 & (LEFT_SENSER & FRONT_SENSER & BACK_SENSER) == 1) {
 	mov	c,_P1_7
 	cpl	c
 	clr	a
@@ -838,26 +1033,28 @@ _selfControl:
 00182$:
 	anl	a,r7
 	jz	00118$
-;	main.c:213: CAR = STOP;
+;	main.c:257: CAR = STOP;
 	mov	_P0,#0x00
-	ret
+;	main.c:258: setTurnAngle(STEER_N45);
+	mov	dpl,#0x08
+	ljmp	_setTurnAngle
 00118$:
-;	main.c:218: CAR = STOP;
+;	main.c:262: CAR = STOP;
 	mov	_P0,#0x00
-;	main.c:221: }
+;	main.c:265: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'btControl'
 ;------------------------------------------------------------
 ;cmd                       Allocated to registers r7 
 ;------------------------------------------------------------
-;	main.c:224: void btControl(uchar cmd) {
+;	main.c:268: void btControl(uchar cmd) {
 ;	-----------------------------------------
 ;	 function btControl
 ;	-----------------------------------------
 _btControl:
 	mov	r7,dpl
-;	main.c:226: switch(cmd) {
+;	main.c:270: switch(cmd) {
 	cjne	r7,#0x61,00152$
 	sjmp	00106$
 00152$:
@@ -876,194 +1073,167 @@ _btControl:
 	cjne	r7,#0x72,00157$
 	sjmp	00104$
 00157$:
-;	main.c:227: case('f'): CAR = FRONT; break;
+;	main.c:271: case('f'): CAR = FRONT; break;
 	cjne	r7,#0x73,00112$
 	sjmp	00105$
 00101$:
 	mov	_P0,#0x55
-;	main.c:228: case('b'): CAR = BACK; break;
+;	main.c:272: case('b'): CAR = BACK; break;
 	ret
 00102$:
 	mov	_P0,#0xaa
-;	main.c:229: case('l'): CAR = FRONT_LEFT; break;
+;	main.c:273: case('l'): CAR = FRONT_LEFT; break;
 	ret
 00103$:
 	mov	_P0,#0x5a
-;	main.c:230: case('r'): CAR = FRONT_RIGHT; break;
+;	main.c:274: case('r'): CAR = FRONT_RIGHT; break;
 	ret
 00104$:
 	mov	_P0,#0xa5
-;	main.c:231: case('s'): CAR = STOP; break;
+;	main.c:275: case('s'): CAR = STOP; break;
 	ret
 00105$:
 	mov	_P0,#0x00
-;	main.c:232: case('a'): 
+;	main.c:276: case('a'): 
 	ret
 00106$:
-;	main.c:233: if (speed < M_PWM_CYCLE) {
+;	main.c:277: if (speed < M_PWM_CYCLE) {
 	mov	a,#0x100 - 0x0a
 	add	a,_speed
 	jc	00114$
-;	main.c:234: speed++;
+;	main.c:278: speed++;
 	inc	_speed
-;	main.c:236: break;
-;	main.c:237: case('d'): 
+;	main.c:280: break;
+;	main.c:281: case('d'): 
 	ret
 00109$:
-;	main.c:238: if (speed != 0) {
+;	main.c:282: if (speed != 0) {
 	mov	a,_speed
 	jz	00114$
-;	main.c:239: speed--;
+;	main.c:283: speed--;
 	dec	_speed
-;	main.c:241: break;
-;	main.c:242: default:CAR = STOP; break;
+;	main.c:285: break;
+;	main.c:286: default:CAR = STOP; break;
 	ret
 00112$:
 	mov	_P0,#0x00
-;	main.c:243: }
+;	main.c:287: }
 00114$:
-;	main.c:244: }
+;	main.c:288: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'initInterrupt'
 ;------------------------------------------------------------
-;	main.c:247: void initInterrupt() {
+;	main.c:291: void initInterrupt() {
 ;	-----------------------------------------
 ;	 function initInterrupt
 ;	-----------------------------------------
 _initInterrupt:
-;	main.c:249: EA = 1;			//允许总中断
+;	main.c:293: EA = 1;			//允许总中断
 ;	assignBit
 	setb	_EA
-;	main.c:250: ES = 1;			//允许串行口中断
+;	main.c:294: ES = 1;			//允许串行口中断
 ;	assignBit
 	setb	_ES
-;	main.c:251: ET0 = 1;		//允许定时器0中断
+;	main.c:295: ET0 = 1;		//允许定时器0中断
 ;	assignBit
 	setb	_ET0
-;	main.c:252: ET2 = 1;		//允许定时器2中断
+;	main.c:296: ET2 = 1;		//允许定时器2中断
 ;	assignBit
 	setb	_ET2
-;	main.c:253: EX1 = 1;		//允许外部中断1中断
+;	main.c:297: EX1 = 1;		//允许外部中断1中断
 ;	assignBit
 	setb	_EX1
-;	main.c:254: IT1 = 0;		//低电平触发
+;	main.c:298: IT1 = 1;		//低跳沿触发
 ;	assignBit
-	clr	_IT1
-;	main.c:255: }
+	setb	_IT1
+;	main.c:299: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'initTimer0'
 ;------------------------------------------------------------
-;	main.c:258: void initTimer0() {
+;	main.c:302: void initTimer0() {
 ;	-----------------------------------------
 ;	 function initTimer0
 ;	-----------------------------------------
 _initTimer0:
-;	main.c:260: TMOD = 0x21;	//工作方式1
-	mov	_TMOD,#0x21
-;	main.c:261: if (operate == STEER_OPERATE) {	//为舵机转动
+;	main.c:304: TMOD |= 0x01;	//工作方式1
+	orl	_TMOD,#0x01
+;	main.c:305: if (operate == STEER_OPERATE) {	//为舵机转动
 	mov	a,#0x02
 	cjne	a,_operate,00104$
-;	main.c:262: TH0 = 0xFE;		//中断时间0.5ms
+;	main.c:306: TH0 = 0xFE;		//中断时间0.5ms
 	mov	_TH0,#0xfe
-;	main.c:263: TL0 = 0x33;
+;	main.c:307: TL0 = 0x33;
 	mov	_TL0,#0x33
-;	main.c:264: TR0 = 1;	//开启定时器0
+	sjmp	00105$
+00104$:
+;	main.c:308: }else if (operate == SR04_OPERATE) {		//为超声波
+	mov	a,#0x03
+	cjne	a,_operate,00105$
+;	main.c:309: TH0 = 0;
+	mov	_TH0,#0x00
+;	main.c:310: TL0 = 0;
+	mov	_TL0,#0x00
+00105$:
+;	main.c:312: TR0 = 1;	//开启定时器0
 ;	assignBit
 	setb	_TR0
-	ret
-00104$:
-;	main.c:265: }else if (operate == SR04_OPERATE) {		//为超声波
-	mov	a,#0x03
-	cjne	a,_operate,00106$
-;	main.c:266: TH0 = 0;
-	mov	_TH0,#0x00
-;	main.c:267: TL0 = 0;
-	mov	_TL0,#0x00
-00106$:
-;	main.c:269: }
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'reloadTimer0'
-;------------------------------------------------------------
-;	main.c:271: void reloadTimer0() {
-;	-----------------------------------------
-;	 function reloadTimer0
-;	-----------------------------------------
-_reloadTimer0:
-;	main.c:273: if (operate == STEER_OPERATE) {
-	mov	a,#0x02
-	cjne	a,_operate,00104$
-;	main.c:274: TH0 = 0xFE;
-	mov	_TH0,#0xfe
-;	main.c:275: TL0 = 0x33;	
-	mov	_TL0,#0x33
-	ret
-00104$:
-;	main.c:276: }else if (operate == SR04_OPERATE) {
-	mov	a,#0x03
-	cjne	a,_operate,00106$
-;	main.c:277: TH0 = 0;
-	mov	_TH0,#0x00
-;	main.c:278: TL0 = 0;
-	mov	_TL0,#0x00
-00106$:
-;	main.c:280: }
+;	main.c:313: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'initSerial'
 ;------------------------------------------------------------
-;	main.c:283: void initSerial() {
+;	main.c:316: void initSerial() {
 ;	-----------------------------------------
 ;	 function initSerial
 ;	-----------------------------------------
 _initSerial:
-;	main.c:285: SCON = 0x50;	//串行口工作模式1
+;	main.c:318: SCON = 0x50;	//串行口工作模式1
 	mov	_SCON,#0x50
-;	main.c:286: PCON = 0x00;
+;	main.c:319: PCON = 0x00;
 	mov	_PCON,#0x00
-;	main.c:287: RI = 0;			//接受中断标志清零
+;	main.c:320: RI = 0;			//接受中断标志清零
 ;	assignBit
 	clr	_RI
-;	main.c:289: TMOD = 0x21;	//定时器T1方式2 T0工作方式1
-	mov	_TMOD,#0x21
-;	main.c:290: TL1 = 0xfd;
+;	main.c:322: TMOD |= 0x20;	//定时器T1方式2 
+	orl	_TMOD,#0x20
+;	main.c:323: TL1 = 0xfd;
 	mov	_TL1,#0xfd
-;	main.c:291: TH1 = 0xfd;
+;	main.c:324: TH1 = 0xfd;
 	mov	_TH1,#0xfd
-;	main.c:292: TR1 = 1;		//定时器开始计数
+;	main.c:325: TR1 = 1;		//定时器开始计数
 ;	assignBit
 	setb	_TR1
-;	main.c:293: }
+;	main.c:326: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'initTimer2'
 ;------------------------------------------------------------
-;	main.c:297: void initTimer2() {
+;	main.c:330: void initTimer2() {
 ;	-----------------------------------------
 ;	 function initTimer2
 ;	-----------------------------------------
 _initTimer2:
-;	main.c:299: T2CON = 0x00;
+;	main.c:332: T2CON = 0x00;
 	mov	_T2CON,#0x00
-;	main.c:300: T2MOD = 0x00;	
+;	main.c:333: T2MOD = 0x00;	
 	mov	_T2MOD,#0x00
-;	main.c:301: TH2 = RCAP2H = 0xff;		//中断0.1ms
+;	main.c:334: TH2 = RCAP2H = 0xff;		//中断0.1ms
 	mov	_RCAP2H,#0xff
 	mov	_TH2,#0xff
-;	main.c:302: TL2 = RCAP2L = 0xa4;
+;	main.c:335: TL2 = RCAP2L = 0xa4;
 	mov	_RCAP2L,#0xa4
 	mov	_TL2,#0xa4
-;	main.c:303: TR2 = 1;	//开启定时器2
+;	main.c:336: TR2 = 1;	//开启定时器2
 ;	assignBit
 	setb	_TR2
-;	main.c:304: }
+;	main.c:337: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'timer0'
 ;------------------------------------------------------------
-;	main.c:306: void timer0() __interrupt 1 __using 0 {
+;	main.c:339: void timer0() __interrupt 1 __using 0 {
 ;	-----------------------------------------
 ;	 function timer0
 ;	-----------------------------------------
@@ -1083,23 +1253,32 @@ _timer0:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-;	main.c:308: if (operate == STEER_OPERATE) {
+;	main.c:341: if (operate == STEER_OPERATE) {
 	mov	a,#0x02
 	cjne	a,_operate,00104$
-;	main.c:309: reloadTimer0();
-	lcall	_reloadTimer0
-;	main.c:310: steerTurn();
+;	main.c:342: ET2 = 0;	//禁止定时器2中断，以免对舵机的PWM波形产生影响
+;	assignBit
+	clr	_ET2
+;	main.c:343: TH0 = 0xFE;		//中断时间0.5ms
+	mov	_TH0,#0xfe
+;	main.c:344: TL0 = 0x33;
+	mov	_TL0,#0x33
+;	main.c:345: steerTurn();
 	lcall	_steerTurn
 	sjmp	00106$
 00104$:
-;	main.c:311: } else if (operate == SR04_OPERATE) {
+;	main.c:346: } else if (operate == SR04_OPERATE) {
 	mov	a,#0x03
 	cjne	a,_operate,00106$
-;	main.c:312: isOverstep = 1;
+;	main.c:347: TH0 = 0;
+	mov	_TH0,#0x00
+;	main.c:348: TL0 = 0;
+	mov	_TL0,#0x00
+;	main.c:349: isOverStep = 1;
 ;	assignBit
-	setb	_isOverstep
+	setb	_isOverStep
 00106$:
-;	main.c:314: }
+;	main.c:351: }
 	pop	psw
 	pop	(0+0)
 	pop	(0+1)
@@ -1118,7 +1297,7 @@ _timer0:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'int1'
 ;------------------------------------------------------------
-;	main.c:317: void int1() __interrupt 2 __using 1 {
+;	main.c:354: void int1() __interrupt 2 __using 1 {
 ;	-----------------------------------------
 ;	 function int1
 ;	-----------------------------------------
@@ -1131,12 +1310,9 @@ _int1:
 	ar2 = 0x0a
 	ar1 = 0x09
 	ar0 = 0x08
-;	main.c:319: EX1 = 0;
-;	assignBit
-	clr	_EX1
-;	main.c:320: operate = SELF_OPERATE;
+;	main.c:355: operate = SELF_OPERATE;
 	mov	_operate,#0x04
-;	main.c:321: }
+;	main.c:356: }
 	reti
 ;	eliminated unneeded mov psw,# (no regs used in bank)
 ;	eliminated unneeded push/pop psw
@@ -1147,7 +1323,7 @@ _int1:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'serial'
 ;------------------------------------------------------------
-;	main.c:324: void serial() __interrupt 4 __using 2 {
+;	main.c:359: void serial() __interrupt 4 __using 2 {
 ;	-----------------------------------------
 ;	 function serial
 ;	-----------------------------------------
@@ -1161,16 +1337,16 @@ _serial:
 	ar1 = 0x11
 	ar0 = 0x10
 	push	acc
-;	main.c:325: RI = 0;		
+;	main.c:360: RI = 0;		
 ;	assignBit
 	clr	_RI
-;	main.c:326: if (operate == NO_OPERATE) {
+;	main.c:361: if (operate == NO_OPERATE) {
 	mov	a,_operate
 	jnz	00103$
-;	main.c:327: operate = BT_OPERATE;
+;	main.c:362: operate = BT_OPERATE;
 	mov	_operate,#0x01
 00103$:
-;	main.c:329: }
+;	main.c:364: }
 	pop	acc
 	reti
 ;	eliminated unneeded mov psw,# (no regs used in bank)
@@ -1183,7 +1359,7 @@ _serial:
 ;------------------------------------------------------------
 ;a                         Allocated to registers r6 
 ;------------------------------------------------------------
-;	main.c:332: void timer2() __interrupt 5 __using 3 {
+;	main.c:367: void timer2() __interrupt 5 __using 3 {
 ;	-----------------------------------------
 ;	 function timer2
 ;	-----------------------------------------
@@ -1211,13 +1387,13 @@ _timer2:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x18
-;	main.c:336: t2InterruptTimes++;
+;	main.c:370: t2InterruptTimes++;
 	inc	_t2InterruptTimes
 	clr	a
 	cjne	a,_t2InterruptTimes,00116$
 	inc	(_t2InterruptTimes + 1)
 00116$:
-;	main.c:337: a = t2InterruptTimes % M_PWM_CYCLE;
+;	main.c:371: a = t2InterruptTimes % M_PWM_CYCLE;
 	mov	__moduint_PARM_2,#0x0a
 	mov	(__moduint_PARM_2 + 1),#0x00
 	mov	dpl,_t2InterruptTimes
@@ -1226,37 +1402,37 @@ _timer2:
 	lcall	__moduint
 	mov	psw,#0x18
 	mov	r6,dpl
-;	main.c:338: if (t2InterruptTimes == CMD_TIME) {
+;	main.c:372: if (t2InterruptTimes == CMD_TIME) {
 	mov	a,#0x90
 	cjne	a,_t2InterruptTimes,00102$
 	mov	a,#0x01
 	cjne	a,(_t2InterruptTimes + 1),00102$
-;	main.c:339: t2InterruptTimes = 0;
+;	main.c:373: t2InterruptTimes = 0;
 	clr	a
 	mov	_t2InterruptTimes,a
 	mov	(_t2InterruptTimes + 1),a
-;	main.c:340: CAR = STOP;
+;	main.c:374: CAR = STOP;
 ;	1-genFromRTrack replaced	mov	_P0,#0x00
 	mov	_P0,a
-;	main.c:341: TR2 = 0;	//溢出400次，说明执行了蓝牙发送的指令40ms了，停止计数器2计数，停止执行指令，等待蓝牙发送新的指令
+;	main.c:375: TR2 = 0;	//溢出400次，说明执行了蓝牙发送的指令40ms了，停止计数器2计数，停止执行指令，等待蓝牙发送新的指令
 ;	assignBit
 	clr	_TR2
 00102$:
-;	main.c:343: if (a <= speed) {
+;	main.c:377: if (a <= speed) {
 	clr	c
 	mov	a,_speed
 	subb	a,r6
 	jc	00104$
-;	main.c:344: M_PWM = 1;
+;	main.c:378: M_PWM = 1;
 ;	assignBit
 	setb	_P3_6
 	sjmp	00106$
 00104$:
-;	main.c:346: M_PWM = 0;
+;	main.c:380: M_PWM = 0;
 ;	assignBit
 	clr	_P3_6
 00106$:
-;	main.c:349: }
+;	main.c:383: }
 	pop	psw
 	pop	(0+0)
 	pop	(0+1)
@@ -1273,13 +1449,13 @@ _timer2:
 	pop	bits
 	reti
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'main'
+;Allocation info for local variables in function 'setup'
 ;------------------------------------------------------------
-;	main.c:351: void main() {
+;	main.c:386: void setup() {
 ;	-----------------------------------------
-;	 function main
+;	 function setup
 ;	-----------------------------------------
-_main:
+_setup:
 	ar7 = 0x07
 	ar6 = 0x06
 	ar5 = 0x05
@@ -1288,32 +1464,108 @@ _main:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	main.c:352: initInterrupt();
+;	main.c:387: initInterrupt();
 	lcall	_initInterrupt
-;	main.c:353: initSerial();
+;	main.c:388: initSerial();
 	lcall	_initSerial
-;	main.c:354: initTimer2();
+;	main.c:389: initTimer2();
 	lcall	_initTimer2
-;	main.c:355: STBY = 1;
+;	main.c:390: operate = NO_OPERATE;
+	mov	_operate,#0x00
+;	main.c:391: STBY = 1;
 ;	assignBit
 	setb	_P3_7
-;	main.c:356: while(1) {
-00105$:
-;	main.c:361: switch(operate) {
+;	main.c:392: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'loop'
+;------------------------------------------------------------
+;distance                  Allocated to registers r7 
+;------------------------------------------------------------
+;	main.c:395: void loop() {
+;	-----------------------------------------
+;	 function loop
+;	-----------------------------------------
+_loop:
+;	main.c:396: sensorTrigger();
+	lcall	_sensorTrigger
+;	main.c:397: if (SWITCH_SELF_CONTROL) {
+	jnb	_P1_0,00102$
+;	main.c:398: ledStatus(0);	
+	mov	dpl,#0x00
+	lcall	_ledStatus
+00102$:
+;	main.c:400: switch(operate) {
 	mov	a,#0x01
-	cjne	a,_operate,00103$
-;	main.c:363: ledStatus(2);
+	cjne	a,_operate,00129$
+	sjmp	00103$
+00129$:
+	mov	a,#0x03
+	cjne	a,_operate,00130$
+	sjmp	00105$
+00130$:
+	mov	a,#0x04
+;	main.c:401: case(BT_OPERATE):
+	cjne	a,_operate,00110$
+	sjmp	00104$
+00103$:
+;	main.c:402: ledStatus(2);
 	mov	dpl,#0x02
 	lcall	_ledStatus
-;	main.c:364: btControl(SBUF);
+;	main.c:403: btControl(SBUF);
 	mov	dpl,_SBUF
-	lcall	_btControl
-;	main.c:375: }
-00103$:
-;	main.c:376: operate = NO_OPERATE;
+;	main.c:404: break;
+;	main.c:405: case(SELF_OPERATE):
+	ljmp	_btControl
+00104$:
+;	main.c:406: ledStatus(1);
+	mov	dpl,#0x01
+	lcall	_ledStatus
+;	main.c:407: selfControl();
+;	main.c:408: break;
+;	main.c:409: case(SR04_OPERATE):
+	ljmp	_selfControl
+00105$:
+;	main.c:410: startSR04();
+	lcall	_startSR04
+;	main.c:412: distance = calculate();
+	lcall	_calculate
+;	main.c:414: SEG = seg[distance];
+	mov	a,dpl
+	mov	r7,a
+	mov	dptr,#_seg
+	movc	a,@a+dptr
+	mov	_P2,a
+;	main.c:416: ET2 = 1;	//超声波测距完，重新启动定时器2
+;	assignBit
+	setb	_ET2
+;	main.c:417: operate = NO_OPERATE;
 	mov	_operate,#0x00
-;	main.c:378: }
-	sjmp	00105$
+;	main.c:420: }
+00110$:
+;	main.c:421: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'main'
+;------------------------------------------------------------
+;	main.c:423: void main() {
+;	-----------------------------------------
+;	 function main
+;	-----------------------------------------
+_main:
+;	main.c:425: if (isFirst) {
+	jnb	_isFirst,00104$
+;	main.c:426: setup();
+	lcall	_setup
+;	main.c:427: isFirst = 0;
+;	assignBit
+	clr	_isFirst
+;	main.c:429: while(1) {
+00104$:
+;	main.c:430: loop();
+	lcall	_loop
+;	main.c:432: }
+	sjmp	00104$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 _seg:

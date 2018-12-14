@@ -33,20 +33,20 @@ C:   00000000  s_RSEG0
 C:   00000000  s_RSEG1                         
 C:   00000000  s_XABS                          
 C:   00000001  l_BIT_BANK                      
-C:   00000001  l_BSEG                          
 C:   00000001  l_BSEG_BYTES                    
 C:   00000001  s_PSEG                          
 C:   00000001  s_XISEG                         
 C:   00000001  s_XSEG                          
+C:   00000002  l_BSEG                          
 C:   00000002  l_OSEG                          
 C:   00000003  l_GSFINAL                       
 C:   00000003  l_GSINIT0                       
-C:   00000008  l_GSINIT                        
 C:   00000008  l_REG_BANK_0                    
 C:   00000008  l_REG_BANK_1                    
 C:   00000008  l_REG_BANK_2                    
 C:   00000008  l_REG_BANK_3                    
 C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_GSINIT                        
 C:   0000000A  l_GSINIT2                       
 C:   00000010  l_CONST                         
 C:   00000010  s_REG_BANK_2                    
@@ -76,13 +76,13 @@ C:   00000060  s_GSINIT4
 C:   00000080  l_DSEG                          
 C:   0000008A  s_GSINIT                        
 C:   0000008A  s_GSINIT5                       
-C:   00000092  s_GSFINAL                       
-C:   00000095  s_CSEG                          
+C:   00000094  s_GSFINAL                       
+C:   00000097  s_CSEG                          
 C:   000000D5  l_SSEG                          
 C:   00000100  l_IRAM                          
-C:   000003D0  l_CSEG                          
-C:   00000465  s_CONST                         
-C:   00000475  s_XINIT                         
+C:   0000069E  l_CSEG                          
+C:   00000735  s_CONST                         
+C:   00000745  s_XINIT                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -93,7 +93,7 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000000  .__.ABS.                           _startup
+     00000000  .__.ABS.                           _fsget1arg
      00000080  _P0                                main
      00000080  _P0_0                              main
      00000081  _P0_1                              main
@@ -303,9 +303,9 @@ DSEG                                00000000    00000080 =         128. bytes (R
      00000022  _operate                           main
      00000023  _speed                             main
      00000024  _t0InterruptTimes                  main
-     00000025  _t2InterruptTimes                  main
-     00000027  _angle                             main
-     00000028  _cmd                               main
+     00000026  _t2InterruptTimes                  main
+     00000028  _angle                             main
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
 Hexadecimal  [32-Bits]
 
@@ -388,7 +388,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-GSINIT                              0000008A    00000008 =           8. bytes (REL,CON,CODE)
+GSINIT                              0000008A    0000000A =          10. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -397,7 +397,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-GSFINAL                             00000092    00000003 =           3. bytes (REL,CON,CODE)
+GSFINAL                             00000094    00000003 =           3. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -406,41 +406,61 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000095    000003D0 =         976. bytes (REL,CON,CODE)
+CSEG                                00000097    0000069E =        1694. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000095  _delay                             main
-C:   000000B9  _sensorTrigger                     main
-C:   000000C6  _ledStatus                         main
-C:   000000EC  _setTurnAngle                      main
-C:   00000124  _steerTurn                         main
-C:   0000014C  _selfControl                       main
-C:   00000227  _btControl                         main
-C:   00000274  _initInterrupt                     main
-C:   00000281  _initTimer0                        main
-C:   0000029E  _reloadTimer0                      main
-C:   000002B6  _initSerial                        main
-C:   000002CA  _initTimer2                        main
-C:   000002DF  _timer0                            main
-C:   0000032F  _int1                              main
-C:   00000335  _serial                            main
-C:   00000343  _timer2                            main
-C:   000003BD  _main                              main
-C:   000003DE  __moduint                          _moduint
-C:   0000042B  __modsint                          _modsint
-C:   00000461  __sdcc_external_startup            _startup
+C:   00000097  _delay                             main
+C:   000000BB  _putcharToSer                      main
+C:   000000C4  _sensorTrigger                     main
+C:   000000D4  _ledStatus                         main
+C:   000000FA  _setTurnAngle                      main
+C:   00000130  _steerTurn                         main
+C:   00000170  _startSR04                         main
+C:   00000196  _calculate                         main
+C:   0000021B  _selfControl                       main
+C:   00000300  _btControl                         main
+C:   0000034D  _initInterrupt                     main
+C:   0000035A  _initTimer0                        main
+C:   00000378  _initSerial                        main
+C:   0000038C  _initTimer2                        main
+C:   000003A1  _timer0                            main
+C:   000003FC  _int1                              main
+C:   00000400  _serial                            main
+C:   0000040E  _timer2                            main
+C:   00000488  _setup                             main
+C:   00000497  _loop                              main
+C:   000004E2  _main                              main
+C:   000004EF  ___fsmul                           _fsmul
+C:   00000592  fsgetargs                          _fsget2args
+C:   000005C0  fs_normalize_a                     _fsnormalize
+C:   000005F3  __moduint                          _moduint
+C:   00000640  fs_round_and_return                _fsreturnval
+C:   00000658  fs_zerocheck_return                _fsreturnval
+C:   00000661  fs_return_zero                     _fsreturnval
+C:   00000669  fs_direct_return                   _fsreturnval
+C:   00000677  fs_return_inf                      _fsreturnval
+C:   00000684  fs_return_nan                      _fsreturnval
+C:   0000068F  ___uchar2fs                        _uchar2fs
+C:   0000069A  ___fs2uchar                        _fs2uchar
+C:   000006A2  ___ulong2fs                        _ulong2fs
+C:   000006AB  ulong2fs_doit                      _ulong2fs
+C:   000006B5  __sdcc_external_startup            _startup
+C:   000006B9  ___fs2ulong                        _fs2ulong
+C:   000006BB  fs2ulong_begin                     _fs2ulong
+C:   000006E0  fs_rshift_a                        _fsrshift
+C:   00000723  fsgetarg                           _fsget1arg
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               00000465    00000010 =          16. bytes (REL,CON,CODE)
+CONST                               00000735    00000010 =          16. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000465  _seg                               main
+C:   00000735  _seg                               main
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
 
@@ -451,22 +471,40 @@ main.rel                                  [  ]
 
 Libraries Linked                          [ object file ]
 
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsmul.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsget2args.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtclear.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsnormalize.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtxinit.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/libint.lib
                                           [ _moduint.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtxclear.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsreturnval.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtpagesfr.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtstart.rel ]
-D:\Program Files (x86)\SDCC\bin\..\lib\small/libint.lib
-                                          [ _modsint.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _uchar2fs.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fs2uchar.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _ulong2fs.rel ]
 D:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _startup.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fs2ulong.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsrshift.rel ]
+D:\Program Files (x86)\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsget1arg.rel ]
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
 

@@ -3,23 +3,18 @@
  <FRAME activewindow="0">
   <PLACEMENT>2c00000002000000030000000083ffff0083ffffffffffffffffffff280000000000000054060000f8030000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
-  <WINDOW type="default" module="VSMSTUDIO">
-   <FILE NAME="E:/AppData/KeilProject/Automatic obstacle avoidance trolley with C51/简易仿真图/AT89C52/main.c"/>
-   <STATE NAME="EDIT" VALUE="AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAACz/wCAAAAAfsAAAAQAFAAcgBvAGoAZQBjAHQAcwEAAAAAAAACzwAAASwA////AAAAAwAAB3gAAADZ/AEAAAAB+wAAACAATwB1AHQAcAB1AHQARABvAGMAawBXAGkAZABnAGUAdAEAAAAAAAAHeAAAAFcA////AAAGcwAAAs8AAAAEAAAABAAAAAgAAAAI/AAAAAA="/>
-   <STATE NAME="DEBUG" VALUE="AAAA/wAAAAH9AAAAAgAAAAAAAAEAAAACovwCAAAAAfsAAAAQAFAAcgBvAGoAZQBjAHQAcwAAAAAAAAACogAAASwA////AAAAAwAAB3gAAADZ/AEAAAAB/AAAAAAAAAd4AAAAVwD////6AAAAAAEAAAAH+wAAACAATwB1AHQAcAB1AHQARABvAGMAawBXAGkAZABnAGUAdAEAAAAA/////wAAAFcA////+wAAACoAZABvAGMAawA6ADAAOgBTAGkAbQB1AGwAYQB0AGkAbwBuACAATABvAGcAAAAAAP////8AAAAAAAAAAPsAAAAmAGQAbwBjAGsAOgAxADoAVwBhAHQAYwBoACAAVwBpAG4AZABvAHcAAAAAAP////8AAAAAAAAAAPsAAAA8AGQAbwBjAGsAOgAxADoAOAAwADUAMQAgAEMAUABVACAAUgBlAGcAaQBzAHQAZQByAHMAIAAtACAAVQAxAAAAAAD/////AAAAAAAAAAD7AAAAWABkAG8AYwBrADoAMwA6ADgAMAA1ADEAIABDAFAAVQAgAEkAbgB0AGUAcgBuAGEAbAAgACgASQBEAEEAVABBACkAIABNAGUAbQBvAHIAeQAgAC0AIABVADEAAAAAAP////8AAAAAAAAAAPsAAAA+AGQAbwBjAGsAOgAyADoAOAAwADUAMQAgAEMAUABVACAAUwBGAFIAIABNAGUAbQBvAHIAeQAgAC0AIABVADEAAAAAAP////8AAAAAAAAAAPsAAABCAGQAbwBjAGsAOgAxADAAMAAxADoAOAAwADUAMQAgAEMAUABVACAAVgBhAHIAaQBhAGIAbABlAHMAIAAtACAAVQAxAQAAAAD/////AAAAAAAAAAAAAAd4AAACzwAAAAQAAAAEAAAACAAAAAj8AAAAAA=="/>
-  </WINDOW>
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI>
-   <POPUP w="400" x="4" flags="00000002" y="95" h="100" pid="0" iid="-1">
+   <POPUP w="400" x="4" flags="00000002" y="118" h="100" pid="0" iid="-1">
     <PROPERTIES>
-     <ITEM name="Message Column Width">281</ITEM>
+     <ITEM name="Message Column Width">263</ITEM>
      <ITEM name="ShowGrid">No</ITEM>
      <ITEM name="Source Column Width">100</ITEM>
      <ITEM name="Version">100</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="350" x="4" flags="00000032" y="95" h="100" pid="1" iid="-1">
+   <POPUP w="350" x="4" flags="00000032" y="118" h="100" pid="1" iid="-1">
     <PROPERTIES>
      <ITEM name="Address Column Width">87</ITEM>
      <ITEM name="AutoResize">No</ITEM>
@@ -36,19 +31,19 @@
      <ITEM name="nItems">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="695" x="1082" flags="00000001" y="566" h="459" pid="0" iid="18">
+   <POPUP w="695" x="430" flags="00008001" y="298" h="459" pid="0" iid="18">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="450" x="328" flags="00008023" y="658" h="250" pid="0" iid="17">
+   <POPUP w="450" x="135" flags="00000022" y="590" h="250" pid="0" iid="17">
     <PROPERTIES>
      <ITEM name="AutoEcho">1</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="24" x="4" flags="00000008" y="95" h="17" pid="1" iid="1">
+   <POPUP w="24" x="4" flags="00000008" y="118" h="17" pid="1" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="1" x="4" flags="0000000a" y="95" h="1" pid="3" iid="1">
+   <POPUP w="1" x="4" flags="0000000a" y="118" h="1" pid="3" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -58,7 +53,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="1" x="4" flags="0000000a" y="95" h="1" pid="2" iid="1">
+   <POPUP w="1" x="4" flags="0000000a" y="118" h="1" pid="2" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
