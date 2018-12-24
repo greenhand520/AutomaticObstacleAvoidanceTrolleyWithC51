@@ -24,7 +24,7 @@ def print_msg():
     print("ZZ51单片机小车控制端   --by betterme")
     print("按住对应按键控制小车")
     print("W->前进  S->后退  J->左转  L->右转")
-    print("I->加速  K->减速  H->帮助  C->清屏")
+    print("I->加速  K->减速  D->停止  C->清屏")
 
 
 def clear():
