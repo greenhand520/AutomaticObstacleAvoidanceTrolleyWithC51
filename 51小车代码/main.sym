@@ -345,15 +345,15 @@ Symbol Table
   B __start__stack                                                 000000 GR
   9 _angle                                                         000006 GR
   E _bObsFlag                                                      000003 GR
- 1C _btControl                                                     0002FA GR
+ 1C _btControl                                                     000438 GR
  1C _calculate                                                     000101 GR
  1C _delay                                                         000000 GR
   E _fObsFlag                                                      000002 GR
- 1C _initInterrupt                                                 000347 GR
- 1C _initSerial                                                    000371 GR
- 1C _initTimer0                                                    000354 GR
- 1C _initTimer2                                                    000385 GR
- 1C _int1                                                          0003F3 GR
+ 1C _initInterrupt                                                 000485 GR
+ 1C _initSerial                                                    0004AF GR
+ 1C _initTimer0                                                    000492 GR
+ 1C _initTimer2                                                    0004C3 GR
+ 1C _int1                                                          000531 GR
   E _isFirst                                                       000001 GR
  1C _isHaveObs                                                     0001A0 GR
   E _isOverStep                                                    000000 GR
@@ -364,28 +364,28 @@ Hexadecimal [24-Bits]
 Symbol Table
 
  1C _ledStatus                                                     00004E GR
- 1C _loop                                                          00048E GR
- 1C _main                                                          0004C1 GR
+ 1C _loop                                                          0005CE GR
+ 1C _main                                                          000605 GR
   9 _operate                                                       000000 GR
  1C _putcharToSer                                                  000024 GR
   E _rObsFlag                                                      000005 GR
  1D _seg                                                           000000 GR
- 1C _selfControl                                                   0001E0 GR
+ 1C _selfControl                                                   00020F GR
  1C _sensorTrigger                                                 00002D GR
- 1C _serial                                                        0003F7 GR
+ 1C _serial                                                        000537 GR
  1C _setObsFlag                                                    00003D GR
   E _setObsFlag_PARM_1                                             000006 GR
   E _setObsFlag_PARM_2                                             000007 GR
   E _setObsFlag_PARM_3                                             000008 GR
   E _setObsFlag_PARM_4                                             000009 GR
  1C _setTurnAngle                                                  000074 GR
- 1C _setup                                                         00047F GR
+ 1C _setup                                                         0005BF GR
   9 _speed                                                         000001 GR
  1C _steerTurn                                                     0000A1 GR
   9 _t0InterruptTimes                                              000002 GR
   9 _t2InterruptTimes                                              000004 GR
- 1C _timer0                                                        00039A GR
- 1C _timer2                                                        000405 GR
+ 1C _timer0                                                        0004D8 GR
+ 1C _timer2                                                        000545 GR
  1C _workSR04                                                      0000DE GR
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
@@ -630,7 +630,7 @@ Area Table
   19 GSINIT5                                    size      0   flags   20
   1A GSINIT                                     size     12   flags   20
   1B GSFINAL                                    size      3   flags   20
-  1C CSEG                                       size    4CE   flags   20
+  1C CSEG                                       size    612   flags   20
   1D CONST                                      size     10   flags   20
   1E XINIT                                      size      0   flags   20
   1F CABS                                       size      0   flags   28

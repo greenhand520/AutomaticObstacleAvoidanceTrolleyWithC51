@@ -1,5 +1,5 @@
 #include <mcs51/at89x52.h>
-#include <stdio.h>
+// #include <stdio.h>	//最终没有用到printf()
 typedef unsigned int uint;
 typedef unsigned char uchar;
 
@@ -33,7 +33,7 @@ typedef unsigned char uchar;
 #define __nop __asm nop __endasm    //延迟一个机器周期
 #define M_PWM_CYCLE 10    //pwm信号的周期
 #define CMD_TIME 400    //执行蓝牙指令的时间，400 * 0.1 = 40ms‘
-#define OBS_DIS 10	//障碍物允许距离自己的距离
+#define OBS_DIS 15	//障碍物允许距离自己的距离
 
 #define NO_OPERATE 0x00    //无操作
 #define BT_OPERATE 0x01   //主函数执行蓝牙控制
@@ -56,7 +56,7 @@ void steerTurn();
 void workSR04();
 int calculate();
 __bit isHaveObs(uchar dir);
-void setObsFlag(__bit fObsFlag, __bit bObsFlag, __bit lObsFlag, __bit rObsFlag);
+void setObsFlag(__bit fof, __bit bof, __bit lof, __bit rof);
 void selfControl();
 void btControl(uchar cmd);
 void initInterrupt();
@@ -65,7 +65,6 @@ void initSerial();
 void initTimer2();
 void setup();
 void loop();
-// void initTimer0();
 
 uchar operate = 0;
 //数码管数字0~F
@@ -163,7 +162,7 @@ void steerTurn() {
 	char a;
 	t0InterruptTimes++;
 	a = t0InterruptTimes % 5;
-	if (t0InterruptTimes == 150) {	//舵机转动到指定角度后,停止定时器0计时
+	if (t0InterruptTimes == 200) {	//舵机转动到指定角度后,停止定时器0计时,时间太短的话，舵机左右转动是无法到指定位置的。
 		t0InterruptTimes = 0;
 		STEER_PWM = 0;	
 		TR0 = 0;
@@ -223,11 +222,24 @@ int calculate() {
 __bit isHaveObs(uchar dir) {
 
 	int distance;
+	__bit sensor_flag = 1;	//0表示存在障碍物
+	switch(dir) {
+		case(STEER_S):
+			sensor_flag = FRONT_SENSER;
+		break;
+		case(STEER_N45):
+			sensor_flag = LEFT_SENSER;
+		break;
+		case(STEER_P45):
+			sensor_flag = RIGHT_SENSER;
+		break;
+	}
+		
 	ET2 = 0;	//禁止定时器2中断，以免对舵机的PWM波形产生影响
 	setTurnAngle(dir);
 	operate = STEER_OPERATE;
 	initTimer0();
-	delay(100);		//延迟时间太短会导致舵机无法转动
+	delay(5);		//不设延迟会导致舵机无法转动
 	/**
 	* 这里执行定时器0的中断，控制舵机转动到指定位置，执行完中断后回到此处
 	**/
@@ -236,7 +248,7 @@ __bit isHaveObs(uchar dir) {
 	workSR04();		//超声波模块工作
 	distance = calculate();
 	// ET2 = 1;	//定时器0使用完毕，恢复定时器2中断允许
-	if (distance > OBS_DIS | distance == -1) {	//距离大于允许的距离或者超出测量范围，则算没有障碍物
+	if ((distance > OBS_DIS | distance == -1) && sensor_flag == 1) {	//距离大于允许的距离或者超出测量范围，且对应传感器没有被触发，则算没有障碍物
 		return 0;
 	}else {
 		return 1;
@@ -247,35 +259,59 @@ __bit isHaveObs(uchar dir) {
 //自己控制远离障碍物
 void selfControl() {
 	
-	// uchar dir;
-	uchar sensor_state = 0xf0 & P1;		//获取传感器的情况，屏蔽低4位
-	// srand(0);
-	// dir = (uchar)(rand() % 2);	//取随机数(0～1), 0：左转，1：右转
+	uchar sensor_state = 0xf0 & P1;		//获取传感器的情况，屏蔽P1低4位
+	uchar a = 0;
 	switch(sensor_state) {
-		case(0x20 | 0x30):	//前左右 | 左右
+		case(0x20):	//前左右
+			// SEG = seg[0];
 			setObsFlag(1, 0, 1, 1);
 			while(lObsFlag & rObsFlag & fObsFlag) {
 				CAR = BACK;
-				delay(5);
+				// delay(5);	//加延迟会导致反应迟钝
 				CAR = STOP;
-				lObsFlag = isHaveObs(STEER_N45);
-				delay(50);
-				fObsFlag = isHaveObs(STEER_S);
-				delay(20);
-				rObsFlag = isHaveObs(STEER_P45);
+				if (a == 0) {
+					lObsFlag = isHaveObs(STEER_N45);
+				} else if (a == 1) {
+					fObsFlag = isHaveObs(STEER_S);
+				} else {
+					rObsFlag = isHaveObs(STEER_P45);
+				}
 				CAR = BACK;
-				delay(10);
+				delay(25);
+				a++;
+				if (a == 3) {
+					a = 0;
+				}
+			}			
+		break;
+		case(0x30):	//左右
+			// SEG = seg[1];
+			setObsFlag(0, 0, 1, 1);
+			while(rObsFlag & fObsFlag) {
+				CAR = BACK;
+				CAR = STOP;
+				if (a == 0) {
+					lObsFlag = isHaveObs(STEER_N45);
+				} else {
+					rObsFlag = isHaveObs(STEER_P45);
+				}				
+				CAR = BACK;
+				delay(25);
+				a++;
+				if (a == 2) {
+					a = 0;
+				}
 			}
 		break;
 		case(0xe0): //只有前
+			// SEG = seg[2];
 			setObsFlag(1, 0, 0, 0);
 			while(fObsFlag) {
 				CAR = BACK;
-				delay(5);
 				CAR = STOP;
 				fObsFlag = isHaveObs(STEER_S);
 				CAR = BACK;
-				delay(10);
+				delay(25);
 			}
 		break;
 		case(0xd0):	//只有后
@@ -283,31 +319,74 @@ void selfControl() {
 				CAR = FRONT;
 			}
 		break;
+		case(0x60): //右前
+			// SEG = seg[3];
+			setObsFlag(1, 0, 0, 1);
+			while(rObsFlag & fObsFlag) {
+				CAR = BACK;
+				// delay(5);
+				CAR = STOP;
+				if (a == 0) {
+					rObsFlag = isHaveObs(STEER_P45);
+				} else {
+					fObsFlag = isHaveObs(STEER_S);
+				}				
+				CAR = BACK;
+				delay(25);
+				a++;
+				if (a == 2) {
+					a = 0;
+				}
+			}
+			CAR = FRONT_LEFT;
+			delay(100);	
+		break;
+		case(0xa0): //左前
+			// SEG = seg[4];
+			setObsFlag(1, 0, 1, 0);
+			while(lObsFlag & fObsFlag) {
+				CAR = BACK;
+				CAR = STOP;
+				if (a == 0) {
+					lObsFlag = isHaveObs(STEER_N45);
+				} else {
+					fObsFlag = isHaveObs(STEER_S);
+				}				
+				CAR = BACK;
+				delay(25);
+				a++;
+				if (a == 2) {
+					a = 0;
+				}
+			}
+			CAR = FRONT_RIGHT;
+			delay(100);
+		break;
 		case(0xb0):	//只有左
+			// SEG = seg[5];
 			setObsFlag(0, 0, 1, 0);
 			while(lObsFlag) {
 				CAR = BACK;
-				delay(5);
 				CAR = STOP;
 				lObsFlag = isHaveObs(STEER_N45);
 				CAR = BACK;
-				delay(10);
+				delay(25);
 			}
 			CAR = FRONT_RIGHT;
 			delay(100);
 		break;
 		case(0x70):	//只有右
-			setObsFlag(0, 0, 1, 1);
+			// SEG = seg[6];
+			setObsFlag(0, 0, 0, 1);
 			while(rObsFlag) {
 				CAR = BACK;
-				delay(5);
 				CAR = STOP;
 				rObsFlag = isHaveObs(STEER_P45);
 				CAR = BACK;
-				delay(10);
+				delay(25);
 			}
 			CAR = FRONT_LEFT;
-			delay(100);
+			delay(100);	
 		break;
 		default:
 			CAR = STOP;
@@ -346,7 +425,7 @@ void initInterrupt() {
 	ET0 = 1;		//允许定时器0中断
 	ET2 = 1;		//允许定时器2中断
 	EX1 = 1;		//允许外部中断1中断
-	IT1 = 1;		//低电平沿触发
+	IT1 = 1;		//低跳沿触发
 }
 
 //初始化定时器0
@@ -404,6 +483,7 @@ void timer0() __interrupt 1 __using 0 {
 //外部中断1
 void int1() __interrupt 2 __using 1 {
 	operate = SELF_OPERATE;
+	SWITCH_SELF_CONTROL = 1;	//置高电平为下一次低跳沿产生做准备
 }
 
 //串行口中断
@@ -444,6 +524,7 @@ void setup() {
 
 //循环执行
 void loop() {
+
 	sensorTrigger();
 	if (SWITCH_SELF_CONTROL) {
 		ledStatus(0);	
@@ -452,8 +533,10 @@ void loop() {
 		ledStatus(2);
 		btControl(SBUF);
 	} else if (operate == SELF_OPERATE) {
+		ES = 0;		//禁止串口中断，防止蓝牙依然能够控制小车
 		ledStatus(1);
 		selfControl();
+		ES = 1;
 		ET2 = 1;	//退出自己控制，恢复定时器2中断允许
 	}
 	operate = NO_OPERATE;

@@ -80,9 +80,9 @@ C:   0000009C  s_GSFINAL
 C:   0000009F  s_CSEG                          
 C:   000000D4  l_SSEG                          
 C:   00000100  l_IRAM                          
-C:   00000790  l_CSEG                          
-C:   0000082F  s_CONST                         
-C:   0000083F  s_XINIT                         
+C:   000008D4  l_CSEG                          
+C:   00000973  s_CONST                         
+C:   00000983  s_XINIT                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -406,7 +406,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                0000009F    00000790 =        1936. bytes (REL,CON,CODE)
+CSEG                                0000009F    000008D4 =        2260. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -420,48 +420,48 @@ C:   00000140  _steerTurn                         main
 C:   0000017D  _workSR04                          main
 C:   000001A0  _calculate                         main
 C:   0000023F  _isHaveObs                         main
-C:   0000027F  _selfControl                       main
-C:   00000399  _btControl                         main
-C:   000003E6  _initInterrupt                     main
-C:   000003F3  _initTimer0                        main
-C:   00000410  _initSerial                        main
-C:   00000424  _initTimer2                        main
-C:   00000439  _timer0                            main
-C:   00000492  _int1                              main
-C:   00000496  _serial                            main
-C:   000004A4  _timer2                            main
-C:   0000051E  _setup                             main
-C:   0000052D  _loop                              main
-C:   00000560  _main                              main
-C:   0000056D  ___fsmul                           _fsmul
-C:   00000610  fsgetargs                          _fsget2args
-C:   0000063E  fs_normalize_a                     _fsnormalize
-C:   00000671  __moduint                          _moduint
-C:   000006BE  ___sint2fs                         _sint2fs
-C:   000006CB  ___fs2sint                         _fs2sint
-C:   000006FF  fs_round_and_return                _fsreturnval
-C:   00000717  fs_zerocheck_return                _fsreturnval
-C:   00000720  fs_return_zero                     _fsreturnval
-C:   00000728  fs_direct_return                   _fsreturnval
-C:   00000736  fs_return_inf                      _fsreturnval
-C:   00000743  fs_return_nan                      _fsreturnval
-C:   0000074E  ___slong2fs                        _slong2fs
-C:   00000757  slong2fs_doit                      _slong2fs
-C:   0000077B  ___fs2slong                        _fs2slong
-C:   000007D6  __sdcc_external_startup            _startup
-C:   000007DA  fsgetarg                           _fsget1arg
-C:   000007EC  fs_rshift_a                        _fsrshift
+C:   000002AE  _selfControl                       main
+C:   000004D7  _btControl                         main
+C:   00000524  _initInterrupt                     main
+C:   00000531  _initTimer0                        main
+C:   0000054E  _initSerial                        main
+C:   00000562  _initTimer2                        main
+C:   00000577  _timer0                            main
+C:   000005D0  _int1                              main
+C:   000005D6  _serial                            main
+C:   000005E4  _timer2                            main
+C:   0000065E  _setup                             main
+C:   0000066D  _loop                              main
+C:   000006A4  _main                              main
+C:   000006B1  ___fsmul                           _fsmul
+C:   00000754  fsgetargs                          _fsget2args
+C:   00000782  fs_normalize_a                     _fsnormalize
+C:   000007B5  __moduint                          _moduint
+C:   00000802  ___sint2fs                         _sint2fs
+C:   0000080F  ___fs2sint                         _fs2sint
+C:   00000843  fs_round_and_return                _fsreturnval
+C:   0000085B  fs_zerocheck_return                _fsreturnval
+C:   00000864  fs_return_zero                     _fsreturnval
+C:   0000086C  fs_direct_return                   _fsreturnval
+C:   0000087A  fs_return_inf                      _fsreturnval
+C:   00000887  fs_return_nan                      _fsreturnval
+C:   00000892  ___slong2fs                        _slong2fs
+C:   0000089B  slong2fs_doit                      _slong2fs
+C:   000008BF  ___fs2slong                        _fs2slong
+C:   0000091A  __sdcc_external_startup            _startup
+C:   0000091E  fsgetarg                           _fsget1arg
+C:   00000930  fs_rshift_a                        _fsrshift
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               0000082F    00000010 =          16. bytes (REL,CON,CODE)
+CONST                               00000973    00000010 =          16. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000082F  _seg                               main
+C:   00000973  _seg                               main
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
 
